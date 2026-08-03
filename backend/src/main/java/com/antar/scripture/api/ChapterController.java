@@ -1,6 +1,7 @@
 package com.antar.scripture.api;
 
 import com.antar.scripture.application.chapter.query.ChapterQueryService;
+import com.antar.scripture.application.verse.query.VerseQueryService;
 import com.antar.scripture.domain.ChapterId;
 import com.antar.scripture.domain.ChapterNumber;
 import java.util.List;
@@ -16,9 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ChapterController {
 
     private final ChapterQueryService chapterQueryService;
+    private final VerseQueryService verseQueryService;
 
-    public ChapterController(ChapterQueryService chapterQueryService) {
+    public ChapterController(
+            ChapterQueryService chapterQueryService, VerseQueryService verseQueryService) {
         this.chapterQueryService = chapterQueryService;
+        this.verseQueryService = verseQueryService;
     }
 
     @GetMapping
@@ -44,5 +48,18 @@ public class ChapterController {
         ChapterResponse response =
                 ChapterApiMapper.toResponse(chapterQueryService.getPublishedChapter(ChapterId.of(chapterId)));
         return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping("/{chapterId}/verses")
+    public ResponseEntity<VerseListResponse> listChapterVerses(
+            @PathVariable("chapterId") String chapterId) {
+        List<VerseResponse> items = verseQueryService
+                .listPublishedVersesForChapter(ChapterId.of(chapterId))
+                .stream()
+                .map(VerseApiMapper::toResponse)
+                .toList();
+        return ResponseEntity.ok()
+                .cacheControl(CacheControl.noCache())
+                .body(new VerseListResponse(items));
     }
 }

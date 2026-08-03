@@ -2843,6 +2843,26 @@ Administrative content workflows
 
 ---
 
+### Temporary implementation status
+
+The current Chapter-listing slice intentionally returns a reduced response until Translation and Reading Progress are implemented.
+
+Current response shape:
+
+```json
+{
+  "items": [
+    {
+      "id": "verse-id",
+      "verseNumber": 1,
+      "canonicalReference": "2.1",
+      "previewText": "Verse preview unavailable"
+    }
+  ]
+}
+
+---
+
 # 51. Decisions
 
 The V1 API adopts these decisions:

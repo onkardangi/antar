@@ -2,6 +2,7 @@ package com.antar.scripture.api;
 
 import com.antar.platform.web.ProblemDetailsResponse;
 import com.antar.scripture.application.chapter.query.ChapterNotFoundException;
+import com.antar.scripture.application.verse.query.ChapterHasNoPublishedVersesException;
 import com.antar.scripture.domain.InvalidChapterIdException;
 import com.antar.scripture.domain.InvalidChapterNumberException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,6 +27,19 @@ public class ChapterExceptionHandler {
                 "resource-not-found",
                 "Resource not found",
                 "RESOURCE_NOT_FOUND",
+                exception.getMessage(),
+                request,
+                List.of());
+    }
+
+    @ExceptionHandler(ChapterHasNoPublishedVersesException.class)
+    public ResponseEntity<ProblemDetailsResponse> handleChapterHasNoPublishedVerses(
+            ChapterHasNoPublishedVersesException exception, HttpServletRequest request) {
+        return problem(
+                HttpStatus.NOT_FOUND,
+                "content-not-published",
+                "Published verses unavailable",
+                "CONTENT_NOT_PUBLISHED",
                 exception.getMessage(),
                 request,
                 List.of());

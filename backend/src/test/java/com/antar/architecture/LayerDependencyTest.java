@@ -44,4 +44,21 @@ class LayerDependencyTest {
                     .that().resideInAPackage("..application..")
                     .should().dependOnClassesThat().resideInAPackage("..api..")
                     .because("application packages must remain free of transport DTOs");
+
+    @ArchTest
+    static final ArchRule applicationPackagesMustNotDependOnInfrastructurePackages =
+            noClasses()
+                    .that().resideInAPackage("..application..")
+                    .should().dependOnClassesThat().resideInAPackage("..infrastructure..")
+                    .because("application packages must depend on ports, not infrastructure adapters");
+
+    @ArchTest
+    static final ArchRule scriptureDomainMustRemainFrameworkFree =
+            noClasses()
+                    .that().resideInAPackage("com.antar.scripture.domain..")
+                    .should().dependOnClassesThat().resideInAnyPackage(
+                            "org.springframework..",
+                            "jakarta.persistence..",
+                            "jakarta.servlet..")
+                    .because("Scripture domain types must remain free of Spring and JPA");
 }

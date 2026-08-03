@@ -76,4 +76,20 @@ class ModuleStructureTest {
                     .should().dependOnClassesThat()
                     .resideInAPackage("com.antar.scripture.infrastructure.persistence..")
                     .because("Scripture API must not expose or depend on persistence types");
+
+    @ArchTest
+    static final ArchRule scriptureApplicationMustNotDependOnInfrastructure =
+            noClasses()
+                    .that().resideInAPackage("com.antar.scripture.application..")
+                    .should().dependOnClassesThat()
+                    .resideInAPackage("com.antar.scripture.infrastructure..")
+                    .because("Scripture application use cases must use ports, not infrastructure adapters");
+
+    @ArchTest
+    static final ArchRule scriptureDomainMustNotDependOnApplication =
+            noClasses()
+                    .that().resideInAPackage("com.antar.scripture.domain..")
+                    .should().dependOnClassesThat()
+                    .resideInAPackage("com.antar.scripture.application..")
+                    .because("Scripture domain must not depend on application use cases");
 }

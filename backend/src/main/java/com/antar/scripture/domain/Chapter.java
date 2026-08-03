@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * Scripture Chapter aggregate root.
  *
- * <p>Owns chapter metadata and canonical ordering. Verse ownership is introduced in a later slice.
+ * <p>Owns chapter metadata and canonical ordering. Verses belong to exactly one Chapter.
  */
 public final class Chapter {
 
