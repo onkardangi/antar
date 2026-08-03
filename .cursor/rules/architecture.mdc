@@ -1,0 +1,99 @@
+---
+description: Canonical product and engineering architecture rules for the Antar repository
+alwaysApply: true
+---
+
+# Antar Architecture Rules
+
+These rules apply to all work in the Antar repository.
+
+## Required Source Material
+
+Before meaningful architectural or product changes, inspect relevant canonical docs:
+
+- `docs/architecture/01_SYSTEM_OVERVIEW.md`
+- `docs/architecture/02_DOMAIN_MODEL.md`
+- `docs/architecture/03_DATA_MODEL.md`
+- `docs/architecture/04_API_CONTRACTS.md`
+- `docs/architecture/05_AI_PIPELINE.md`
+- `docs/architecture/06_RAG_ARCHITECTURE.md`
+- `docs/architecture/07_SECURITY_AND_PRIVACY.md`
+- `docs/architecture/08_DEPLOYMENT_AND_OBSERVABILITY.md`
+- `docs/architecture/09_REPOSITORY_STRUCTURE.md`
+- `docs/architecture/10_MVP_IMPLEMENTATION_PLAN.md`
+- `docs/architecture/DOMAIN_DICTIONARY.md`
+- `docs/architecture/adr/`
+- `design/`
+
+Do not silently contradict these documents. When implementation conflicts with them: identify the conflict, explain why, stop before inventing a major alternative, and request or document an ADR update.
+
+## Product Philosophy
+
+Antar is a contemplative Bhagavad Gita reading and study platform.
+
+Canonical Reader journey:
+
+```text
+Read → Reflect → Study → Discuss
+```
+
+Reading is primary. Reflection follows reading. Saar is companion guidance, not the product center. Silence and restraint are product features.
+
+## System Shape
+
+Antar V1 is a **mobile-first modular monolith**:
+
+- Backend: Java 21, Spring Boot, one deployable application
+- Mobile: React Native, TypeScript, Expo (iOS and Android)
+- No web product client in V1
+- PostgreSQL + pgvector as durable source of truth
+- Redis for temporary/supporting state only
+- Flyway owns schema changes; Hibernate validate only
+
+Internal module interaction uses application-service calls, not HTTP between modules.
+
+## Domain Boundaries
+
+Backend modules:
+
+```text
+identity, scripture, reading, reflection, journey,
+guidance, understanding, saar, search, platform, shared
+```
+
+Rules:
+
+- One module must not write another module’s tables.
+- Cross-module access goes through explicit application interfaces.
+- Platform owns cross-cutting operational concerns only.
+- Shared holds small primitives, not business workflows.
+- Do not create empty Controllers, Services, Repositories, or Entities for every future module.
+
+## Vertical-Slice Discipline
+
+Implement through vertical slices, not disconnected layers.
+
+Approved early sequence:
+
+1. Repository foundation
+2. Scripture Library → Chapter → Verse
+3. Reading continuity
+4. Reflection
+5. Journey
+6. Guidance / Understanding
+7. Saar foundation
+8. Advanced RAG later
+
+Do not implement later-phase product features during earlier foundation or slice work unless explicitly requested.
+
+## Privacy and Security Direction
+
+- Treat Reader data as sensitive.
+- Prefer least privilege and explicit ownership checks when product APIs appear.
+- Do not store secrets in source control.
+- Defer Spring Security until Reader authentication work begins, unless a task explicitly requires it earlier.
+- Defer broad observability/OpenTelemetry until the approved observability foundation, unless a task explicitly requires it earlier.
+
+## Documentation Honesty
+
+Never claim product features, tables, APIs, auth flows, or screens are implemented unless the repository contains them. Separate implemented, planned, and deferred work clearly.

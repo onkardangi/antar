@@ -1,0 +1,75 @@
+---
+description: Spring Boot, Java, PostgreSQL, Flyway, Redis, testing, and backend implementation standards for Antar
+globs:
+  - backend/**
+  - compose.yaml
+  - .github/workflows/backend-*.yml
+alwaysApply: false
+---
+
+# Antar Backend Rules
+
+Apply these rules to backend implementation and backend-focused review.
+
+## Technology
+
+```text
+Java 21
+Spring Boot
+Maven Wrapper
+PostgreSQL + pgvector
+Redis
+Flyway
+JUnit 5
+Testcontainers
+ArchUnit
+```
+
+Do not add Spring Security, Kafka, AI provider SDKs, or object-storage SDKs unless the task explicitly requires them.
+
+## Package Layout
+
+Root package: `com.antar`
+
+Modules: `identity`, `scripture`, `reading`, `reflection`, `journey`, `guidance`, `understanding`, `saar`, `search`, `platform`, `shared`
+
+Prefer layer packages inside a module only when implementing that slice:
+
+```text
+api / application / domain / infrastructure
+```
+
+## Persistence
+
+- Flyway is the only schema mutation path.
+- Use `spring.jpa.hibernate.ddl-auto=validate` (or equivalent). Never `update`/`create` for shared environments.
+- Initial foundation migration may create extensions and schemas only.
+- Product tables belong to later module-owned migrations.
+- Do not write across module schemas.
+
+## Transactions and Consistency
+
+- Keep transactional boundaries inside application services.
+- Do not open transactions in controllers.
+- Prefer explicit, small units of work over broad catch-all transactions.
+
+## API Rules
+
+- Product APIs belong under approved `/api/v1/...` contracts when introduced.
+- Operational/internal probes must not live in business modules.
+- Do not expose credentials, secrets, stack traces, or private host details in responses.
+- Do not invent product endpoints outside the current task scope.
+
+## Testing
+
+- Prefer Surefire `*Test` naming for the foundation suite unless Failsafe is explicitly adopted.
+- Docker-backed infrastructure tests must share JVM-scoped containers with stable ports.
+- Do not use `@Testcontainers(disabledWithoutDocker = true)` for required infrastructure validation.
+- CI must fail when required infrastructure tests do not run.
+- Local opt-out, if provided, must be explicit and documented; CI must not use it.
+- Preserve and extend ArchUnit module/layer rules; do not weaken them to hide violations.
+- Temporary `allowEmptyShould(true)` is allowed only while packages are genuinely absent, and must be documented with a first-product-slice tightening TODO.
+
+## Local Infrastructure
+
+Root `compose.yaml` provides PostgreSQL (pgvector) and Redis for local development. Backend local profile must point at those services without committing real secrets.

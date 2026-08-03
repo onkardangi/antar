@@ -1,0 +1,82 @@
+---
+description: Documentation, ADR, architecture synchronization, terminology, and truthfulness standards for Antar
+globs:
+  - docs/**
+  - design/**
+  - "**/*.md"
+  - "**/*.mdc"
+  - README.md
+  - backend/README.md
+  - mobile/README.md
+alwaysApply: false
+---
+
+# Antar Documentation Rules
+
+Apply these rules whenever creating or modifying documentation.
+
+## Documentation Role
+
+Documentation is part of Antar’s architecture. It must:
+
+- describe approved decisions,
+- remain consistent with implementation,
+- preserve canonical terminology,
+- explain meaningful tradeoffs,
+- clearly separate implemented, planned, and deferred work.
+
+Do not use documentation to create the appearance of completed functionality.
+
+## Canonical Sources
+
+Relevant source material includes:
+
+- `docs/architecture/`
+- `docs/architecture/adr/`
+- `docs/architecture/DOMAIN_DICTIONARY.md`
+- `design/`
+- `specs/` when product experience specs are relevant
+- current implementation, tests, and configuration
+
+When these conflict:
+
+1. Identify the conflict.
+2. Determine which document is marked canonical.
+3. Do not silently reconcile incompatible decisions.
+4. Report the discrepancy.
+5. Request or document a product or architecture decision.
+
+## Canonical Vocabulary
+
+Use terminology from `docs/architecture/DOMAIN_DICTIONARY.md` and approved architecture docs. Prefer Reader, Verse, Chapter, Reflection, Journey, Guidance, Understanding, and Saar as defined there. Do not invent alternate product nouns for the same concepts.
+
+## ADRs
+
+- Record meaningful decisions in `docs/architecture/adr/`.
+- Do not reverse an accepted ADR in code without updating or superseding the ADR.
+- Keep ADR status accurate: proposed, accepted, superseded, or deprecated.
+
+## Accuracy and Implementation Status
+
+When documenting commands, ports, profiles, env vars, or workflows:
+
+- verify them against the repository,
+- prefer copy-pasteable commands,
+- note platform-specific differences for mobile networking,
+- mark temporary foundation-only endpoints as temporary and non-product.
+
+Do not claim:
+
+- product APIs exist when only operational probes exist,
+- business tables exist when only schemas/extensions exist,
+- authentication, Saar, or Scripture features exist before they are implemented.
+
+## Links and Paths
+
+- Link only to paths that exist, or explicitly label future paths as future.
+- Do not invent documentation roots that are absent from the repository.
+- Keep README prerequisites aligned with CI engine versions and Compose defaults.
+
+## Change Discipline
+
+Prefer small, precise documentation edits over broad rewrites. When implementation intentionally defers architecture checklist items, update the plan to distinguish completed foundation work from deferred hardening rather than marking deferred work complete.

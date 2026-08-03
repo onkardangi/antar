@@ -1,0 +1,81 @@
+---
+description: React Native, Expo, TypeScript, mobile architecture, accessibility, storage, and testing rules for Antar
+globs:
+  - mobile/**
+  - .github/workflows/mobile-*.yml
+alwaysApply: false
+---
+
+# Antar Mobile Rules
+
+Apply these rules to mobile implementation and mobile-focused review.
+
+## Technology
+
+```text
+React Native
+TypeScript
+Expo
+iOS
+Android
+```
+
+Antar V1 has **no web product scope**. Do not build or prioritize a web client.
+
+## Source Layout
+
+Prefer the approved structure under `mobile/src/`:
+
+```text
+app/
+navigation/
+features/
+design-system/
+services/
+shared/
+storage/
+test/
+```
+
+Feature code stays colocated inside `features/<feature>/`. Do not create global dumping grounds for unrelated screens, hooks, or models.
+
+## Foundation vs Product
+
+During repository foundation:
+
+- Keep a minimal navigation shell.
+- Do not add product screens for Home, Library, Chapter, Verse, Reflection, Journey, Guidance, Understanding, Saar, Search, or Settings unless the task explicitly starts that slice.
+- Local component state is enough unless a task introduces an approved server-state library.
+
+## Networking
+
+- Do not hardcode production URLs.
+- Use environment-specific API base URL configuration.
+- Document platform differences:
+  - iOS simulator: often `localhost`
+  - Android emulator: commonly `10.0.2.2`
+  - physical devices: LAN IP or approved tunnel
+- Never silently assume localhost works on every platform.
+- Unit tests must mock HTTP at the client boundary and must not call a real backend.
+
+## Storage
+
+- Keep a secure-storage abstraction boundary for future auth secrets.
+- Do not implement authentication flows or store real tokens during foundation work.
+- Prefer Expo/React Native platform abstractions before custom native modules.
+
+## Accessibility and UI
+
+- Prefer React Native primitives and minimal approved dependencies.
+- Avoid product branding polish during infrastructure-only milestones.
+- Do not ship hardcoded production window metrics such as fixed 390×844 zero-inset values in app providers. Inject test metrics only in tests.
+
+## Testing and Tooling
+
+Require:
+
+- TypeScript strict validation
+- lint
+- Jest tests for shell, foundation connectivity states, and API client mapping
+
+Keep Node engine requirements aligned with CI (Expo SDK minimum, currently Node `>=22.13.0`).

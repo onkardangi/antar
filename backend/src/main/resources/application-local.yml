@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:antar}
+    username: ${POSTGRES_USER:antar}
+    password: ${POSTGRES_PASSWORD:antar}
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
