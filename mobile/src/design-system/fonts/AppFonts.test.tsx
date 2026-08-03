@@ -1,6 +1,10 @@
 import { Text, View } from 'react-native';
 import { render, screen } from '@testing-library/react-native';
 import { useFonts } from 'expo-font';
+import { Lora_400Regular } from '@expo-google-fonts/lora/400Regular';
+import { Lora_400Regular_Italic } from '@expo-google-fonts/lora/400Regular_Italic';
+import { SourceSans3_400Regular } from '@expo-google-fonts/source-sans-3/400Regular';
+import { SourceSans3_500Medium } from '@expo-google-fonts/source-sans-3/500Medium';
 
 import { AppFonts } from './AppFonts';
 
@@ -26,6 +30,12 @@ describe('AppFonts', () => {
 
     expect(screen.getByTestId('app-shell')).toBeTruthy();
     expect(screen.queryByTestId('app-fonts-loading')).toBeNull();
+    expect(mockUseFonts).toHaveBeenCalledWith({
+      Lora_400Regular,
+      Lora_400Regular_Italic,
+      SourceSans3_400Regular,
+      SourceSans3_500Medium,
+    });
   });
 
   it('shows a controlled loading surface while fonts are still loading', () => {

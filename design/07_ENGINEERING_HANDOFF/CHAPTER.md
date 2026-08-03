@@ -1,9 +1,9 @@
 # Chapter Screen
 
 **Status:** Approved
-**Version:** 1.0
+**Version:** 1.1
 **Last Updated:** 2026-08-03
-**Source:** Approved Figma Design
+**Source:** Approved Figma Design + physical-device review
 **Implementation Target:** React Native (Expo)
 
 ---
@@ -104,6 +104,19 @@ Contains:
 - Back navigation
 - Application title
 
+Layout (physical-device review, 2026-08-03)
+
+Chapter uses an **inline** header row:
+
+```text
+Back                         Antar
+```
+
+- Back on the left
+- Antar on the same row (non-interactive)
+- Shared `ScreenHeader` supports `layout="inline"` (Chapter) and
+  `layout="stacked"` (Library default: Back above title)
+
 States
 
 - Default
@@ -179,12 +192,14 @@ The Chapter screen requires:
 
 - chapterNumber
 - canonicalName
-- thematicIntroduction
+- shortIntent (editorial thematic introduction; approved API field name)
 
 Each VerseRow requires:
 
+- id
 - verseNumber
-- previewText (or temporary placeholder during the Verse implementation slice)
+- canonicalReference
+- previewText (temporary Chapter-slice value until Translation content exists)
 
 The Chapter screen must not depend on:
 
@@ -195,6 +210,18 @@ The Chapter screen must not depend on:
 - Understanding
 - Saar
 - Reader Preferences
+
+Notes:
+
+- Design copy historically referred to the editorial body as `thematicIntroduction`.
+  The published Scripture API exposes `shortIntent`; the mobile client maps that field
+  into ChapterIntroduction without renaming the API contract.
+- Design copy may describe a future `translationPreview`. The temporary Chapter-slice
+  response returns `previewText`, which must be rendered literally when loaded
+  (including `Verse preview unavailable`).
+- When `previewText` is exactly `Verse preview unavailable`, the client applies a
+  quieter italic Tertiary style. Real translation preview copy will use the
+  normal Secondary verse-preview role. The API string is never replaced.
 
 ---
 
@@ -207,7 +234,8 @@ The Chapter screen must not depend on:
 | Section label | Source Sans 3 | 11px | 500 | Uppercase | Tertiary |
 | Chapter name | Lora | 24px | 400 | Normal | Primary |
 | Verse number | Lora | 13px | 400 | Italic | Tertiary |
-| Verse preview | Source Sans 3 | 14px | 400 | Normal | Secondary |
+| Verse preview (future translation) | Source Sans 3 | 14px | 400 | Normal | Secondary (#4A4A46) |
+| Temporary preview (`Verse preview unavailable`) | Source Sans 3 | 14px | 400 | Italic | Tertiary (#8A8A84) |
 
 ---
 
@@ -219,15 +247,24 @@ Horizontal padding:
 
 | Location | Value |
 |-----------|------|
-| Header bottom | 28px |
-| Chapter Introduction vertical | 44px |
-| Verse Row vertical | 22px |
-| Verse Number → Preview | 20px |
+| Safe area | Platform inset (not a hardcoded status-bar spacer) |
+| Header content top (below safe area) | 8px |
+| Header layout | Inline: Back left, Antar right on one row |
+| Header bottom (row → divider) | 20px |
+| Chapter Introduction vertical | 34px |
+| Introduction stack gap (label → name → intent) | 12px |
+| Verse Row vertical | 18px |
+| Verse Number → Preview | 12px |
 | Bottom padding | 64px |
 
 Spacing values are fixed.
 
 Maintain consistency rather than deriving spacing from a token scale.
+
+Physical-device review (2026-08-03) tightened Chapter header arrangement,
+introduction padding, VerseRow height, and number→preview gap from the
+original Figma Make values while preserving calm hierarchy. Temporary
+`previewText` remains literal; only typographic emphasis was quieted.
 
 ---
 

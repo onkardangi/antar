@@ -3,7 +3,7 @@ import type { ComponentProps } from 'react';
 import type { Metrics } from 'react-native-safe-area-context';
 
 import { LibraryScreen } from './LibraryScreen';
-import { ChapterPlaceholderScreen } from './ChapterPlaceholderScreen';
+import { ChapterScreen } from '../../chapter/screens/ChapterScreen';
 import { AppProviders } from '../../../app/AppProviders';
 import { renderWithProviders } from '../../../test/renderWithProviders';
 import { librarySpacing } from '../../../design-system';
@@ -11,7 +11,7 @@ import { ApiError } from '../../../services/api/apiError';
 import type { Chapter } from '../model/chapterTypes';
 
 type LibraryProps = ComponentProps<typeof LibraryScreen>;
-type ChapterPlaceholderProps = ComponentProps<typeof ChapterPlaceholderScreen>;
+type ChapterScreenProps = ComponentProps<typeof ChapterScreen>;
 
 const CHAPTERS: Chapter[] = [
   {
@@ -251,7 +251,7 @@ describe('LibraryScreen', () => {
     expect(screen.queryByTestId(/settings/i)).toBeNull();
   });
 
-  it('navigates to the Chapter placeholder when a chapter is pressed', async () => {
+  it('navigates to the Chapter screen when a chapter is pressed', async () => {
     const { navigation } = renderLibrary(async () => CHAPTERS);
 
     await waitFor(() => {
@@ -260,14 +260,14 @@ describe('LibraryScreen', () => {
 
     fireEvent.press(screen.getByTestId('chapter-row-2'));
 
-    expect(navigation.navigate).toHaveBeenCalledWith('ChapterPlaceholder', {
+    expect(navigation.navigate).toHaveBeenCalledWith('Chapter', {
       chapterId: '018f0000-0000-7000-8000-000000000002',
       chapterNumber: 2,
     });
 
-    const placeholderRoute: ChapterPlaceholderProps['route'] = {
-      key: 'ChapterPlaceholder',
-      name: 'ChapterPlaceholder',
+    const chapterRoute: ChapterScreenProps['route'] = {
+      key: 'Chapter',
+      name: 'Chapter',
       params: {
         chapterId: '018f0000-0000-7000-8000-000000000002',
         chapterNumber: 2,
@@ -275,19 +275,40 @@ describe('LibraryScreen', () => {
     };
 
     renderWithProviders(
-      <ChapterPlaceholderScreen
+      <ChapterScreen
         navigation={
           {
+            navigate: jest.fn(),
             goBack: jest.fn(),
             canGoBack: jest.fn(() => true),
-          } as unknown as ChapterPlaceholderProps['navigation']
+          } as unknown as ChapterScreenProps['navigation']
         }
-        route={placeholderRoute}
+        route={chapterRoute}
+        loadChapter={async () => ({
+          id: '018f0000-0000-7000-8000-000000000002',
+          chapterNumber: 2,
+          canonicalName: 'Sankhya Yoga',
+          englishName: 'The Yoga of Knowledge',
+          shortIntent: 'Action, wisdom, duty, and steadiness.',
+          verseCount: 72,
+        })}
+        loadVerses={async () => [
+          {
+            id: 'verse-1',
+            verseNumber: 1,
+            canonicalReference: '2.1',
+            previewText: 'Verse preview unavailable',
+          },
+        ]}
       />,
     );
 
-    expect(screen.getByTestId('chapter-placeholder')).toBeTruthy();
-    expect(screen.getByText('Chapter 2')).toBeTruthy();
+    await waitFor(() => {
+      expect(screen.getByTestId('chapter-success')).toBeTruthy();
+    });
+
+    expect(screen.getByText('CHAPTER 2')).toBeTruthy();
+    expect(screen.getByText('Sankhya Yoga')).toBeTruthy();
     expect(screen.getByLabelText('Go back')).toBeTruthy();
   });
 
@@ -301,7 +322,7 @@ describe('LibraryScreen', () => {
     const row = screen.getByLabelText('Chapter 1, Arjuna Vishada Yoga, 47 verses');
     fireEvent.press(row);
 
-    expect(navigation.navigate).toHaveBeenCalledWith('ChapterPlaceholder', {
+    expect(navigation.navigate).toHaveBeenCalledWith('Chapter', {
       chapterId: '018f0000-0000-7000-8000-000000000001',
       chapterNumber: 1,
     });

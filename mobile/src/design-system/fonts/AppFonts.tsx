@@ -4,6 +4,7 @@ import { useFonts } from 'expo-font';
 import { Lora_400Regular } from '@expo-google-fonts/lora/400Regular';
 import { Lora_400Regular_Italic } from '@expo-google-fonts/lora/400Regular_Italic';
 import { SourceSans3_400Regular } from '@expo-google-fonts/source-sans-3/400Regular';
+import { SourceSans3_500Medium } from '@expo-google-fonts/source-sans-3/500Medium';
 
 import { color } from '../tokens/color';
 
@@ -12,7 +13,7 @@ type Props = {
 };
 
 /**
- * Loads Library handoff typefaces before rendering the product shell.
+ * Loads Library and Chapter handoff typefaces before rendering the product shell.
  *
  * While fonts are still loading (and there is no error), renders an empty
  * background. If loading fails, renders children immediately so the app is
@@ -23,6 +24,7 @@ export function AppFonts({ children }: Props) {
     Lora_400Regular,
     Lora_400Regular_Italic,
     SourceSans3_400Regular,
+    SourceSans3_500Medium,
   });
 
   if (!loaded && !error) {

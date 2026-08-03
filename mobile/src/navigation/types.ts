@@ -1,7 +1,12 @@
 export type RootStackParamList = {
   Library: undefined;
-  ChapterPlaceholder: {
+  Chapter: {
     chapterId: string;
+    chapterNumber: number;
+  };
+  VersePlaceholder: {
+    verseId: string;
+    verseNumber: number;
     chapterNumber: number;
   };
   FoundationStatus: undefined;

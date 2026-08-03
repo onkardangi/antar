@@ -163,7 +163,7 @@ export function LibraryScreen({ navigation, loadChapters = listChapters }: Props
               canonicalName={item.canonicalName}
               verseCount={item.verseCount}
               onPress={() =>
-                navigation.navigate('ChapterPlaceholder', {
+                navigation.navigate('Chapter', {
                   chapterId: item.id,
                   chapterNumber: item.chapterNumber,
                 })
