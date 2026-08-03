@@ -4,8 +4,13 @@ React Native / Expo client for Antar.
 
 ## Current status
 
-The mobile application currently contains only the foundation connectivity screen.
-No product features, product screens, authentication flows, or business navigation routes have been implemented.
+The mobile application currently includes:
+
+- Foundation connectivity screen
+- Library screen (canonical Chapter list)
+- Minimal Chapter placeholder destination
+
+No Verse reader, Home, Reflection, Journey, Search, Guidance, Understanding, Saar, authentication, or bottom navigation yet.
 
 ## Stack
 
@@ -13,6 +18,7 @@ No product features, product screens, authentication flows, or business navigati
 - TypeScript
 - Expo SDK 57
 - React Navigation native stack
+- Lora and Source Sans 3 via `@expo-google-fonts/*` and `expo-font`
 
 ## Setup
 
@@ -28,6 +34,22 @@ Optional local environment file:
 ```bash
 cp .env.example .env
 ```
+
+## Fonts
+
+Library handoff typography loads at bootstrap through `AppFonts`:
+
+- `Lora_400Regular`
+- `Lora_400Regular_Italic`
+- `SourceSans3_400Regular`
+
+Fonts are installed with:
+
+```bash
+npm install expo-font @expo-google-fonts/lora @expo-google-fonts/source-sans-3
+```
+
+Until fonts finish loading, the app shows an empty background fill rather than rendering with permanent substitute typefaces.
 
 ## Start
 
@@ -63,10 +85,12 @@ Physical devices must override the value. `localhost` on a phone points at the p
 
 ## Navigation decision
 
-The foundation shell uses React Navigation (`@react-navigation/native` + native stack) with one screen:
+The product shell uses React Navigation (`@react-navigation/native` + native stack):
 
 ```text
-FoundationStatusScreen
+Library (initial)
+ChapterPlaceholder
+FoundationStatus (local validation)
 ```
 
 See `src/navigation/NAVIGATION.md`.

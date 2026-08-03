@@ -10,7 +10,11 @@ export const TEST_WINDOW_METRICS: Metrics = {
 };
 
 function TestProviders({ children }: { children: ReactNode }) {
-  return <AppProviders initialMetrics={TEST_WINDOW_METRICS}>{children}</AppProviders>;
+  return (
+    <AppProviders initialMetrics={TEST_WINDOW_METRICS} skipFontLoading>
+      {children}
+    </AppProviders>
+  );
 }
 
 export function renderWithProviders(ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) {

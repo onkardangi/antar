@@ -9,19 +9,15 @@ import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
 
 /**
- * Non-vacuous architecture checks for the current foundation repository shape.
+ * Non-vacuous architecture checks for module markers and package ownership.
  *
- * <p>TODO(first-product-slice): when Scripture (or the first vertical slice) introduces real
- * {@code domain}, {@code api}, {@code application}, and {@code infrastructure} packages, tighten
- * {@link LayerDependencyTest} by removing temporary {@code allowEmptyShould(true)} allowances and
- * expand these structure rules to cover cross-module dependency direction.
+ * <p>Scripture now contains real layer packages and is excluded from marker-only roots.
  */
 @AnalyzeClasses(packages = "com.antar", importOptions = ImportOption.DoNotIncludeTests.class)
 class ModuleStructureTest {
 
     private static final String[] MARKER_ONLY_MODULE_ROOTS = {
         "com.antar.identity",
-        "com.antar.scripture",
         "com.antar.reading",
         "com.antar.reflection",
         "com.antar.journey",
@@ -48,7 +44,7 @@ class ModuleStructureTest {
             classes()
                     .that().resideInAnyPackage(MARKER_ONLY_MODULE_ROOTS)
                     .should().haveSimpleNameEndingWith("Module")
-                    .because("foundation business modules contain only marker classes until the first product slice");
+                    .because("unstarted business modules contain only marker classes until their vertical slice begins");
 
     @ArchTest
     static final ArchRule foundationEndpointBelongsToPlatformInternalApi =
@@ -59,9 +55,25 @@ class ModuleStructureTest {
                     .because("the temporary foundation probe belongs to Platform, not a business module");
 
     @ArchTest
-    static final ArchRule businessModulesDoNotDependOnPlatformApi =
+    static final ArchRule markerOnlyModulesDoNotDependOnPlatformApi =
             noClasses()
                     .that().resideInAnyPackage(MARKER_ONLY_MODULE_ROOTS)
                     .should().dependOnClassesThat().resideInAPackage("com.antar.platform.api..")
                     .because("marker-only modules must not depend on Platform HTTP types");
+
+    @ArchTest
+    static final ArchRule scriptureJpaEntitiesRemainInInfrastructurePersistence =
+            classes()
+                    .that().resideInAPackage("com.antar.scripture..")
+                    .and().areAnnotatedWith(jakarta.persistence.Entity.class)
+                    .should().resideInAPackage("com.antar.scripture.infrastructure.persistence..")
+                    .because("JPA entities must remain inside Scripture infrastructure persistence");
+
+    @ArchTest
+    static final ArchRule scriptureApiMustNotDependOnJpaEntities =
+            noClasses()
+                    .that().resideInAPackage("com.antar.scripture.api..")
+                    .should().dependOnClassesThat()
+                    .resideInAPackage("com.antar.scripture.infrastructure.persistence..")
+                    .because("Scripture API must not expose or depend on persistence types");
 }

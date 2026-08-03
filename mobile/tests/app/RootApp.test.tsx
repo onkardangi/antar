@@ -1,27 +1,34 @@
-import { render, screen } from '@testing-library/react-native';
+import { render, screen, waitFor } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { AppBootstrap } from '../../src/app/AppBootstrap';
 import { TEST_WINDOW_METRICS } from '../../src/test/renderWithProviders';
 
-jest.mock('../../src/services/api/foundationClient', () => ({
-  getFoundationStatus: jest.fn(
+jest.mock('../../src/features/library/api/chapterClient', () => ({
+  listChapters: jest.fn(
     () =>
       new Promise(() => {
-        // Keep the shell on the loading state for this render assertion.
+        // Keep Library on the loading state for this render assertion.
       }),
   ),
 }));
 
+jest.mock('../../src/design-system/fonts/AppFonts', () => ({
+  AppFonts: ({ children }: { children: React.ReactNode }) => children,
+}));
+
 describe('application shell', () => {
-  it('renders the foundation navigation shell', () => {
+  it('renders the Library navigation shell as the primary route', async () => {
     render(
       <SafeAreaProvider initialMetrics={TEST_WINDOW_METRICS}>
         <AppBootstrap />
       </SafeAreaProvider>,
     );
 
-    expect(screen.getByTestId('foundation-loading')).toBeTruthy();
-    expect(screen.getByText('Checking backend connectivity…')).toBeTruthy();
+    await waitFor(() => {
+      expect(screen.getByTestId('library-loading')).toBeTruthy();
+    });
+    expect(screen.getByTestId('scripture-introduction')).toBeTruthy();
+    expect(screen.getByText('Bhagavad Gita')).toBeTruthy();
   });
 });

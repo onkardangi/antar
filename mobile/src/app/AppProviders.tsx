@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { SafeAreaProvider, type Metrics } from 'react-native-safe-area-context';
 
+import { AppFonts } from '../design-system/fonts/AppFonts';
 import { AppErrorBoundary } from './AppErrorBoundary';
 
 type Props = {
@@ -10,12 +11,20 @@ type Props = {
    * SafeAreaProvider measures the real window.
    */
   initialMetrics?: Metrics;
+  /** Skip font loading gate in unit tests that do not need typefaces. */
+  skipFontLoading?: boolean;
 };
 
-export function AppProviders({ children, initialMetrics }: Props) {
+export function AppProviders({
+  children,
+  initialMetrics,
+  skipFontLoading = false,
+}: Props) {
+  const content = skipFontLoading ? children : <AppFonts>{children}</AppFonts>;
+
   return (
     <SafeAreaProvider {...(initialMetrics ? { initialMetrics } : {})}>
-      <AppErrorBoundary>{children}</AppErrorBoundary>
+      <AppErrorBoundary>{content}</AppErrorBoundary>
     </SafeAreaProvider>
   );
 }

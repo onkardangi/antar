@@ -8,15 +8,11 @@ import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
 
 /**
- * Layer dependency rules for future package layouts.
+ * Layer dependency rules for package layouts.
  *
- * <p>These rules intentionally use {@code allowEmptyShould(true)} while the repository foundation
- * still has no {@code domain}, {@code api}, or {@code infrastructure} packages outside Platform's
- * temporary internal foundation endpoint.
- *
- * <p>TODO(first-product-slice): remove or narrow {@code allowEmptyShould(true)} as soon as the
- * first product module introduces real layer packages. Empty-package success is not equivalent to
- * proven layer isolation.
+ * <p>Scripture introduced real {@code domain}, {@code api}, {@code application}, and
+ * {@code infrastructure} packages, so these rules are no longer vacuous for the first product
+ * slice.
  */
 @AnalyzeClasses(packages = "com.antar", importOptions = ImportOption.DoNotIncludeTests.class)
 class LayerDependencyTest {
@@ -26,8 +22,6 @@ class LayerDependencyTest {
             noClasses()
                     .that().resideInAPackage("..domain..")
                     .should().dependOnClassesThat().resideInAPackage("..api..")
-                    // Temporary: no domain packages exist yet in the foundation milestone.
-                    .allowEmptyShould(true)
                     .because("domain packages must remain free of transport-layer types");
 
     @ArchTest
@@ -35,8 +29,6 @@ class LayerDependencyTest {
             noClasses()
                     .that().resideInAPackage("..domain..")
                     .should().dependOnClassesThat().resideInAPackage("..infrastructure..")
-                    // Temporary: no domain packages exist yet in the foundation milestone.
-                    .allowEmptyShould(true)
                     .because("domain packages must remain free of infrastructure types");
 
     @ArchTest
@@ -44,7 +36,12 @@ class LayerDependencyTest {
             noClasses()
                     .that().resideInAPackage("..api..")
                     .should().dependOnClassesThat().haveSimpleNameEndingWith("Repository")
-                    // Temporary: Platform has an api package, but no repositories exist yet.
-                    .allowEmptyShould(true)
                     .because("API packages must call application use cases, not repositories");
+
+    @ArchTest
+    static final ArchRule applicationPackagesMustNotDependOnApiPackages =
+            noClasses()
+                    .that().resideInAPackage("..application..")
+                    .should().dependOnClassesThat().resideInAPackage("..api..")
+                    .because("application packages must remain free of transport DTOs");
 }

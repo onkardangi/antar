@@ -68,6 +68,13 @@ class ModuleDependencyTest {
     static final ArchRule sharedMustNotDependOnForeignInfrastructure =
             forbidForeignInfrastructure("shared");
 
+    @ArchTest
+    static final ArchRule platformMustNotDependOnScripture =
+            noClasses()
+                    .that().resideInAPackage("com.antar.platform..")
+                    .should().dependOnClassesThat().resideInAPackage("com.antar.scripture..")
+                    .because("Platform must not depend on Scripture business types");
+
     private static ArchRule forbidForeignInfrastructure(String module) {
         String[] otherInfrastructure = MODULES.stream()
                 .filter(other -> !other.equals(module))
@@ -77,9 +84,6 @@ class ModuleDependencyTest {
         return noClasses()
                 .that().resideInAPackage("com.antar." + module + "..")
                 .should().dependOnClassesThat().resideInAnyPackage(otherInfrastructure)
-                // Temporary: most modules have no infrastructure packages yet.
-                // TODO(first-product-slice): remove allowEmptyShould once infrastructure packages exist.
-                .allowEmptyShould(true)
                 .because(module + " must not depend on another module's infrastructure package");
     }
 }

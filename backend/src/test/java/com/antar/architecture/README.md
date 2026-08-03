@@ -4,27 +4,12 @@ These ArchUnit tests protect modular-monolith boundaries during implementation.
 
 ## Current suite
 
-- `LayerDependencyTest` — future layer isolation (`domain`, `api`, `infrastructure`)
-- `ModuleDependencyTest` — modules must not depend on foreign `infrastructure` packages
-- `ModuleStructureTest` — non-vacuous foundation checks for module markers and Platform placement
+- `LayerDependencyTest` — layer isolation (`domain`, `api`, `application`, `infrastructure`)
+- `ModuleDependencyTest` — modules must not depend on foreign `infrastructure` packages; Platform must not depend on Scripture
+- `ModuleStructureTest` — module markers, marker-only modules, Scripture persistence boundaries, Platform foundation probe placement
 
-## Temporary empty-package allowances
+## First product slice tightening
 
-Several layer and foreign-infrastructure rules currently use:
+Scripture introduced real layer packages. Temporary `allowEmptyShould(true)` allowances were removed from layer and module dependency rules so CI fails on real boundary violations.
 
-```text
-allowEmptyShould(true)
-```
-
-That is intentional for the repository foundation because most modules still contain only marker classes and README files. Empty-package success does **not** prove layer isolation.
-
-When the first product slice introduces real layer packages:
-
-1. Remove or narrow `allowEmptyShould(true)` in `LayerDependencyTest` and `ModuleDependencyTest`.
-2. Expand `ModuleStructureTest` for the new package layout.
-3. Keep CI green only when the tightened rules actually evaluate production classes.
-
-## Infrastructure tests
-
-Docker-backed Spring tests live under Surefire (`*Test`) and share JVM-scoped Testcontainers.
-See `backend/README.md` for Docker requirements and the local opt-out property.
+Remaining marker-only modules stay listed in `ModuleStructureTest` until their vertical slices begin.

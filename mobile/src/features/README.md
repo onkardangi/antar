@@ -1,4 +1,6 @@
-Product feature modules will be added during later vertical slices.
+Product feature modules are added with each vertical slice.
 
-The foundation milestone intentionally contains only `foundation/` for
-connectivity verification.
+Current features:
+
+- `foundation/` — temporary local backend connectivity verification
+- `library/` — Chapter list and Chapter placeholder navigation
