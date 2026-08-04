@@ -37,6 +37,12 @@ public class VerseJpaEntity {
     @Column(name = "content_version", nullable = false)
     private long contentVersion;
 
+    @Column(name = "source_package_id")
+    private String sourcePackageId;
+
+    @Column(name = "source_package_checksum", length = 64)
+    private String sourcePackageChecksum;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "publication_status", nullable = false, length = 32)
     private PublicationStatus publicationStatus;
@@ -96,6 +102,22 @@ public class VerseJpaEntity {
 
     public void setContentVersion(long contentVersion) {
         this.contentVersion = contentVersion;
+    }
+
+    public String getSourcePackageId() {
+        return sourcePackageId;
+    }
+
+    public void setSourcePackageId(String sourcePackageId) {
+        this.sourcePackageId = sourcePackageId;
+    }
+
+    public String getSourcePackageChecksum() {
+        return sourcePackageChecksum;
+    }
+
+    public void setSourcePackageChecksum(String sourcePackageChecksum) {
+        this.sourcePackageChecksum = sourcePackageChecksum;
     }
 
     public PublicationStatus getPublicationStatus() {

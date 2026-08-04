@@ -39,3 +39,9 @@ mobile/expo-env.d.ts
 # Coverage and tooling
 coverage/
 *.tsbuildinfo
+
+# Python
+**/__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/

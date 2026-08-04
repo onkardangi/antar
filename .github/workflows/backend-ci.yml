@@ -24,6 +24,11 @@ jobs:
           cache: maven
           cache-dependency-path: backend/pom.xml
 
+      - name: Set up Python 3
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
       - name: Verify backend
         run: ./mvnw --batch-mode verify
         env:
@@ -39,3 +44,17 @@ jobs:
           grep -q 'redisIsReachableThroughSpring' "$report"
           grep -q 'tests="2"' "$report"
           grep -q 'skipped="0"' "$report"
+
+      - name: Confirm Package Format v1 Python parity gate executed
+        run: |
+          set -euo pipefail
+          report="target/surefire-reports/TEST-com.antar.scripture.infrastructure.packageformat.PackageFormatV1PythonParityTest.xml"
+          test -f "$report"
+          grep -q 'missingPython3FailsClosed' "$report"
+          grep -q 'approvedChapterTwelveFixtureMatchesPython' "$report"
+          grep -q 'tests="11"' "$report"
+          grep -q 'skipped="0"' "$report"
+          grep -q 'failures="0"' "$report"
+          grep -q 'errors="0"' "$report"
+          # Positive assertion: skipped must be exactly zero (not merely absent).
+          grep -E 'skipped="0"' "$report"

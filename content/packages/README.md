@@ -2,7 +2,7 @@
 
 Immutable release artifacts for approved Scripture content.
 
-A future database importer may consume **packages only**. Editorial workspaces,
+A controlled backend importer consumes **packages only**. Editorial workspaces,
 source comparisons, review files, and raw source files must never be imported
 directly.
 
@@ -13,7 +13,7 @@ Raw Sources
     → Editorial Workspace
     → Approved Canonical Records
     → Immutable Package
-    → Future Importer
+    → Backend Importer (admin CLI)
     → PostgreSQL
 ```
 
@@ -23,8 +23,8 @@ Raw Sources
 | Editorial Workspace | Human review under `content/editorial/` |
 | Approved Canonical Records | Verses with human `APPROVED` decisions only |
 | Immutable Package | This directory — the only importer input |
-| Future Importer | Not built yet |
-| PostgreSQL | Durable product store — untouched until import exists |
+| Backend Importer | Package Format v1 administrative import (never auto-start) |
+| PostgreSQL | Durable product store |
 
 ## Rules
 
@@ -39,8 +39,8 @@ Raw Sources
    conflicted records. Chapter 1 currently has **zero** approved Verses, so a
    real Chapter 1 package build fails.
 5. **Revoked packages remain preserved** for audit history (`REVOKED` status).
-6. **Only `APPROVED` packages may eventually be imported.** `DRAFT` packages
-   are never importable.
+6. **Only `APPROVED` packages may be imported.** `DRAFT` packages
+   are never importable and are never persisted by the importer.
 
 ## Package layout
 
@@ -119,6 +119,28 @@ python3 content/packages/tools/build_package.py \
 python3 -m unittest discover content/packages/tools/tests
 ```
 
+## Backend importer
+
+See `backend/src/main/java/com/antar/scripture/README.md` for dry-run and import
+commands. Summary:
+
+- Java Package Format v1 validation (parity-tested against this Python validator)
+- Backend `./mvnw verify` requires Python 3 for the fail-closed Java/Python parity gate; runtime import does not spawn Python
+- Requires importable + no warnings
+- Rejects non-null transliteration in importer v1 (`UNSUPPORTED_CONTENT_LAYER`)
+- Validation / CLI errors use stable path-free messages
+- Dry-run failures retain `dryRun=true` and write nothing
+- Never runs on normal application startup
+- No public Reader import API
+- Real Chapter 1 is still not importable (example remains `DRAFT`; no approved corpus)
+
+```bash
+cd backend
+./mvnw -q exec:java \
+  -Dexec.mainClass=com.antar.scripture.infrastructure.importcmd.ScripturePackageImportMain \
+  -Dexec.args="--package-path /absolute/path/to/approved-package --dry-run"
+```
+
 ## Example
 
 `examples/bhagavad-gita-chapter-01-v1-example/` is a **synthetic DRAFT** package
@@ -133,5 +155,5 @@ approved Bhagavad Gita corpus and must not be imported.
 | Builder / validator / tests | Implemented |
 | Synthetic example package | Present (`DRAFT`, not importable) |
 | Real Chapter 1 approved package | **Not present** (0 Verses approved) |
-| Database importer | **Not built** |
-| PostgreSQL Sanskrit load | **Not performed** |
+| Database importer | **Implemented** (admin CLI; synthetic fixtures in tests) |
+| PostgreSQL production Sanskrit load | **Not performed** |

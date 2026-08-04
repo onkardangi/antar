@@ -458,6 +458,8 @@ verse_number
 canonical_reference
 sanskrit_text
 content_version
+source_package_id
+source_package_checksum
 publication_status
 created_at
 updated_at
@@ -468,9 +470,14 @@ Constraints:
 ```text
 PRIMARY KEY (id)
 FOREIGN KEY (chapter_id) REFERENCES scripture.chapters(id)
+FOREIGN KEY (source_package_id) REFERENCES scripture.content_packages(package_id)
 UNIQUE (chapter_id, verse_number)
 UNIQUE (canonical_reference)
 CHECK (verse_number > 0)
+CHECK (
+  (source_package_id IS NULL AND source_package_checksum IS NULL)
+  OR (source_package_id IS NOT NULL AND source_package_checksum IS NOT NULL)
+)
 ```
 
 Example canonical reference:
@@ -485,6 +492,90 @@ The stored Sanskrit text should preserve:
 - punctuation,
 - verse markers where approved,
 - and editorial formatting.
+
+`source_package_id` / `source_package_checksum` identify which imported package currently
+populates Sanskrit for the Verse. They update together with `content_version` on successful
+import. Until the first successful import, both are NULL and `sanskrit_text` remains NULL.
+
+**Version history (v1):** prior Sanskrit text is not retained as DB revision rows. Immutable
+content-package artifacts (keyed by package checksum) are the durable history source until a
+product need for historical Reader views requires a revision table.
+
+---
+
+## 12.2a `scripture.content_packages` and import audit
+
+Implemented by Flyway `V006__create_scripture_content_packages.sql`.
+
+### `scripture.content_packages`
+
+Durable identity for **successfully imported** packages and their editorial lifecycle.
+
+```text
+scripture.content_packages
+--------------------------
+package_id
+package_format_version
+scripture_id
+chapter_number
+content_version
+package_status          -- editorial: APPROVED | SUPERSEDED | REVOKED
+package_checksum        -- UNIQUE
+manifest_checksum
+provenance_checksum
+verses_checksum
+source_registry_references
+importer_version
+first_imported_at
+last_verified_at
+created_at
+updated_at
+```
+
+Invariants:
+
+```text
+PRIMARY KEY (package_id)
+UNIQUE (package_checksum)
+UNIQUE (scripture_id, chapter_number) WHERE package_status = 'APPROVED'
+  -- at most one active APPROVED package per scripture + Chapter
+```
+
+DRAFT packages and failed import attempts are **never** stored here.
+
+### `scripture.content_package_imports`
+
+Durable **execution** outcomes. Editorial `package_status` and execution `import_status` stay
+separate.
+
+```text
+scripture.content_package_imports
+---------------------------------
+id
+package_id                 -- FK; NULL for FAILED
+attempted_package_id       -- always set
+package_checksum
+chapter_number
+import_status              -- IMPORTED | FAILED | REVOKED | SUPERSEDED
+records_*
+failure_code / failure_message   -- FAILED only; sanitized metadata
+importer_version
+started_at / completed_at / duration_ms
+```
+
+Rules:
+
+- Successful imports require `package_id` FK to `content_packages`.
+- FAILED rows keep `package_id` NULL so failures never create active packages.
+- `VALIDATED` is transient and not persisted.
+- Dry-run writes nothing.
+- Do not store local paths, Verse text, package blobs, stack traces, or unsafe exception output.
+
+### Supersession
+
+A higher `content_version` APPROVED package may supersede the prior active package for the same
+Chapter in one transaction: mark prior `SUPERSEDED`, register the new package, update Verses,
+write `IMPORTED` audit.
 
 ---
 

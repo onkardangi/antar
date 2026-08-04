@@ -92,4 +92,25 @@ class ModuleStructureTest {
                     .should().dependOnClassesThat()
                     .resideInAPackage("com.antar.scripture.application..")
                     .because("Scripture domain must not depend on application use cases");
+
+    @ArchTest
+    static final ArchRule scriptureImportCliMustNotDependOnJpaRepositories =
+            noClasses()
+                    .that().resideInAPackage("com.antar.scripture.infrastructure.importcmd..")
+                    .should().dependOnClassesThat()
+                    .resideInAPackage("com.antar.scripture.infrastructure.persistence..")
+                    .because("import CLI must orchestrate through the application use case only");
+
+    @ArchTest
+    static final ArchRule scriptureApiMustNotContainImportOrIngestTypes =
+            classes()
+                    .that()
+                    .resideInAPackage("com.antar.scripture.api..")
+                    .should()
+                    .haveSimpleNameNotContaining("Import")
+                    .andShould()
+                    .haveSimpleNameNotContaining("Ingest")
+                    .andShould()
+                    .haveSimpleNameNotContaining("PackageLoad")
+                    .because("Scripture Reader API must not expose package import/ingestion types");
 }

@@ -21,6 +21,8 @@ final class VersePersistenceMapper {
                 entity.getSanskritText(),
                 entity.getPublicationStatus(),
                 entity.getContentVersion(),
+                entity.getSourcePackageId(),
+                entity.getSourcePackageChecksum(),
                 entity.getCreatedAt(),
                 entity.getUpdatedAt());
     }
@@ -38,6 +40,8 @@ final class VersePersistenceMapper {
         entity.setCanonicalReference(verse.canonicalReference().value());
         entity.setSanskritText(verse.sanskritText());
         entity.setContentVersion(verse.contentVersion());
+        entity.setSourcePackageId(verse.sourcePackageId().orElse(null));
+        entity.setSourcePackageChecksum(verse.sourcePackageChecksum().orElse(null));
         entity.setPublicationStatus(verse.publicationStatus());
         entity.setCreatedAt(verse.createdAt());
         entity.setUpdatedAt(verse.updatedAt());

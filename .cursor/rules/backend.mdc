@@ -69,6 +69,7 @@ api / application / domain / infrastructure
 - Local opt-out, if provided, must be explicit and documented; CI must not use it.
 - Preserve and extend ArchUnit module/layer rules; do not weaken them to hide violations.
 - Temporary `allowEmptyShould(true)` is allowed only while packages are genuinely absent, and must be documented with a first-product-slice tightening TODO.
+- Scripture Package Format v1 Java/Python parity tests require `python3` and `content/packages/tools/validate_package.py`. Missing Python must fail verification (fail closed), not skip. Runtime importer execution must not spawn Python.
 
 ## Local Infrastructure
 

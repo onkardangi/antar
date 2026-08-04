@@ -297,19 +297,27 @@ def validate_package(
 
     # Completeness of chapter range
     if refs:
-        verse_numbers = sorted(int(r.split(".", 1)[1]) for r in refs)
-        expected_from = f"{chapter}.{verse_numbers[0]}"
-        expected_to = f"{chapter}.{verse_numbers[-1]}"
-        if ref_range.get("from") != expected_from or ref_range.get("to") != expected_to:
-            result.error(
-                f"canonicalReferenceRange mismatch: manifest {ref_range} "
-                f"vs data {expected_from}..{expected_to}"
-            )
-        if ref_range.get("expectedCount") != len(refs):
-            result.error("canonicalReferenceRange.expectedCount != record count")
-        contiguous = list(range(verse_numbers[0], verse_numbers[0] + len(verse_numbers)))
-        if verse_numbers != contiguous:
-            result.error(f"Verse numbers are not contiguous: {verse_numbers}")
+        verse_numbers: list[int] = []
+        for r in refs:
+            parts = r.split(".", 1)
+            if len(parts) != 2 or not parts[1].isdigit():
+                result.error(f"canonicalReference is not chapter.verse: {r!r}")
+                continue
+            verse_numbers.append(int(parts[1]))
+        if verse_numbers and len(verse_numbers) == len(refs):
+            verse_numbers = sorted(verse_numbers)
+            expected_from = f"{chapter}.{verse_numbers[0]}"
+            expected_to = f"{chapter}.{verse_numbers[-1]}"
+            if ref_range.get("from") != expected_from or ref_range.get("to") != expected_to:
+                result.error(
+                    f"canonicalReferenceRange mismatch: manifest {ref_range} "
+                    f"vs data {expected_from}..{expected_to}"
+                )
+            if ref_range.get("expectedCount") != len(refs):
+                result.error("canonicalReferenceRange.expectedCount != record count")
+            contiguous = list(range(verse_numbers[0], verse_numbers[0] + len(verse_numbers)))
+            if verse_numbers != contiguous:
+                result.error(f"Verse numbers are not contiguous: {verse_numbers}")
 
     antar_count = expected_verse_count(int(chapter)) if isinstance(chapter, int) else None
     declared_full_chapter = bool(

@@ -1,6 +1,6 @@
 # 02 — Content Pipeline
 
-**Status:** Foundation (policy and directory infrastructure; no importer yet)  
+**Status:** Foundation + Package Format importer v1 (no approved production corpus yet)  
 **Owner:** Content / Engineering  
 **Last Updated:** August 2026
 
@@ -8,18 +8,21 @@
 
 ## 1. Purpose
 
-Define the Antar content pipeline that future Scripture imports will use:
+Define the Antar content pipeline that Scripture imports use:
 
 ```text
-raw → inspect → approve → normalize → validate → editorial sign-off → import → publish
+raw → inspect → approve → normalize → validate → editorial sign-off → package → import → publish
 ```
 
-**Out of scope for this foundation:**
+Immutable content packages under `content/packages/` are the only importer input.
 
-- building the importer,
-- creating the Bhagavad Gita corpus,
-- modifying backend or mobile code,
-- loading Sanskrit into `scripture.verses`.
+**Still out of scope / not done:**
+
+- approving real Chapter 1 Verses,
+- loading a production Sanskrit corpus,
+- Translation / Commentary / transliteration persistence,
+- mobile changes,
+- public Reader import APIs.
 
 ---
 
@@ -96,11 +99,49 @@ Any failure blocks import approval.
 
 Human review per `03_EDITORIAL_POLICY.md`.
 
-### 3.7 Import (future)
+### 3.7 Import (backend Package Format importer v1)
 
-A controlled importer (not built yet) will update `scripture.*` under an explicit content version and publication workflow.
+Controlled administrative import updates `scripture.verses` Sanskrit and package
+provenance from an **APPROVED**, importable Package Format v1 directory only.
 
-Until then, `sanskrit_text` remains NULL by design (`V004` / `V005`).
+```text
+Approved Package
+  → Validate
+  → Dry Run (optional; zero DB writes)
+  → Transactional Import
+  → Provenance Record
+  → Verification
+```
+
+Rules:
+
+- Consumes packages only — never raw, editorial, review, or DRAFT inputs.
+- Requires `structurallyValid`, `editoriallyValid`, `importable`, and no warnings.
+- Successful mutation is one transaction; FAILED audit (if any) is a separate transaction after rollback and **does not** create `content_packages` rows.
+- At most one active `APPROVED` package per scripture + Chapter (DB partial unique index).
+- Dry run performs validation and counts with **zero** database writes. Dry-run failures still report `dryRun=true` and write nothing.
+- Imports never run on normal application startup.
+- No public Reader HTTP import endpoint.
+- Non-null transliteration is rejected until transliteration persistence exists.
+- Real Chapter 1 remains unimported (no approved package).
+- Validation / CLI / FAILED audit messages use stable path-free text (no absolute paths or Verse dumps).
+- Backend `./mvnw verify` requires Python 3 for the Java/Python Package Format v1 parity gate; runtime import does not spawn Python.
+
+Commands (from `backend/`):
+
+```bash
+./mvnw -q exec:java \
+  -Dexec.mainClass=com.antar.scripture.infrastructure.importcmd.ScripturePackageImportMain \
+  -Dexec.args="--package-path /absolute/path/to/approved-package --dry-run"
+
+./mvnw -q exec:java \
+  -Dexec.mainClass=com.antar.scripture.infrastructure.importcmd.ScripturePackageImportMain \
+  -Dexec.args="--package-path /absolute/path/to/approved-package"
+```
+
+See `backend/src/main/java/com/antar/scripture/README.md` and `content/packages/README.md`.
+
+Until an approved production package is imported, `sanskrit_text` remains NULL by design (`V004` / `V005`).
 
 ### 3.8 Publish (future)
 
@@ -225,10 +266,12 @@ Commentary is traditional attribution, not Verse text.
 
 | Non-goal | Status |
 |----------|--------|
-| Importer scripts | Not built |
-| Normalized Gita corpus | Not created |
-| Backend/mobile changes | Not done |
-| Loading Sanskrit into Postgres | Not done |
+| Production Sanskrit corpus import | Not done (no approved package) |
+| Translation / Commentary import | Not built |
+| Transliteration persistence | Not built (importer rejects non-null transliteration) |
+| Public import API | Not built (and not planned for Reader surface) |
+| Mobile changes | Not done |
+| Startup auto-import | Forbidden |
 
 ---
 
@@ -240,5 +283,8 @@ Commentary is traditional attribution, not Verse text.
 | `content/` directory roles | Implemented |
 | Validation rule stubs | Implemented |
 | Checksum manifests | Implemented (raw entry for rejected corpus only) |
+| Immutable content packages | Implemented (`content/packages/`) |
+| Package Format importer v1 | Implemented (backend administrative CLI + tests) |
 | Normalization tooling | **Deferred** |
-| Import tooling | **Deferred** |
+| Approved Chapter 1 package | **Not present** |
+| Production PostgreSQL Sanskrit load | **Not performed** |

@@ -746,32 +746,27 @@ It should not expose persistence entities.
 
 ```text
 scripture/
-├── api/
-│   ├── ChapterController.java
-│   ├── VerseController.java
-│   └── TranslationSourceController.java
+├── api/                         # Reader Chapter/Verse query APIs (no import HTTP)
 ├── application/
-│   ├── chapter/
-│   ├── verse/
-│   ├── translation/
-│   ├── commentary/
-│   ├── ingestion/
-│   └── publicapi/
+│   ├── chapter/query/
+│   ├── verse/query/
+│   ├── imports/                 # ImportScripturePackageUseCase + mutation + probe
+│   └── port/                    # PackageFormatValidator, ContentPackageRepository, …
 ├── domain/
-│   ├── Chapter.java
-│   ├── ChapterId.java
-│   ├── Verse.java
-│   ├── VerseId.java
-│   ├── CanonicalReference.java
-│   ├── Translation.java
-│   ├── CommentarySource.java
-│   └── CommentaryPassage.java
+│   ├── Chapter.java / Verse.java / CanonicalReference.java
+│   ├── ContentVersionPolicy.java
+│   └── ImportFailureCode.java / ContentPackageStatus.java / ImportExecutionStatus.java
 └── infrastructure/
-    ├── persistence/
-    ├── ingestion/
-    ├── cache/
+    ├── persistence/             # JPA + content package/import adapters
+    ├── packageformat/           # Package Format v1 validator + filesystem reader
+    ├── importcmd/               # ScripturePackageImportMain (WebApplicationType.NONE)
     └── config/
 ```
+
+**Implemented now:** Chapter/Verse identity APIs, Package Format importer v1 (admin CLI only).
+
+**Not implemented yet:** Translation/Commentary APIs, public ingestion HTTP, transliteration
+persistence, Reader Verse-by-reference full content.
 
 Scripture should publish stable query contracts used by:
 
@@ -1346,20 +1341,24 @@ Do not edit production prompts through undocumented manual configuration.
 
 # 38. Database Migration Structure
 
-Recommended:
+Recommended pattern (module-owned, global Flyway sequence):
 
 ```text
 backend/src/main/resources/db/migration/
-├── V001__create_identity_schema.sql
-├── V002__create_scripture_schema.sql
-├── V003__create_reading_schema.sql
-├── V004__create_reflection_schema.sql
-├── V005__create_guidance_schema.sql
-├── V006__create_understanding_schema.sql
-├── V007__create_saar_schema.sql
-├── V008__create_search_schema.sql
-└── V009__create_platform_schema.sql
+├── V001__initialize_database_extensions.sql
+├── V002__create_scripture_chapters.sql
+├── V003__seed_scripture_chapters.sql
+├── V004__create_scripture_verses.sql
+├── V005__seed_scripture_verses.sql
+├── V006__create_scripture_content_packages.sql
+└── … later module migrations as slices land
 ```
+
+**Implemented today (Scripture foundation):** V001–V006 as listed above.
+
+`V006` owns package import provenance (`content_packages`, `content_package_imports`) and Verse
+lineage columns. It is **not** the historical placeholder `create_understanding_schema` name from
+earlier planning sketches.
 
 A global Flyway sequence is simplest for one deployable application.
 

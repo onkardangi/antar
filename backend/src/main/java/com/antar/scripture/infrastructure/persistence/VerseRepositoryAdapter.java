@@ -4,7 +4,9 @@ import com.antar.scripture.application.port.VerseRepository;
 import com.antar.scripture.domain.ChapterId;
 import com.antar.scripture.domain.PublicationStatus;
 import com.antar.scripture.domain.Verse;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -35,6 +37,30 @@ class VerseRepositoryAdapter implements VerseRepository {
     }
 
     @Override
+    public List<Verse> findAllByChapterIdOrderByVerseNumberAsc(ChapterId chapterId) {
+        return springDataRepository.findAllByChapterIdOrderByVerseNumberAsc(chapterId.value()).stream()
+                .map(VersePersistenceMapper::toDomain)
+                .toList();
+    }
+
+    @Override
+    public List<Verse> findAllByCanonicalReferences(Collection<String> canonicalReferences) {
+        if (canonicalReferences == null || canonicalReferences.isEmpty()) {
+            return List.of();
+        }
+        return springDataRepository.findAllByCanonicalReferenceIn(canonicalReferences).stream()
+                .map(VersePersistenceMapper::toDomain)
+                .toList();
+    }
+
+    @Override
+    public Optional<Verse> findByCanonicalReference(String canonicalReference) {
+        return springDataRepository
+                .findByCanonicalReference(canonicalReference)
+                .map(VersePersistenceMapper::toDomain);
+    }
+
+    @Override
     public Verse save(Verse verse) {
         VerseJpaEntity entity = springDataRepository
                 .findById(verse.id().value())
@@ -47,5 +73,12 @@ class VerseRepositoryAdapter implements VerseRepository {
         }
 
         return VersePersistenceMapper.toDomain(springDataRepository.save(entity));
+    }
+
+    @Override
+    public void saveAll(Collection<Verse> verses) {
+        for (Verse verse : verses) {
+            save(verse);
+        }
     }
 }
