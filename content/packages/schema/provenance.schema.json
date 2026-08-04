@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://antar.local/schemas/content-package/provenance.schema.json",
+  "title": "Antar Scripture Package Provenance",
+  "description": "Package-level provenance. Does not duplicate raw source text.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "packageId",
+    "sourceIds",
+    "sourceRoles",
+    "sourceChecksums",
+    "licenses",
+    "retrievalMetadata",
+    "editorialReviewerIds",
+    "secondReviewerIds",
+    "approvalDates",
+    "normalizationPolicyVersion",
+    "comparisonEngineVersion",
+    "packageBuilderVersion",
+    "knownCaveats",
+    "sourceSelectionRationale"
+  ],
+  "properties": {
+    "packageId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceIds": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "sourceRoles": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "enum": [
+          "PRIMARY_TRANSCRIPTION",
+          "SECONDARY_VERIFICATION",
+          "SUPPORTING_REFERENCE",
+          "FIXTURE"
+        ]
+      }
+    },
+    "sourceChecksums": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      }
+    },
+    "licenses": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["licenseDisplayed", "licenseCatalogId"],
+        "properties": {
+          "licenseDisplayed": {
+            "type": "string",
+            "minLength": 1
+          },
+          "licenseCatalogId": {
+            "type": ["string", "null"]
+          }
+        }
+      }
+    },
+    "retrievalMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceRegistryPath", "editorialApprovalManifestPath"],
+      "properties": {
+        "sourceRegistryPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "editorialApprovalManifestPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "editorialReviewerIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "secondReviewerIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "approvalDates": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      }
+    },
+    "normalizationPolicyVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "comparisonEngineVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "packageBuilderVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "knownCaveats": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sourceSelectionRationale": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "approved": 0,
+  "chapterNumber": 1,
+  "corpusVersion": "fixture-antar-content-package-v1",
+  "decisionDate": null,
+  "notes": [
+    "Synthetic DRAFT fixture approval manifest."
+  ],
+  "pending": 2,
+  "rejected": 0,
+  "reviewer": "fixture-reviewer-a",
+  "secondReviewer": null,
+  "status": "PENDING_EDITORIAL_REVIEW",
+  "requiresSecondReviewer": false
+}

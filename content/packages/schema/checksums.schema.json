@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://antar.local/schemas/content-package/checksums.schema.json",
+  "title": "Antar Scripture Package Checksums",
+  "description": "Rules for SHA256SUMS and the combined package checksum. Algorithm is always SHA-256 lowercase hex.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "checksumAlgorithm",
+    "sha256sumsFilenames",
+    "canonicalPackageChecksumOrder",
+    "sha256sumsLineFormat"
+  ],
+  "properties": {
+    "checksumAlgorithm": {
+      "type": "string",
+      "const": "SHA-256"
+    },
+    "sha256sumsFilenames": {
+      "type": "array",
+      "const": ["manifest.json", "provenance.json", "verses.jsonl"],
+      "description": "Exact required filenames in SHA256SUMS, sorted lexicographically when written."
+    },
+    "canonicalPackageChecksumOrder": {
+      "type": "array",
+      "const": ["verses.jsonl", "provenance.json"],
+      "description": "packageChecksum = SHA-256(bytes(verses.jsonl) || bytes(provenance.json)) in this order. Manifest is excluded to avoid circular hashing."
+    },
+    "sha256sumsLineFormat": {
+      "type": "string",
+      "const": "<sha256><two-spaces><filename>\\n",
+      "description": "Compatible with `shasum -a 256` / `sha256sum` verification against files in the package directory."
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

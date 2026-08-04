@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://antar.local/schemas/content-package/verse-record.schema.json",
+  "title": "Antar Scripture Package Verse Record",
+  "description": "One immutable Verse line inside verses.jsonl. No Translation, Commentary, review-status, or audit-log fields.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "chapterNumber",
+    "verseNumber",
+    "canonicalReference",
+    "sanskritText",
+    "transliteration",
+    "contentVersion",
+    "sourceIds",
+    "sourceChecksums",
+    "editorialDecisionId",
+    "editorialApprovalChecksum"
+  ],
+  "properties": {
+    "chapterNumber": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 18
+    },
+    "verseNumber": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "canonicalReference": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*\\.[1-9][0-9]*$"
+    },
+    "sanskritText": {
+      "type": "string",
+      "minLength": 1
+    },
+    "transliteration": {
+      "type": ["string", "null"],
+      "minLength": 1
+    },
+    "contentVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "sourceIds": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "sourceChecksums": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      }
+    },
+    "editorialDecisionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "editorialApprovalChecksum": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}

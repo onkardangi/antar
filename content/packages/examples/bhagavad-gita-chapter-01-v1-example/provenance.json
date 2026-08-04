@@ -1,0 +1,39 @@
+{
+  "approvalDates": [
+    "2026-08-04"
+  ],
+  "comparisonEngineVersion": 1,
+  "editorialReviewerIds": [
+    "fixture-reviewer-a"
+  ],
+  "knownCaveats": [
+    "Example package uses fixture text; never import as Scripture.",
+    "Incomplete chapter range intentionally (2 Verses) for format documentation."
+  ],
+  "licenses": {
+    "fixture-antar-content-package-v1": {
+      "licenseCatalogId": "cc0-1.0",
+      "licenseDisplayed": "CC0: Public Domain (fixture)"
+    }
+  },
+  "normalizationPolicyVersion": 1,
+  "packageBuilderVersion": 1,
+  "packageId": "bhagavad-gita-chapter-01-v1-example",
+  "retrievalMetadata": {
+    "editorialApprovalManifestPath": "content/packages/tools/tests/fixtures/approval-manifest-approved.json",
+    "sourceRegistryPath": "content/registry/sources.json"
+  },
+  "secondReviewerIds": [
+    "fixture-reviewer-b"
+  ],
+  "sourceChecksums": {
+    "fixture-antar-content-package-v1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "sourceIds": [
+    "fixture-antar-content-package-v1"
+  ],
+  "sourceRoles": {
+    "fixture-antar-content-package-v1": "PRIMARY_TRANSCRIPTION"
+  },
+  "sourceSelectionRationale": "Synthetic non-scriptural fixture for documenting package format only."
+}

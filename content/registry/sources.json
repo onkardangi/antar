@@ -2576,6 +2576,30 @@
         "Do not place this transcription into the canonical corpus."
       ],
       "updated_at": "2026-08-04"
+    },
+    {
+      "id": "fixture-antar-content-package-v1",
+      "title": "Antar Content Package Format Fixture (non-scriptural)",
+      "creator": "Antar Content Engineering",
+      "platform": "local-fixture",
+      "source_url": null,
+      "license_displayed": "CC0: Public Domain (fixture)",
+      "license_catalog_id": "cc0-1.0",
+      "content_kinds": [
+        "other"
+      ],
+      "edition_tradition": "fixture-only",
+      "chapter_1_verse_count": null,
+      "chapter_13_verse_count": null,
+      "total_verses": null,
+      "matches_antar_numbering": "unknown",
+      "raw_path": null,
+      "original_filename": null,
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "status": "CANDIDATE",
+      "inspection_doc": "content/packages/README.md",
+      "decision_summary": "Synthetic non-scriptural fixture for content package format tests only. Never import as Scripture.",
+      "updated_at": "2026-08-04"
     }
   ]
 }

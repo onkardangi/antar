@@ -1,0 +1,16 @@
+{
+  "approved": 2,
+  "chapterNumber": 1,
+  "corpusVersion": "fixture-antar-content-package-v1",
+  "decisionDate": "2026-08-04",
+  "notes": [
+    "Synthetic fixture approval manifest for package format tests.",
+    "Not scholarly approval of Scripture."
+  ],
+  "pending": 0,
+  "rejected": 0,
+  "reviewer": "fixture-reviewer-a",
+  "secondReviewer": "fixture-reviewer-b",
+  "status": "APPROVED",
+  "requiresSecondReviewer": true
+}

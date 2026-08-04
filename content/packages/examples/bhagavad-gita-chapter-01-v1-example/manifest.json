@@ -1,0 +1,26 @@
+{
+  "allowNullTransliteration": true,
+  "canonicalReferenceRange": {
+    "expectedCount": 2,
+    "from": "1.1",
+    "to": "1.2"
+  },
+  "chapterNumber": 1,
+  "checksumAlgorithm": "SHA-256",
+  "contentVersion": 1,
+  "createdAt": "2026-08-04T00:00:00Z",
+  "editorialApprovalManifestChecksum": "18fb5ccafb777f9d302f3367ad3f1f65058b3f8d28a6c37c6416b75a16e5a86b",
+  "fileChecksums": {
+    "provenance.json": "dcf56a94c2609314ff4ccb88290dc007579021a30456f0bfbe61316eaa8daad7",
+    "verses.jsonl": "1599fa80f4d7964502d33075ead67f07a5ab05eb519d14a02fee98b4df4bd6c2"
+  },
+  "packageChecksum": "9bffd0c2562bbf50ddef0cc807ee96d81585da1932cc5dc801e84266dca682eb",
+  "packageFormatVersion": 1,
+  "packageId": "bhagavad-gita-chapter-01-v1-example",
+  "packageStatus": "DRAFT",
+  "recordCount": 2,
+  "scriptureId": "bhagavad-gita",
+  "sourceRegistryReferences": [
+    "fixture-antar-content-package-v1"
+  ]
+}
