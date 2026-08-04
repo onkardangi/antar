@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "name": "antar-editorial-comparison-normalization",
+  "description": "Comparison-only normalization rules. Never rewrite stored source Sanskrit.",
+  "corpusVersionSeed": "antar-bhagavad-gita-chapter-01-editorial-v1",
+  "rules": [
+    {
+      "id": "unicode_nfc",
+      "enabled": true,
+      "description": "Normalize Unicode to NFC for comparison only."
+    },
+    {
+      "id": "line_endings_to_LF",
+      "enabled": true,
+      "description": "Normalize CR/CRLF to LF."
+    },
+    {
+      "id": "trimmed_surrounding_whitespace",
+      "enabled": true,
+      "description": "Trim surrounding whitespace."
+    },
+    {
+      "id": "collapsed_structural_whitespace",
+      "enabled": true,
+      "description": "Collapse horizontal whitespace runs and structural blank lines between pādas."
+    },
+    {
+      "id": "removed_spaces_before_danda",
+      "enabled": true,
+      "description": "Remove spaces immediately before danda characters."
+    },
+    {
+      "id": "normalize_equivalent_danda_spacing",
+      "enabled": true,
+      "description": "Normalize equivalent spacing immediately around danda characters for comparison only."
+    },
+    {
+      "id": "separate_verse_marker",
+      "enabled": true,
+      "description": "Separate verse marker from root textual content before comparing roots."
+    },
+    {
+      "id": "orthography_sanjaya_equivalence",
+      "enabled": true,
+      "description": "Approved orthographic equivalence: संजय ↔ सञ्जय (anusvara vs ñ cluster).",
+      "pairs": [["संजय", "सञ्जय"]]
+    }
+  ],
+  "harmlessDifferenceCategories": [
+    "FRONT_MATTER",
+    "VERSE_MARKER",
+    "WHITESPACE",
+    "PUNCTUATION",
+    "DANDA_STYLE",
+    "ORTHOGRAPHY_APPROVED"
+  ],
+  "substantiveDifferenceCategories": [
+    "SPEAKER_LABEL",
+    "ORTHOGRAPHY_UNAPPROVED",
+    "WORD_DIFFERENCE",
+    "WORD_ORDER",
+    "MISSING_TEXT",
+    "EXTRA_TEXT",
+    "SEGMENTATION",
+    "SOURCE_ERROR"
+  ],
+  "humanReviewCategories": [
+    "FRONT_MATTER",
+    "SPEAKER_LABEL",
+    "SEGMENTATION",
+    "ORTHOGRAPHY_UNAPPROVED",
+    "WORD_DIFFERENCE",
+    "WORD_ORDER",
+    "MISSING_TEXT",
+    "EXTRA_TEXT",
+    "SOURCE_ERROR"
+  ],
+  "notes": [
+    "Do not add broad Sanskrit spelling substitutions.",
+    "Original source forms must remain preserved in source-comparison evidence.",
+    "Normalized match is not scholarly approval."
+  ]
+}

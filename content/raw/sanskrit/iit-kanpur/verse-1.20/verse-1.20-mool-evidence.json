@@ -1,0 +1,42 @@
+{
+  "canonicalReference": "1.20",
+  "chapterNumber": 1,
+  "contentType": "text/html; charset=utf-8",
+  "excluded": [
+    "commentary",
+    "translation",
+    "navigation",
+    "form_controls",
+    "audio",
+    "unrelated_metadata",
+    "full_html_page"
+  ],
+  "finalUrl": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=20&show_mool=1",
+  "licenseDisplayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+  "licenseStatus": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+  "normalizationForStorage": [
+    "html_br_to_lf",
+    "html_tags_stripped_within_mool_font_block_only",
+    "trimmed_surrounding_whitespace",
+    "preserved_intra_line_punctuation_and_spelling"
+  ],
+  "notes": [
+    "The requested gitasupersite.iitk.ac.in SPA shell does not embed Verse text without authenticated API access.",
+    "Evidence was taken from the legacy Drupal page that still embeds मूल श्लोकः.",
+    "IIT Kanpur / Gita Supersite does not endorse Antar.",
+    "Do not use this artifact as an Antar import source."
+  ],
+  "observedRootText": "अथ व्यवस्थितान् दृष्ट्वा धार्तराष्ट्रान्कपिध्वजः।\n\n\n\nप्रवृत्ते शस्त्रसंपाते धनुरुद्यम्य पाण्डवः।।1.20।।",
+  "observedRootTextChecksumSha256": "f9b5e6695eb056ae5eb3a0f65a64955fa72fe4d0a812061b6c279ab620b2ac97",
+  "pageTitle": "श्रीमद् भगवद्गीता | Gita Supersite",
+  "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+  "redistribution": "VERIFICATION_ONLY_NOT_APPROVED_FOR_REDISTRIBUTION",
+  "requestedPageUrl": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=20&language=dv&show_mool=1",
+  "retrievalStatus": "ACQUIRED_VERIFICATION_ONLY",
+  "retrievalTimestamp": "2026-08-04T14:19:58Z",
+  "retrievalUrl": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=20&show_mool=1",
+  "schemaVersion": 1,
+  "sourceId": "bhagavad-gita-sanskrit-iitk-verse-1.20-verification-v1",
+  "sourceRole": "SECONDARY_VERIFICATION_REFERENCE",
+  "verseNumber": 20
+}

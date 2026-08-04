@@ -1,0 +1,19 @@
+{
+  "approved": 0,
+  "candidatePath": "content/editorial/bhagavad-gita/chapter-01/normalization-match-approval-candidate.jsonl",
+  "chapterNumber": 1,
+  "conflictAnalysisPath": "content/editorial/bhagavad-gita/chapter-01/source-conflict-analysis.jsonl",
+  "corpusVersion": "antar-bhagavad-gita-chapter-01-v1",
+  "decisionDate": null,
+  "normalizationMatchCandidates": 34,
+  "notes": [
+    "Manifest must not become APPROVED automatically.",
+    "Human reviewers must record names/dates before any Verse approval."
+  ],
+  "pending": 47,
+  "rejected": 0,
+  "reviewer": null,
+  "secondReviewer": null,
+  "sourceConflicts": 13,
+  "status": "PENDING_EDITORIAL_REVIEW"
+}

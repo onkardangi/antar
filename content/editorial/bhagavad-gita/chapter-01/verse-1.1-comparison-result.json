@@ -1,0 +1,47 @@
+{
+  "comparisonNormalized": {
+    "iitkOps": [
+      "collapsed_all_blank_lines_between_padas_for_comparison"
+    ],
+    "iitkRoot": "धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः।\nमामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय",
+    "iitkRootChecksum": "831d4cf4b4ea59be2e505c5eda847f6d859197ff0af5b89b4d0f2442d1c3918b",
+    "wikisourceOps": [],
+    "wikisourceRoot": "धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः।\nमामकाः पाण्डवाश्चैव किमकुर्वत संजय",
+    "wikisourceRootChecksum": "8561ff084365d2d3eb2b58a724c840e3388ac79fad63f4fbd3e5e8c1c045b2df"
+  },
+  "differences": [
+    {
+      "category": "front_matter",
+      "detail": "Wikisource poem includes pre-Verse front matter; IIT mool block has none."
+    },
+    {
+      "category": "verse_marker",
+      "detail": "Wikisource='॥१-१॥' IIT='।।1.1।।'"
+    },
+    {
+      "category": "whitespace",
+      "detail": "IIT root retains a blank line between pādas; Wikisource does not."
+    },
+    {
+      "category": "orthography",
+      "detail": "संजय vs सञ्जय"
+    },
+    {
+      "category": "danda_style",
+      "detail": "Wikisource uses double-danda verse markers; IIT uses doubled single-danda ASCII-digit markers."
+    }
+  ],
+  "iitkBoundaries": {
+    "frontMatter": "",
+    "rootVerseBody": "धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः।\n\nमामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय",
+    "speakerLabel": "धृतराष्ट्र उवाच",
+    "verseMarker": "।।1.1।।"
+  },
+  "result": "TEXT_MATCH_AFTER_DOCUMENTED_NORMALIZATION",
+  "wikisourceBoundaries": {
+    "frontMatter": "ॐ\nश्रीपरमात्मने नमः\nअथ श्रीमद्भगवद्गीता\nप्रथमोऽध्यायः",
+    "rootVerseBody": "धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः।\nमामकाः पाण्डवाश्चैव किमकुर्वत संजय",
+    "speakerLabel": "धृतराष्ट्र उवाच",
+    "verseMarker": "॥१-१॥"
+  }
+}

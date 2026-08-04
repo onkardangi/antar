@@ -1,0 +1,21 @@
+{
+  "canonicalReference": "1.18",
+  "chapterNumber": 1,
+  "evidencePath": "content/raw/sanskrit/iit-kanpur/verse-1.18/verse-1.18-mool-evidence.json",
+  "evidenceSha256": "3749f156959ece238ca3fd0542cf0dd44d34a1129d4f7938398a5298570885d1",
+  "finalUrl": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=18&show_mool=1",
+  "licenseDisplayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+  "licenseStatus": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+  "observedRootTextChecksumSha256": "989a0cdd8d240495a0bd37a7d0329300d8e961bb10baaf8bca1aa41dd3335e86",
+  "pageTitle": "श्रीमद् भगवद्गीता | Gita Supersite",
+  "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+  "redistribution": "VERIFICATION_ONLY_NOT_APPROVED_FOR_REDISTRIBUTION",
+  "requestedPageUrl": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=18&language=dv&show_mool=1",
+  "retrievalStatus": "ACQUIRED_VERIFICATION_ONLY",
+  "retrievalTimestamp": "2026-08-04T14:19:35Z",
+  "retrievalUrl": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=18&show_mool=1",
+  "sourceId": "bhagavad-gita-sanskrit-iitk-verse-1.18-verification-v1",
+  "sourceRole": "SECONDARY_VERIFICATION_REFERENCE",
+  "status": "VERIFICATION_ONLY",
+  "verseNumber": 18
+}

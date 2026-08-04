@@ -1,0 +1,21 @@
+{
+  "canonicalReference": "1.24",
+  "chapterNumber": 1,
+  "evidencePath": "content/raw/sanskrit/iit-kanpur/verse-1.24/verse-1.24-mool-evidence.json",
+  "evidenceSha256": "8bae2677d064a335804f1e7b153f9dc237e0c6217f1c4ac69c93a0494583debd",
+  "finalUrl": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=24&show_mool=1",
+  "licenseDisplayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+  "licenseStatus": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+  "observedRootTextChecksumSha256": "c2c90d53dad940f05bfd135f4e201644606216b7b28b44930f3f7c1f349b36de",
+  "pageTitle": "श्रीमद् भगवद्गीता | Gita Supersite",
+  "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+  "redistribution": "VERIFICATION_ONLY_NOT_APPROVED_FOR_REDISTRIBUTION",
+  "requestedPageUrl": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=24&language=dv&show_mool=1",
+  "retrievalStatus": "ACQUIRED_VERIFICATION_ONLY",
+  "retrievalTimestamp": "2026-08-04T14:20:44Z",
+  "retrievalUrl": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=24&show_mool=1",
+  "sourceId": "bhagavad-gita-sanskrit-iitk-verse-1.24-verification-v1",
+  "sourceRole": "SECONDARY_VERIFICATION_REFERENCE",
+  "status": "VERIFICATION_ONLY",
+  "verseNumber": 24
+}

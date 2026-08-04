@@ -1,0 +1,102 @@
+{
+  "chapterNumber": 1,
+  "entries": [
+    {
+      "canonicalReference": "1.20",
+      "conflictSummary": {
+        "categories": [
+          "DANDA_STYLE",
+          "EXTRA_TEXT",
+          "MISSING_TEXT",
+          "VERSE_MARKER",
+          "WHITESPACE",
+          "WORD_DIFFERENCE"
+        ],
+        "recommendation": "REQUIRES_EDITORIAL_SOURCE",
+        "tokenDiffs": [
+          {
+            "charDiffs": [],
+            "iitkTokens": [
+              "व्यवस्थितान्",
+              "दृष्ट्वा"
+            ],
+            "looksOrthographic": false,
+            "looksSegmentation": true,
+            "surrounding": "अथ व्यवस्थितान्दृष्ट्वा धार्तराष्ट्रान्कपिध्वजः",
+            "wikisourceToken": "व्यवस्थितान्दृष्ट्वा"
+          }
+        ]
+      },
+      "exactEvidenceNeeded": "Independent root-Sanskrit witness for this Verse identity, with clear edition statement and license suitable for verification.",
+      "reasonThirdReferenceRequired": "Difference is not clearly orthographic-only under current policy; Wikisource vs IIT alone is insufficient to choose a canonical form.",
+      "recommendedTrustedManualReference": "A printed critical edition or other trusted scholarly edition (e.g. well-documented BORI / Gita Press critical apparatus citation) consulted manually — not bulk-scraped.",
+      "status": "QUEUED_NOT_ACQUIRED"
+    },
+    {
+      "canonicalReference": "1.22",
+      "conflictSummary": {
+        "categories": [
+          "DANDA_STYLE",
+          "EXTRA_TEXT",
+          "MISSING_TEXT",
+          "PUNCTUATION",
+          "VERSE_MARKER",
+          "WHITESPACE",
+          "WORD_DIFFERENCE"
+        ],
+        "recommendation": "REQUIRES_EDITORIAL_SOURCE",
+        "tokenDiffs": [
+          {
+            "charDiffs": [
+              {
+                "iitkChar": "ी",
+                "iitkCodepoint": "U+0940",
+                "index": 12,
+                "sameVisibleFamily": false,
+                "wikisourceChar": "ि",
+                "wikisourceCodepoint": "U+093F"
+              }
+            ],
+            "iitkToken": "यावदेतान्निरीक्षेऽहं",
+            "looksOrthographic": false,
+            "looksSegmentation": false,
+            "surrounding": "यावदेतान्निरिक्षेऽहं योद्",
+            "wikisourceToken": "यावदेतान्निरिक्षेऽहं"
+          },
+          {
+            "charDiffs": [],
+            "iitkToken": "योद्धुकामानवस्थितान्",
+            "looksOrthographic": false,
+            "looksSegmentation": true,
+            "surrounding": "यावदेतान्निरीक्षेऽहं योद्धुकामानवस्थितान् कैर्मया",
+            "wikisourceTokens": [
+              "योद्",
+              "धुकामानवस्थितान्"
+            ]
+          },
+          {
+            "charDiffs": [],
+            "iitkToken": "योद्धव्यमस्मिन्रणसमुद्यमे",
+            "looksOrthographic": false,
+            "looksSegmentation": true,
+            "surrounding": "सह योद्धव्यमस्मिन्रणसमुद्यमे",
+            "wikisourceTokens": [
+              "योद्धव्यमस्मिन्",
+              "रणसमुद्यमे"
+            ]
+          }
+        ]
+      },
+      "exactEvidenceNeeded": "Independent root-Sanskrit witness for this Verse identity, with clear edition statement and license suitable for verification.",
+      "reasonThirdReferenceRequired": "Difference is not clearly orthographic-only under current policy; Wikisource vs IIT alone is insufficient to choose a canonical form.",
+      "recommendedTrustedManualReference": "A printed critical edition or other trusted scholarly edition (e.g. well-documented BORI / Gita Press critical apparatus citation) consulted manually — not bulk-scraped.",
+      "status": "QUEUED_NOT_ACQUIRED"
+    }
+  ],
+  "entryCount": 2,
+  "notes": [
+    "No third source was acquired in this task.",
+    "IIT remains verification-only and not an import corpus."
+  ],
+  "status": "PENDING_MANUAL_ACQUISITION"
+}

@@ -1,0 +1,2581 @@
+{
+  "version": 1,
+  "updated_at": "2026-08-04",
+  "antar_numbering": {
+    "chapters": 18,
+    "total_verses": 700,
+    "chapter_1_verse_count": 47,
+    "chapter_13_verse_count": 34,
+    "source": "backend/src/main/resources/db/migration/V003__seed_scripture_chapters.sql"
+  },
+  "sources": [
+    {
+      "id": "kaggle-tarun-tiwari-bhagavad-gita",
+      "title": "Bhagavad Gita",
+      "creator": "Tarun Tiwari",
+      "platform": "Kaggle",
+      "source_url": "https://www.kaggle.com/datasets/taruntiwarihp/bhagavad-gita",
+      "license_displayed": "CC0: Public Domain",
+      "license_catalog_id": "cc0-1.0",
+      "content_kinds": [
+        "sanskrit",
+        "transliteration"
+      ],
+      "edition_tradition": "as-it-is-46-35",
+      "chapter_1_verse_count": 46,
+      "chapter_13_verse_count": 35,
+      "total_verses": 700,
+      "matches_antar_numbering": false,
+      "raw_path": "content/raw/sanskrit/kaggle-tarun-tiwari/bhagavad-gita.csv",
+      "original_filename": "bhagavad-gita.csv",
+      "sha256": "85e0b8dc40ac29b4dc76828c69833c90ef4c99f615391101afe4ffc781bac1be",
+      "status": "REJECTED_FOR_CANONICAL_IMPORT",
+      "inspection_doc": "docs/content/DATASET_INSPECTION.md",
+      "decision_summary": "Legitimate alternate numbering tradition; Antar requires Chapter 1 = 47 and Chapter 13 = 34 without automated split/merge.",
+      "updated_at": "2026-08-03"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-wikisource-sa-chapter-01-r343151",
+      "title": "भगवद्गीता/अर्जुनविषादयोगः",
+      "creator": "Sanskrit Wikisource contributors",
+      "platform": "Wikisource",
+      "provider": "Sanskrit Wikisource (sa.wikisource.org)",
+      "source_url": "https://sa.wikisource.org/wiki/भगवद्गीता/अर्जुनविषादयोगः",
+      "api_url": "https://sa.wikisource.org/w/api.php",
+      "page_id": 164,
+      "revision_id": 343151,
+      "revision_timestamp": "2022-08-10T14:13:52Z",
+      "retrieval_timestamp": "2026-08-04T13:10:42Z",
+      "license_displayed": "Creative Commons Attribution-Share Alike 4.0 (site rightsinfo); underlying ancient work public domain",
+      "license_catalog_id": "cc-by-sa-4.0",
+      "license_status": "contributor_content=CC-BY-SA-4.0; underlying_work=public_domain; no_wikisource_endorsement",
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "edition_tradition": "antar-47-chapter-01-markers",
+      "source_role": "PRIMARY_TRANSCRIPTION_CANDIDATE",
+      "chapter_scope": 1,
+      "chapter_1_verse_count": 47,
+      "expected_verse_count": 47,
+      "total_verses": null,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/wikisource/chapter-01/sa-wikisource-bg-chapter-01-revision-343151.json",
+      "original_filename": "sa-wikisource-bg-chapter-01-revision-343151.json",
+      "sha256": "b2df3556998a3a18dd3fe12269d491887a21bc8791cb1b918cd226aff75b8321",
+      "approved_fields": [
+        "sanskrit_transcription",
+        "canonical_verse_markers"
+      ],
+      "prohibited_fields": [
+        "commentary",
+        "translations",
+        "contributor_ui",
+        "navigation_text",
+        "unrelated_templates"
+      ],
+      "status": "ACQUIRED_UNREVIEWED",
+      "inspection_doc": "content/raw/sanskrit/wikisource/chapter-01/README.md",
+      "editorial_workspace": "content/editorial/bhagavad-gita/chapter-01/",
+      "decision_summary": "Acquired pinned revision 343151 for Chapter 1 editorial comparison. Not approved for canonical import. Verse 1.1 poem retains pre-Verse front matter pending editorial decision.",
+      "known_caveats": [
+        "Page interleaves root <poem> verses with {{व्याख्या}} commentary templates (excluded from extraction).",
+        "Verse 1.1 poem includes mangala/front matter before the marked śloka; preserved with parsing note.",
+        "Speaker labels inside poem blocks are retained as source transcription.",
+        "No transliteration on this page.",
+        "CC BY-SA 4.0 attribution required for contributor layer; underlying Sanskrit work is public domain.",
+        "Wikisource does not endorse Antar."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.1-verification-v1",
+      "title": "Gita Supersite Verse 1.1 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=1&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=1&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T13:31:51Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.1",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.1/verse-1.1-mool-evidence.json",
+      "sha256": "b23eac46dabcf685247d41cd38ea5fa76ab238d12488e33dfb87df2a621102b5",
+      "observed_root_text_sha256": "9c9eb2bde140255a76d827480ba91a460833abe30038455aed8f83fda0b42cc5",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.1/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.1.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.1. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.10-verification-v1",
+      "title": "Gita Supersite Verse 1.10 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=10&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=10&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=10&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:18:04Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.10",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.10/verse-1.10-mool-evidence.json",
+      "sha256": "368604bc40cd5dbfbdbe214ee3d795e676a4a24853efd5a228658b4569b53309",
+      "observed_root_text_sha256": "971d965f7b29f47541d6988a7c53fc3b5a99e03037cca0f41d2ba94e7798ced3",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.10/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.10.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.10. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.11-verification-v1",
+      "title": "Gita Supersite Verse 1.11 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=11&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=11&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=11&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:18:15Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.11",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.11/verse-1.11-mool-evidence.json",
+      "sha256": "0171393857469693451ea6dd87dac6a8df1e907e2fdf4fe215df506293efb8d5",
+      "observed_root_text_sha256": "e84d7fe56936e00271de340a298456b99d56b8bf9a527a9f2b60208dcac99f82",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.11/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.11.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.11. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.12-verification-v1",
+      "title": "Gita Supersite Verse 1.12 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=12&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=12&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=12&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:18:27Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.12",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.12/verse-1.12-mool-evidence.json",
+      "sha256": "7ab7b4b9f7689631167ad4c2c6399145c8b9dcb9c99c77f88444f58c62f0e129",
+      "observed_root_text_sha256": "e95cda4778f5d22cf23d9d74b9cda1418b81368a365e19187832a20db75ec970",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.12/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.12.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.12. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.13-verification-v1",
+      "title": "Gita Supersite Verse 1.13 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=13&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=13&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=13&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:18:38Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.13",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.13/verse-1.13-mool-evidence.json",
+      "sha256": "409ed50ace03acd6ff8f2035e38d0fb258aeaa889d9de7010902d86074e78acd",
+      "observed_root_text_sha256": "d21a648a468d5627256032df10a57d4c1ff27e65b433ab521283ebce50395536",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.13/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.13.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.13. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.14-verification-v1",
+      "title": "Gita Supersite Verse 1.14 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=14&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=14&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=14&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:18:49Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.14",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.14/verse-1.14-mool-evidence.json",
+      "sha256": "c017331c3ca8db4d26191b8f971534bad9e526d32916c7c6ab8461b8350e5462",
+      "observed_root_text_sha256": "70be8cd033b8879617218216675c16862347fceffd2a23da5fcbad42f3fc7563",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.14/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.14.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.14. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.15-verification-v1",
+      "title": "Gita Supersite Verse 1.15 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=15&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=15&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=15&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:19:01Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.15",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.15/verse-1.15-mool-evidence.json",
+      "sha256": "043fb2a58de9dfe55c324ab5838d395140cb735fda9dfd6b01d840ef93a47e0c",
+      "observed_root_text_sha256": "44acf3a6d8e8d9a786bc1704ff1cd0e9314f80d80857dcdec7132fbc492e2088",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.15/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.15.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.15. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.16-verification-v1",
+      "title": "Gita Supersite Verse 1.16 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=16&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=16&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=16&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:19:12Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.16",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.16/verse-1.16-mool-evidence.json",
+      "sha256": "f619c45fae262a03a317b63519638c2a2226d8479097b73beb7bf3b77c52772c",
+      "observed_root_text_sha256": "231f8997342e6283b614af85655639bff2f5e1537598df6801a54ff2b041325c",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.16/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.16.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.16. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.17-verification-v1",
+      "title": "Gita Supersite Verse 1.17 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=17&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=17&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=17&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:19:24Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.17",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.17/verse-1.17-mool-evidence.json",
+      "sha256": "7d9cb005f15c7f018bd86f903d0cac29d40fbbc46b267c248dc2cb42ffb16d48",
+      "observed_root_text_sha256": "c044763b9a0da3c5771ae46d90ba5ea57af53ddddd36e6e8dcdff9ec99833139",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.17/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.17.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.17. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.18-verification-v1",
+      "title": "Gita Supersite Verse 1.18 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=18&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=18&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=18&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:19:35Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.18",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.18/verse-1.18-mool-evidence.json",
+      "sha256": "3749f156959ece238ca3fd0542cf0dd44d34a1129d4f7938398a5298570885d1",
+      "observed_root_text_sha256": "989a0cdd8d240495a0bd37a7d0329300d8e961bb10baaf8bca1aa41dd3335e86",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.18/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.18.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.18. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.19-verification-v1",
+      "title": "Gita Supersite Verse 1.19 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=19&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=19&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=19&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:19:47Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.19",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.19/verse-1.19-mool-evidence.json",
+      "sha256": "eb310a07c64752306ef0473872d65bfe00f832da069f909bdc2d789ab4dfbd82",
+      "observed_root_text_sha256": "f1bd007c8c3bafb37fb456e46b7c056d44bda70044a4389a8a2d14879017cba9",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.19/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.19.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.19. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.2-verification-v1",
+      "title": "Gita Supersite Verse 1.2 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=2&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=2&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=2&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:16:14Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.2",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.2/verse-1.2-mool-evidence.json",
+      "sha256": "66329e86d40cdc716ed328960992423f001274d852960ce352e59792d58804f4",
+      "observed_root_text_sha256": "9d306c2829e66ac8069e0e7a92169a86eb048c4061c48c392b9d3b26e77da0cc",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.2/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.2.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.2. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.20-verification-v1",
+      "title": "Gita Supersite Verse 1.20 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=20&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=20&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=20&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:19:58Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.20",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.20/verse-1.20-mool-evidence.json",
+      "sha256": "5e487c7c86031dab1fc92c5a48f44dd0bf786c3f3091af28476a45a311280c5a",
+      "observed_root_text_sha256": "f9b5e6695eb056ae5eb3a0f65a64955fa72fe4d0a812061b6c279ab620b2ac97",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.20/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.20.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.20. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.21-verification-v1",
+      "title": "Gita Supersite Verse 1.21 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=21&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=21&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=21&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:20:10Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.21",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.21/verse-1.21-mool-evidence.json",
+      "sha256": "263c24b83d133190b0d01719cce784e2d2bc6090532cf93fc84da901293a0042",
+      "observed_root_text_sha256": "f191edd01581c4f62cc3b42bb3c60a97792cf3cbe7dee2ad59727f91ed48f486",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.21/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.21.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.21. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.22-verification-v1",
+      "title": "Gita Supersite Verse 1.22 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=22&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=22&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=22&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:20:21Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.22",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.22/verse-1.22-mool-evidence.json",
+      "sha256": "5fa48c14bea7904b785ec91a9be080ef6cada14cf620f7d574186c1173e1a0df",
+      "observed_root_text_sha256": "fbfcfc8103c8ec48792e0d04a73c2dea503da5ed4655de1dc3e3e3ddefaadf37",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.22/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.22.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.22. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.23-verification-v1",
+      "title": "Gita Supersite Verse 1.23 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=23&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=23&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=23&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:20:32Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.23",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.23/verse-1.23-mool-evidence.json",
+      "sha256": "428f74ec8a2618d1431d29f2230939f9b51919a459cfb529beff08825386dfb2",
+      "observed_root_text_sha256": "a4187b774579b2921b692e232cdec090257aa52188a4f73849df27b55d0879cf",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.23/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.23.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.23. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.24-verification-v1",
+      "title": "Gita Supersite Verse 1.24 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=24&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=24&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=24&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:20:44Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.24",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.24/verse-1.24-mool-evidence.json",
+      "sha256": "8bae2677d064a335804f1e7b153f9dc237e0c6217f1c4ac69c93a0494583debd",
+      "observed_root_text_sha256": "c2c90d53dad940f05bfd135f4e201644606216b7b28b44930f3f7c1f349b36de",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.24/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.24.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.24. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.25-verification-v1",
+      "title": "Gita Supersite Verse 1.25 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=25&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=25&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=25&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:20:55Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.25",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.25/verse-1.25-mool-evidence.json",
+      "sha256": "ac83fb893834960d5a489ffd0c98f0e0654a638f7223cc73b46ddf1d255debcd",
+      "observed_root_text_sha256": "88036022acb833a2e7855195c2f12bc2315c849e5f0e79377f0dfaa78b401840",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.25/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.25.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.25. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.26-verification-v1",
+      "title": "Gita Supersite Verse 1.26 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=26&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=26&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=26&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:21:06Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.26",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.26/verse-1.26-mool-evidence.json",
+      "sha256": "029784de03303ac6d1fc267e547ae0e62cbb35ffb9ecb7405f522ddcc765acc0",
+      "observed_root_text_sha256": "0ba414c99459903bd89920a3732e945a37389a1fad66793e2ceb53963e6c0f7a",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.26/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.26.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.26. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.27-verification-v1",
+      "title": "Gita Supersite Verse 1.27 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=27&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=27&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=27&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:21:18Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.27",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.27/verse-1.27-mool-evidence.json",
+      "sha256": "ba270cde10b5e1596623ad670400e8138551162a5e235d7dd342f4f368164f65",
+      "observed_root_text_sha256": "06480547e03349a5590bbf860162c3bad967e6f08617ef3bef2957ebce1e3940",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.27/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.27.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.27. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.28-verification-v1",
+      "title": "Gita Supersite Verse 1.28 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=28&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=28&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=28&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:21:29Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.28",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.28/verse-1.28-mool-evidence.json",
+      "sha256": "f9311529e5d4500f83214f3f930a82bf5b26832a2e95e064fb3d85609df85fa3",
+      "observed_root_text_sha256": "9e2bf62a82b7009835853a3d4a7c14fabed71e73caa121e20ce82c4736b7de77",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.28/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.28.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.28. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.29-verification-v1",
+      "title": "Gita Supersite Verse 1.29 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=29&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=29&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=29&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:21:41Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.29",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.29/verse-1.29-mool-evidence.json",
+      "sha256": "eb3d7d79ef8d2ea01c92e1fb771e8bfd872c65c3a3d55f6889946f6a932221fc",
+      "observed_root_text_sha256": "fea757e78f940c840721a9743a865967fc47450172501f8bd74f6140b7ed74f3",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.29/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.29.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.29. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.3-verification-v1",
+      "title": "Gita Supersite Verse 1.3 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=3&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=3&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=3&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:16:25Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.3",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.3/verse-1.3-mool-evidence.json",
+      "sha256": "f5d42ec4614e37cb61f14647a1df3fe58fa3d3c22b22d8938e328269df41fd55",
+      "observed_root_text_sha256": "e8437b21be38c18762922aa8a3767b09ad0d442c9664dd6e1852c1bf58eaa41f",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.3/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.3.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.3. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.30-verification-v1",
+      "title": "Gita Supersite Verse 1.30 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=30&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=30&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=30&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:21:52Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.30",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.30/verse-1.30-mool-evidence.json",
+      "sha256": "07d811787d0bd524902c35b10caa5a41aa7127aa66a7d243e37dd4240820237f",
+      "observed_root_text_sha256": "2be4d23c5edc480bb847fc6321d8052d0180d7b144e35222b3354571df098d4a",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.30/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.30.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.30. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.31-verification-v1",
+      "title": "Gita Supersite Verse 1.31 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=31&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=31&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=31&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:22:04Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.31",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.31/verse-1.31-mool-evidence.json",
+      "sha256": "312f382a31d7ec70869b0dd57b38a139dd134e9641abd45238a2001c9f80e338",
+      "observed_root_text_sha256": "61de282c3f061fcf10544a769a1af1d916256291165fb3e1f2b19b5b981e44e2",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.31/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.31.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.31. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.32-verification-v1",
+      "title": "Gita Supersite Verse 1.32 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=32&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=32&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=32&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:22:15Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.32",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.32/verse-1.32-mool-evidence.json",
+      "sha256": "2b469d1b87b928832a939673f83ac5ca5af4c993dfe4ea1d770c94acebc21b7b",
+      "observed_root_text_sha256": "0e2ed60a3c8fe0ecb19315377f62c3af04fc4c50a65f7ee30b4725ec5f3844d4",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.32/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.32.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.32. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.33-verification-v1",
+      "title": "Gita Supersite Verse 1.33 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=33&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=33&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=33&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:22:27Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.33",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.33/verse-1.33-mool-evidence.json",
+      "sha256": "076e8412c0fa5d2b6e607d24a6424a13e15fe10c37de45a080a1fe716126a837",
+      "observed_root_text_sha256": "c06e1e747635263f091e50d8c63fd8e35626d3bba60855c51565aa8737413a03",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.33/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.33.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.33. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.34-verification-v1",
+      "title": "Gita Supersite Verse 1.34 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=34&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=34&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=34&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:22:38Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.34",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.34/verse-1.34-mool-evidence.json",
+      "sha256": "1d343b202a80c87244c9dbd2548a6ef0424a84395a1253b7fca0adb509682062",
+      "observed_root_text_sha256": "dfbbcf1af132bdae6f54c475d52e8c1eeba0aaaeb6d0f281c20da8fefb52a8cf",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.34/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.34.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.34. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.35-verification-v1",
+      "title": "Gita Supersite Verse 1.35 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=35&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=35&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=35&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:22:49Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.35",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.35/verse-1.35-mool-evidence.json",
+      "sha256": "70d24225bd5e840b8e743b6e101eea2e444423aab2875cbed8b109cf70653999",
+      "observed_root_text_sha256": "ce0efffad3b56f9246df06502e7ef7134aba4fae2c029ad19e1a7ae2708ad860",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.35/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.35.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.35. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.36-verification-v1",
+      "title": "Gita Supersite Verse 1.36 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=36&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=36&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=36&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:23:01Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.36",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.36/verse-1.36-mool-evidence.json",
+      "sha256": "1bee148ac9ae62f59359ae52c2abd02f8c8616b2053572a2b57421e83d60416c",
+      "observed_root_text_sha256": "23d88af28d55a71612087b85e917c7434cfd4cb0b26ea50554366748fa77cd4e",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.36/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.36.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.36. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.37-verification-v1",
+      "title": "Gita Supersite Verse 1.37 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=37&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=37&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=37&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:23:12Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.37",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.37/verse-1.37-mool-evidence.json",
+      "sha256": "8593c10d8dc96b9742a42d5716615714fcfb3b1f5ec07b26b91395fe155b79c1",
+      "observed_root_text_sha256": "d51cd5e92a7109fd1ecf7283f0a96acf1038921eba1008d6aa98613dee2e9805",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.37/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.37.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.37. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.38-verification-v1",
+      "title": "Gita Supersite Verse 1.38 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=38&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=38&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=38&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:23:24Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.38",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.38/verse-1.38-mool-evidence.json",
+      "sha256": "6b0741ca93e6f44c41fd46f20c583f4e0c33cadf341b73ef7ccaad46094efb9c",
+      "observed_root_text_sha256": "6f0b37c6882e6c10401852a8afb8ae40f0ebab9c333e046cef7f31707390a2b4",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.38/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.38.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.38. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.39-verification-v1",
+      "title": "Gita Supersite Verse 1.39 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=39&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=39&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=39&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:23:35Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.39",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.39/verse-1.39-mool-evidence.json",
+      "sha256": "514e743be1efaa3fa76b23b371b45802e7a728a8ef7bcd4d999f5e1749fb5b2e",
+      "observed_root_text_sha256": "dd3b54e52732dcc79d095688c9a94570e45d266a996f48a8e5784bd4e9b7b887",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.39/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.39.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.39. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.4-verification-v1",
+      "title": "Gita Supersite Verse 1.4 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=4&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=4&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=4&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:16:36Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.4",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.4/verse-1.4-mool-evidence.json",
+      "sha256": "3acf9a37940e8c5d33737d11706ac0a773c176679d02ac5e6aafcadc30e7373a",
+      "observed_root_text_sha256": "a078f1e9cfe3b64081867abcb6e6c76aaf417b73696e8076356d469f99f34e13",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.4/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.4.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.4. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.40-verification-v1",
+      "title": "Gita Supersite Verse 1.40 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=40&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=40&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=40&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:23:47Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.40",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.40/verse-1.40-mool-evidence.json",
+      "sha256": "383d7bcc377e64825bb1e269b46eb58afda63b50fc9857177fcf36e8b575f3fc",
+      "observed_root_text_sha256": "d5403583f5911e5f2543d6f06cdc1123d3deca7b1ed7d993faa0f685921cc118",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.40/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.40.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.40. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.41-verification-v1",
+      "title": "Gita Supersite Verse 1.41 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=41&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=41&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=41&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:23:58Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.41",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.41/verse-1.41-mool-evidence.json",
+      "sha256": "63e535821a4dc60da5c6f414d28a880ddf82a4495d5439ebe1b6ecb9370e662d",
+      "observed_root_text_sha256": "98627a022f44835fafa0535394311fa0e5593d1b9dc6178fdd39d8d773ad208d",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.41/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.41.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.41. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.42-verification-v1",
+      "title": "Gita Supersite Verse 1.42 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=42&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=42&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=42&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:24:10Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.42",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.42/verse-1.42-mool-evidence.json",
+      "sha256": "918cf64cde6403b975a7c1fa159a691cc1dacf6ad4baad7024fbd66723875a0b",
+      "observed_root_text_sha256": "d53e7d1aa9e41f2f5cb6e51e627fe6e8831ed2cb5ca2021357aa7e9d3eece1d3",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.42/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.42.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.42. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.43-verification-v1",
+      "title": "Gita Supersite Verse 1.43 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=43&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=43&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=43&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:24:21Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.43",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.43/verse-1.43-mool-evidence.json",
+      "sha256": "279d25cf8d945383c482afea8107f51e8a786770cda07db5c81188cf20538cb5",
+      "observed_root_text_sha256": "f377ef1cfd32f9e538ae6915d60072a6eca6719b74bf5d96a4e486c3936a34e0",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.43/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.43.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.43. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.44-verification-v1",
+      "title": "Gita Supersite Verse 1.44 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=44&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=44&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=44&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:24:33Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.44",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.44/verse-1.44-mool-evidence.json",
+      "sha256": "903632aee5ef2af517adeeb8f44dbba4608aaded37b25df6460fc36a0235e7ff",
+      "observed_root_text_sha256": "7647d235ee1e199e2873c2c9ebb2212e35f57fefdc0594226d8d3097e6854884",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.44/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.44.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.44. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.45-verification-v1",
+      "title": "Gita Supersite Verse 1.45 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=45&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=45&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=45&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:24:44Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.45",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.45/verse-1.45-mool-evidence.json",
+      "sha256": "10a8d0c26a9aa54574c8a7214ffd77e8e8bf6591908eea1f06f90a413c70ddc4",
+      "observed_root_text_sha256": "f1d6ad59a615c9d17d16bc0aac77584e51cd7579798ed97fe1b4413b091b6090",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.45/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.45.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.45. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.46-verification-v1",
+      "title": "Gita Supersite Verse 1.46 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=46&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=46&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=46&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:24:56Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.46",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.46/verse-1.46-mool-evidence.json",
+      "sha256": "9fed7ee49e3556eecc16686d90c1069b9548e73f7a39356a68b0fcfbb93fe05b",
+      "observed_root_text_sha256": "98772aa52b35611207b6c7cea66892293c447b7162cb5f185c1d5480ac6c636b",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.46/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.46.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.46. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.47-verification-v1",
+      "title": "Gita Supersite Verse 1.47 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=47&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=47&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=47&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:25:07Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.47",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.47/verse-1.47-mool-evidence.json",
+      "sha256": "e82cbbd6511350e3cac688b14d11050189d47ee1add1c28f9e98f1a651e6cbab",
+      "observed_root_text_sha256": "89e01fd1bb1b0498ef57986d7f61e0c8af2fd42985caa77eb4516f79b31c58ea",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.47/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.47.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.47. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.5-verification-v1",
+      "title": "Gita Supersite Verse 1.5 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=5&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=5&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=5&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:17:06Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.5",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.5/verse-1.5-mool-evidence.json",
+      "sha256": "731eb97f439c02de78194820b651cc95459a4cff7eab559a9ff5539ae57065aa",
+      "observed_root_text_sha256": "470905a282abcaf8f16b8b1ffdeec9c62b3642da356a7322d17ab677586b4fe0",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.5/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.5.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.5. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.6-verification-v1",
+      "title": "Gita Supersite Verse 1.6 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=6&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=6&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=6&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:17:18Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.6",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.6/verse-1.6-mool-evidence.json",
+      "sha256": "97321da74936a066e4928f48098bece874b5ca2d7e0de2f5b3496171f73b8d4f",
+      "observed_root_text_sha256": "7808ecea403c226f20101f493398cdf5c973b9b3383b4618f9f528d484355b7c",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.6/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.6.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.6. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.7-verification-v1",
+      "title": "Gita Supersite Verse 1.7 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=7&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=7&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=7&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:17:29Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.7",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.7/verse-1.7-mool-evidence.json",
+      "sha256": "ab649158b58de1594a66558ba599ef67e5d7b23dc073dce1a3e8603e3f7f94f8",
+      "observed_root_text_sha256": "6238f56f28fd0c5a647b215d63e6f32331b096f562acf3c611c6b9c2bc7876a3",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.7/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.7.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.7. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.8-verification-v1",
+      "title": "Gita Supersite Verse 1.8 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=8&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=8&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=8&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:17:41Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.8",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.8/verse-1.8-mool-evidence.json",
+      "sha256": "04420109624c51e7d73c041d9856149bcb9ef70629229884701accfd4246474c",
+      "observed_root_text_sha256": "20b39088d5c179f827fca67039dd8ee1234d2a77a8fb5540043ab121eedd48ba",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.8/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.8.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.8. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-iitk-verse-1.9-verification-v1",
+      "title": "Gita Supersite Verse 1.9 mool (IIT Kanpur / legacy host)",
+      "creator": "IIT Kanpur Gita Supersite",
+      "platform": "Gita Supersite",
+      "provider": "IIT Kanpur Gita Supersite (legacy HTML host old.gitasupersite.in)",
+      "source_url": "https://www.gitasupersite.iitk.ac.in/srimad?choose=1&field_chapter_value=1&field_nsutra_value=9&language=dv&show_mool=1",
+      "retrieval_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=9&show_mool=1",
+      "final_url": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=9&show_mool=1",
+      "retrieval_timestamp": "2026-08-04T14:17:52Z",
+      "license_displayed": "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION",
+      "license_status": "VERIFICATION_ONLY_LICENSE_UNCONFIRMED",
+      "license_catalog_id": null,
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "SECONDARY_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.9",
+      "expected_verse_count": 1,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/iit-kanpur/verse-1.9/verse-1.9-mool-evidence.json",
+      "sha256": "93f290488f623b8f9951f85389390d240a52c55979fb8e39b5447d8cb55574fd",
+      "observed_root_text_sha256": "581923956fe6296fe70d226b2a092cc5cc892fcd183e0b375b03d71a03e35f2a",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/iit-kanpur/verse-1.9/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.9.md",
+      "decision_summary": "Verification-only mool evidence for Verse 1.9. Not approved for canonical import. License for redistribution unconfirmed.",
+      "known_caveats": [
+        "Requested SPA URL does not embed mool without authenticated API access.",
+        "Evidence retrieved from legacy Drupal host old.gitasupersite.in.",
+        "Digital transcription redistribution rights not established by this task.",
+        "IIT Kanpur does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    }
+  ]
+}

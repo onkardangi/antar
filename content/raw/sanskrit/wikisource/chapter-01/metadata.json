@@ -1,0 +1,52 @@
+{
+  "apiBaseUrl": "https://sa.wikisource.org/w/api.php",
+  "apiQueryUrl": "https://sa.wikisource.org/w/api.php?action=query&format=json&formatversion=2&prop=info%7Crevisions&rvprop=ids%7Ctimestamp%7Csize%7Csha1%7Ccontent%7Ccontentmodel%7Cuser%7Ccomment&rvslots=main&inprop=url%7Cdisplaytitle&redirects=1&revids=343151",
+  "approvedFields": [
+    "sanskrit_transcription",
+    "canonical_verse_markers"
+  ],
+  "chapterScope": 1,
+  "expectedVerseCount": 47,
+  "license": {
+    "attributionRequirements": [
+      "Preserve exact page URL",
+      "Preserve MediaWiki page ID and revision ID",
+      "Preserve retrieval timestamp",
+      "Preserve CC BY-SA 4.0 notice for contributor content",
+      "Do not imply Wikisource endorsement"
+    ],
+    "contributorContent": {
+      "name": "Creative Commons Attribution-Share Alike 4.0",
+      "notes": "Wikisource contributor transcription and markup are generally governed by CC BY-SA 4.0 per sa.wikisource.org site rightsinfo.",
+      "spdx": "CC-BY-SA-4.0",
+      "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.sa"
+    },
+    "endorsement": "Wikisource does not endorse Antar.",
+    "underlyingWork": {
+      "notes": "The underlying ancient Sanskrit Bhagavad Gita text is in the public domain. This does not waive attribution duties for the Wikisource contributor layer.",
+      "status": "public_domain"
+    }
+  },
+  "pageId": 164,
+  "pageUrl": "https://sa.wikisource.org/wiki/%E0%A4%AD%E0%A4%97%E0%A4%B5%E0%A4%A6%E0%A5%8D%E0%A4%97%E0%A5%80%E0%A4%A4%E0%A4%BE/%E0%A4%85%E0%A4%B0%E0%A5%8D%E0%A4%9C%E0%A5%81%E0%A4%A8%E0%A4%B5%E0%A4%BF%E0%A4%B7%E0%A4%BE%E0%A4%A6%E0%A4%AF%E0%A5%8B%E0%A4%97%E0%A4%83",
+  "prohibitedFields": [
+    "commentary",
+    "translations",
+    "contributor_ui",
+    "navigation_text",
+    "unrelated_templates"
+  ],
+  "provider": "Sanskrit Wikisource (sa.wikisource.org)",
+  "rawPath": "content/raw/sanskrit/wikisource/chapter-01/sa-wikisource-bg-chapter-01-revision-343151.json",
+  "rawSha256": "b2df3556998a3a18dd3fe12269d491887a21bc8791cb1b918cd226aff75b8321",
+  "rawWriteStatus": "written",
+  "retrievalTimestamp": "2026-08-04T13:10:42Z",
+  "revisionId": 343151,
+  "revisionSha1": "d8b9072efcaa652161ddea78bc5160cd958c89d7",
+  "revisionSize": 716999,
+  "revisionTimestamp": "2022-08-10T14:13:52Z",
+  "sourceRole": "PRIMARY_TRANSCRIPTION_CANDIDATE",
+  "sourceTitle": "भगवद्गीता/अर्जुनविषादयोगः",
+  "status": "ACQUIRED_UNREVIEWED",
+  "userAgent": "AntarContentAcquisition/0.1 (+https://github.com/antar-project/antar; content-acquisition@antar.example)"
+}

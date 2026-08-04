@@ -1,0 +1,18 @@
+CC0 1.0 Universal (Public Domain Dedication)
+
+Canonical legal text:
+https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+Summary (not a substitute for the legal code):
+The person who associated a work with this deed has dedicated the work to the
+public domain by waiving all of their rights to the work worldwide under
+copyright law, including all related and neighboring rights, to the extent
+allowed by law.
+
+You can copy, modify, distribute and perform the work, even for commercial
+purposes, all without asking permission.
+
+Antar note:
+Presence of a CC0 label on an upstream dataset does not approve that dataset
+for canonical import into scripture.verses. Edition numbering, provenance,
+editorial, and product policy still apply.

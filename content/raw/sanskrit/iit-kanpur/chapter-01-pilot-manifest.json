@@ -1,0 +1,70 @@
+{
+  "acquired": [
+    "1.2",
+    "1.3",
+    "1.4"
+  ],
+  "chapterComplete": true,
+  "chapterNumber": 1,
+  "delaySeconds": 10.0,
+  "dryRun": false,
+  "failed": [],
+  "finishedAt": "2026-08-04T14:16:38Z",
+  "notes": [
+    "Verification-only acquisition. Not an import corpus.",
+    "LICENSE_UNCONFIRMED_FOR_REDISTRIBUTION.",
+    "Partial failures are recorded; chapterComplete is true only if all succeed."
+  ],
+  "records": [
+    {
+      "canonicalReference": "1.2",
+      "chapterNumber": 1,
+      "evidenceChecksum": "66329e86d40cdc716ed328960992423f001274d852960ce352e59792d58804f4",
+      "outcome": "acquired",
+      "requested": true,
+      "responseUrl": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=2&show_mool=1",
+      "retrievalTimestamp": "2026-08-04T14:16:14Z",
+      "rootTextChecksum": "9d306c2829e66ac8069e0e7a92169a86eb048c4061c48c392b9d3b26e77da0cc",
+      "sourceId": "bhagavad-gita-sanskrit-iitk-verse-1.2-verification-v1",
+      "verseNumber": 2
+    },
+    {
+      "canonicalReference": "1.3",
+      "chapterNumber": 1,
+      "evidenceChecksum": "f5d42ec4614e37cb61f14647a1df3fe58fa3d3c22b22d8938e328269df41fd55",
+      "outcome": "acquired",
+      "requested": true,
+      "responseUrl": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=3&show_mool=1",
+      "retrievalTimestamp": "2026-08-04T14:16:25Z",
+      "rootTextChecksum": "e8437b21be38c18762922aa8a3767b09ad0d442c9664dd6e1852c1bf58eaa41f",
+      "sourceId": "bhagavad-gita-sanskrit-iitk-verse-1.3-verification-v1",
+      "verseNumber": 3
+    },
+    {
+      "canonicalReference": "1.4",
+      "chapterNumber": 1,
+      "evidenceChecksum": "3acf9a37940e8c5d33737d11706ac0a773c176679d02ac5e6aafcadc30e7373a",
+      "outcome": "acquired",
+      "requested": true,
+      "responseUrl": "https://old.gitasupersite.in/srimad?choose=1&language=dv&field_chapter_value=1&field_nsutra_value=4&show_mool=1",
+      "retrievalTimestamp": "2026-08-04T14:16:36Z",
+      "rootTextChecksum": "a078f1e9cfe3b64081867abcb6e6c76aaf417b73696e8076356d469f99f34e13",
+      "sourceId": "bhagavad-gita-sanskrit-iitk-verse-1.4-verification-v1",
+      "verseNumber": 4
+    }
+  ],
+  "requested": [
+    "1.2",
+    "1.3",
+    "1.4"
+  ],
+  "resume": false,
+  "schemaVersion": 1,
+  "skipped": [],
+  "startedAt": "2026-08-04T14:16:04Z",
+  "stopReason": null,
+  "stoppedEarly": false,
+  "userAgent": "AntarContentAcquisition/0.1 (+https://github.com/antar-project/antar; content-acquisition@antar.example)",
+  "verseEnd": 4,
+  "verseStart": 2
+}
