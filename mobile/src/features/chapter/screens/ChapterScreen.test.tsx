@@ -4,7 +4,6 @@ import { ScrollView } from 'react-native';
 import type { Metrics } from 'react-native-safe-area-context';
 
 import { ChapterScreen } from './ChapterScreen';
-import { VersePlaceholderScreen } from '../../verse/screens/VersePlaceholderScreen';
 import { AppProviders } from '../../../app/AppProviders';
 import { renderWithProviders } from '../../../test/renderWithProviders';
 import { chapterSpacing, TEMPORARY_VERSE_PREVIEW_TEXT } from '../../../design-system';
@@ -12,7 +11,6 @@ import { ApiError } from '../../../services/api/apiError';
 import type { ChapterDetail, VerseListItem } from '../model/chapterTypes';
 
 type ChapterProps = ComponentProps<typeof ChapterScreen>;
-type VersePlaceholderProps = ComponentProps<typeof VersePlaceholderScreen>;
 
 const CHAPTER: ChapterDetail = {
   id: '018f0000-0000-7000-8000-000000000002',
@@ -414,14 +412,14 @@ describe('ChapterScreen', () => {
     const row = screen.getByLabelText('Chapter 2, Verse 1');
     fireEvent.press(row);
 
-    expect(navigation.navigate).toHaveBeenCalledWith('VersePlaceholder', {
+    expect(navigation.navigate).toHaveBeenCalledWith('VerseReader', {
       verseId: 'verse-1',
       verseNumber: 1,
       chapterNumber: 2,
     });
   });
 
-  it('navigates to the Verse placeholder with the expected params', async () => {
+  it('navigates to the Verse Reader with the expected params', async () => {
     const { navigation } = renderChapter();
 
     await waitFor(() => {
@@ -430,38 +428,11 @@ describe('ChapterScreen', () => {
 
     fireEvent.press(screen.getByTestId('verse-row-2'));
 
-    expect(navigation.navigate).toHaveBeenCalledWith('VersePlaceholder', {
+    expect(navigation.navigate).toHaveBeenCalledWith('VerseReader', {
       verseId: 'verse-2',
       verseNumber: 2,
       chapterNumber: 2,
     });
-
-    const placeholderRoute: VersePlaceholderProps['route'] = {
-      key: 'VersePlaceholder',
-      name: 'VersePlaceholder',
-      params: {
-        verseId: 'verse-2',
-        verseNumber: 2,
-        chapterNumber: 2,
-      },
-    };
-
-    renderWithProviders(
-      <VersePlaceholderScreen
-        navigation={
-          {
-            goBack: jest.fn(),
-            canGoBack: jest.fn(() => true),
-          } as unknown as VersePlaceholderProps['navigation']
-        }
-        route={placeholderRoute}
-      />,
-    );
-
-    expect(screen.getByTestId('verse-placeholder')).toBeTruthy();
-    expect(screen.getByText('Chapter 2 · Verse 2')).toBeTruthy();
-    expect(screen.getByTestId('verse-placeholder-id')).toHaveTextContent('verse-2');
-    expect(screen.getByLabelText('Go back')).toBeTruthy();
   });
 
   it('renders Back and Antar on one inline header row inside the FlatList header', async () => {

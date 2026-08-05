@@ -4,6 +4,7 @@ import com.antar.scripture.application.port.VerseRepository;
 import com.antar.scripture.domain.ChapterId;
 import com.antar.scripture.domain.PublicationStatus;
 import com.antar.scripture.domain.Verse;
+import com.antar.scripture.domain.VerseId;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +17,14 @@ class VerseRepositoryAdapter implements VerseRepository {
 
     VerseRepositoryAdapter(VerseSpringDataRepository springDataRepository) {
         this.springDataRepository = springDataRepository;
+    }
+
+    @Override
+    public Optional<Verse> findByIdAndPublicationStatus(
+            VerseId verseId, PublicationStatus publicationStatus) {
+        return springDataRepository
+                .findByIdAndPublicationStatus(verseId.value(), publicationStatus)
+                .map(VersePersistenceMapper::toDomain);
     }
 
     @Override

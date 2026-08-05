@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ChapterScreen } from '../features/chapter/screens/ChapterScreen';
 import { FoundationStatusScreen } from '../features/foundation/screens/FoundationStatusScreen';
 import { LibraryScreen } from '../features/library/screens/LibraryScreen';
-import { VersePlaceholderScreen } from '../features/verse/screens/VersePlaceholderScreen';
+import { VerseScreen } from '../features/verse/screens/VerseScreen';
 import { color } from '../design-system';
 import type { RootStackParamList } from './types';
 
@@ -22,7 +22,7 @@ export function RootNavigator() {
       >
         <Stack.Screen name="Library" component={LibraryScreen} />
         <Stack.Screen name="Chapter" component={ChapterScreen} />
-        <Stack.Screen name="VersePlaceholder" component={VersePlaceholderScreen} />
+        <Stack.Screen name="VerseReader" component={VerseScreen} />
         <Stack.Screen name="FoundationStatus" component={FoundationStatusScreen} />
       </Stack.Navigator>
     </NavigationContainer>

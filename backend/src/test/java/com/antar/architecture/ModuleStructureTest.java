@@ -78,6 +78,16 @@ class ModuleStructureTest {
                     .because("Scripture API must not expose or depend on persistence types");
 
     @ArchTest
+    static final ArchRule scriptureControllersMustNotDependOnRepositories =
+            noClasses()
+                    .that().resideInAPackage("com.antar.scripture.api..")
+                    .and().haveSimpleNameEndingWith("Controller")
+                    .should().dependOnClassesThat().haveSimpleNameEndingWith("Repository")
+                    .because(
+                            "Scripture controllers must call application query services,"
+                                    + " never repositories directly");
+
+    @ArchTest
     static final ArchRule scriptureApplicationMustNotDependOnInfrastructure =
             noClasses()
                     .that().resideInAPackage("com.antar.scripture.application..")

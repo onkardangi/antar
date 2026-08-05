@@ -3,11 +3,14 @@ package com.antar.scripture.application.port;
 import com.antar.scripture.domain.ChapterId;
 import com.antar.scripture.domain.PublicationStatus;
 import com.antar.scripture.domain.Verse;
+import com.antar.scripture.domain.VerseId;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
 public interface VerseRepository {
+
+    Optional<Verse> findByIdAndPublicationStatus(VerseId verseId, PublicationStatus publicationStatus);
 
     List<Verse> findAllByChapterIdAndPublicationStatusOrderByVerseNumberAsc(
             ChapterId chapterId, PublicationStatus publicationStatus);

@@ -66,4 +66,16 @@ export const chapterSpacing = {
   bottomPadding: 64,
 } as const;
 
+/** Verse Reader spacing — reuses shared header metrics; reading-specific gaps only. */
+export const verseSpacing = {
+  ...screenHeaderSpacing,
+  headerBottom: 20,
+  contentTop: 34,
+  metaStackGap: 8,
+  metaToBodyGap: 28,
+  bodyToNavGap: 32,
+  navGap: 24,
+  bottomPadding: 64,
+} as const;
+
 export type SpacingToken = keyof typeof spacing;

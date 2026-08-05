@@ -28,6 +28,10 @@ Owns canonical Bhagavad Gita content and source metadata. Scripture is the sourc
   - `GET /api/v1/scripture/chapters/by-number/{chapterNumber}`
 - Reader Chapter Verse listing API:
   - `GET /api/v1/scripture/chapters/{chapterId}/verses`
+- Reader Verse detail API (Sanskrit-only MVP):
+  - `GET /api/v1/scripture/verses/{verseId}`
+  - Returns published Verse with imported Sanskrit only
+  - 404 when Verse is unknown, unpublished, or Sanskrit is missing
 - **Scripture Content Importer v1** (administrative, packages only):
   - Package Format v1 validation (Java mirror of the Python package contract; not a full JSON Schema engine)
   - Transactional, idempotent import of `APPROVED` / importable packages
@@ -38,9 +42,10 @@ Owns canonical Bhagavad Gita content and source metadata. Scripture is the sourc
 
 ## Temporary product data
 
-- `sanskrit_text` is seeded as `NULL`. `NULL` means the approved Sanskrit corpus has not yet been imported. Engineering placeholder prose must never be stored in this column, indexed as Scripture, or returned by future canonical-content queries.
+- `sanskrit_text` is seeded as `NULL`. `NULL` means the approved Sanskrit corpus has not yet been imported. Engineering placeholder prose must never be stored in this column, indexed as Scripture, or returned as Reader Scripture. The Verse detail API returns 404 when Sanskrit is absent.
 - Chapter-screen `previewText` is returned as the constant `Verse preview unavailable` until Translation content exists. It is not a persisted Verse column and must not be mistaken for Scripture.
 - Chapter `shortIntent` remains the approved editorial orientation field (not renamed to `thematicIntroduction`).
+- Verse detail MVP returns Sanskrit only — no Translation, Commentary, Transliteration, or personalization.
 
 ## Content package import
 
@@ -62,7 +67,7 @@ Rules:
 - Non-null transliteration is rejected with `UNSUPPORTED_CONTENT_LAYER` until `scripture.transliterations` exists.
 - Imports never run automatically at application startup.
 - There is **no** public Reader HTTP import API.
-- Real Chapter 1 corpus remains unimported (no approved package; editorial workspace is not an import input).
+- Seeded Verse rows keep `sanskrit_text` NULL until an approved package is imported via the CLI (for example Chapter 1). Editorial workspaces are never import inputs.
 
 ### Dry run / import commands
 

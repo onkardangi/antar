@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 interface VerseSpringDataRepository extends JpaRepository<VerseJpaEntity, UUID> {
 
+    Optional<VerseJpaEntity> findByIdAndPublicationStatus(UUID id, PublicationStatus publicationStatus);
+
     List<VerseJpaEntity> findAllByChapterIdAndPublicationStatusOrderByVerseNumberAsc(
             UUID chapterId, PublicationStatus publicationStatus);
 

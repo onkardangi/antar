@@ -4,6 +4,7 @@ export {
   screenHeaderSpacing,
   librarySpacing,
   chapterSpacing,
+  verseSpacing,
 } from './tokens/spacing';
 export { typography, fontFamily } from './tokens/typography';
 

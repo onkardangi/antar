@@ -101,6 +101,16 @@ export const typography = {
     fontStyle: 'italic' as const,
     lineHeight: 22,
   },
+  /**
+   * Verse Reader Sanskrit body. No Latin reading face is forced so platform
+   * Devanagari fonts can render conjuncts; size/leading follow contemplative
+   * scripture reading (generous line height).
+   */
+  sanskritBody: {
+    fontSize: 22,
+    fontWeight: '400' as const,
+    lineHeight: 36,
+  },
   /** Legacy roles retained for foundation screens. */
   title: {
     fontFamily: fontFamily.lora,

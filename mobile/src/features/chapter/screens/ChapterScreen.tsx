@@ -252,7 +252,7 @@ export function ChapterScreen({
               verseNumber={item.verseNumber}
               previewText={item.previewText}
               onPress={() =>
-                navigation.navigate('VersePlaceholder', {
+                navigation.navigate('VerseReader', {
                   verseId: item.id,
                   verseNumber: item.verseNumber,
                   chapterNumber: chapterState.chapter.chapterNumber,

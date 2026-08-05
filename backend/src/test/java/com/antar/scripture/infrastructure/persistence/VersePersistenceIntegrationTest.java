@@ -130,6 +130,34 @@ class VersePersistenceIntegrationTest extends AbstractIntegrationTest {
     }
 
     @Test
+    void findByIdAndPublicationStatusReturnsPublishedVerse() {
+        Chapter chapter = chapterRepository
+                .findByChapterNumberAndPublicationStatus(ChapterNumber.of(1), PublicationStatus.PUBLISHED)
+                .orElseThrow();
+        List<Verse> verses = verseRepository.findAllByChapterIdAndPublicationStatusOrderByVerseNumberAsc(
+                chapter.id(), PublicationStatus.PUBLISHED);
+        Verse first = verses.getFirst();
+
+        assertThat(verseRepository.findByIdAndPublicationStatus(first.id(), PublicationStatus.PUBLISHED))
+                .isPresent()
+                .get()
+                .extracting(verse -> verse.canonicalReference().value())
+                .isEqualTo("1.1");
+
+        jdbcTemplate.update(
+                "UPDATE scripture.verses SET publication_status = 'DRAFT' WHERE id = ?",
+                first.id().value());
+        try {
+            assertThat(verseRepository.findByIdAndPublicationStatus(first.id(), PublicationStatus.PUBLISHED))
+                    .isEmpty();
+        } finally {
+            jdbcTemplate.update(
+                    "UPDATE scripture.verses SET publication_status = 'PUBLISHED' WHERE id = ?",
+                    first.id().value());
+        }
+    }
+
+    @Test
     void unpublishedVersesAreExcludedFromPublishedQueries() {
         Chapter chapter = chapterRepository
                 .findByChapterNumberAndPublicationStatus(ChapterNumber.of(1), PublicationStatus.PUBLISHED)

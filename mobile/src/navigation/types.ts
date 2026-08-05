@@ -4,7 +4,7 @@ export type RootStackParamList = {
     chapterId: string;
     chapterNumber: number;
   };
-  VersePlaceholder: {
+  VerseReader: {
     verseId: string;
     verseNumber: number;
     chapterNumber: number;
