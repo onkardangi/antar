@@ -403,6 +403,7 @@ Production modules:
 ```text
 com.antar.identity
 com.antar.scripture
+com.antar.translation
 com.antar.reading
 com.antar.reflection
 com.antar.journey
@@ -423,6 +424,7 @@ backend/src/main/java/com/antar/
 ├── AntarApplication.java
 ├── identity/
 ├── scripture/
+├── translation/
 ├── reading/
 ├── reflection/
 ├── journey/
@@ -765,8 +767,9 @@ scripture/
 
 **Implemented now:** Chapter/Verse identity APIs, Package Format importer v1 (admin CLI only).
 
-**Not implemented yet:** Translation/Commentary APIs, public ingestion HTTP, transliteration
-persistence, Reader Verse-by-reference full content.
+**Not implemented yet:** Commentary APIs, public ingestion HTTP, transliteration
+persistence, Reader Verse-by-reference full content. Translation is a separate
+bounded context (see Translation Module Structure).
 
 Scripture should publish stable query contracts used by:
 
@@ -776,6 +779,41 @@ Scripture should publish stable query contracts used by:
 - Understanding,
 - Saar,
 - and Search.
+
+---
+
+# 18a. Translation Module Structure
+
+```text
+translation/
+├── api/                         # GET /api/v1/translations/verses/{verseId}
+├── application/
+│   ├── query/                   # TranslationQueryService
+│   ├── imports/                 # ImportTranslationPackageUseCase + mutation + probe
+│   └── port/                    # PackageFormatValidator, repositories, readers
+├── domain/
+│   ├── Translation.java / TranslationSource.java / TranslationPackage.java
+│   ├── ContentVersionPolicy.java
+│   └── ImportFailureCode.java / ContentPackageStatus.java / ImportExecutionStatus.java
+└── infrastructure/
+    ├── persistence/             # JPA + content package/import adapters (translation.*)
+    ├── packageformat/           # Translation Package Format v1 validator + filesystem reader
+    ├── importcmd/               # TranslationPackageImportMain (WebApplicationType.NONE)
+    └── config/
+```
+
+**Implemented now:** `translation.*` persistence (Flyway V007), Package Format v1
+importer (admin CLI), synthetic fixture packages, read-only Translation API.
+
+**Not implemented yet:** real translation corpus, language/provider query selection,
+Verse Reader composition, commentary/notes, public import HTTP.
+
+V1 published lookup returns the first published row for a Verse ordered by
+`provider` ascending (stable tie-break). Explicit provider/language selection is
+deferred; do not redesign the API in this foundation.
+
+Translation references Scripture Verse identity only (`scripture.verses.id` FK).
+Scripture must not depend on Translation (ADR-012).
 
 ---
 

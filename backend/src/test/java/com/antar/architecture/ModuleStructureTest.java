@@ -34,7 +34,7 @@ class ModuleStructureTest {
                     .that().haveSimpleNameEndingWith("Module")
                     .should()
                     .resideInAPackage(
-                            "com.antar.(identity|scripture|reading|reflection|journey|guidance|understanding|saar|search|platform|shared)")
+                            "com.antar.(identity|scripture|translation|reading|reflection|journey|guidance|understanding|saar|search|platform|shared)")
                     .andShould()
                     .beTopLevelClasses()
                     .because("each bounded context exposes exactly one *Module marker in its root package");
@@ -123,4 +123,67 @@ class ModuleStructureTest {
                     .andShould()
                     .haveSimpleNameNotContaining("PackageLoad")
                     .because("Scripture Reader API must not expose package import/ingestion types");
+
+    @ArchTest
+    static final ArchRule translationJpaEntitiesRemainInInfrastructurePersistence =
+            classes()
+                    .that().resideInAPackage("com.antar.translation..")
+                    .and().areAnnotatedWith(jakarta.persistence.Entity.class)
+                    .should().resideInAPackage("com.antar.translation.infrastructure.persistence..")
+                    .because("JPA entities must remain inside Translation infrastructure persistence");
+
+    @ArchTest
+    static final ArchRule translationApiMustNotDependOnJpaEntities =
+            noClasses()
+                    .that().resideInAPackage("com.antar.translation.api..")
+                    .should().dependOnClassesThat()
+                    .resideInAPackage("com.antar.translation.infrastructure.persistence..")
+                    .because("Translation API must not expose or depend on persistence types");
+
+    @ArchTest
+    static final ArchRule translationControllersMustNotDependOnRepositories =
+            noClasses()
+                    .that().resideInAPackage("com.antar.translation.api..")
+                    .and().haveSimpleNameEndingWith("Controller")
+                    .should().dependOnClassesThat().haveSimpleNameEndingWith("Repository")
+                    .because(
+                            "Translation controllers must call application query services,"
+                                    + " never repositories directly");
+
+    @ArchTest
+    static final ArchRule translationApplicationMustNotDependOnInfrastructure =
+            noClasses()
+                    .that().resideInAPackage("com.antar.translation.application..")
+                    .should().dependOnClassesThat()
+                    .resideInAPackage("com.antar.translation.infrastructure..")
+                    .because("Translation application use cases must use ports, not infrastructure adapters");
+
+    @ArchTest
+    static final ArchRule translationDomainMustNotDependOnApplication =
+            noClasses()
+                    .that().resideInAPackage("com.antar.translation.domain..")
+                    .should().dependOnClassesThat()
+                    .resideInAPackage("com.antar.translation.application..")
+                    .because("Translation domain must not depend on application use cases");
+
+    @ArchTest
+    static final ArchRule translationImportCliMustNotDependOnJpaRepositories =
+            noClasses()
+                    .that().resideInAPackage("com.antar.translation.infrastructure.importcmd..")
+                    .should().dependOnClassesThat()
+                    .resideInAPackage("com.antar.translation.infrastructure.persistence..")
+                    .because("import CLI must orchestrate through the application use case only");
+
+    @ArchTest
+    static final ArchRule translationApiMustNotContainImportOrIngestTypes =
+            classes()
+                    .that()
+                    .resideInAPackage("com.antar.translation.api..")
+                    .should()
+                    .haveSimpleNameNotContaining("Import")
+                    .andShould()
+                    .haveSimpleNameNotContaining("Ingest")
+                    .andShould()
+                    .haveSimpleNameNotContaining("PackageLoad")
+                    .because("Translation Reader API must not expose package import/ingestion types");
 }

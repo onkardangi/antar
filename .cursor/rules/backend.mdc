@@ -31,7 +31,10 @@ Do not add Spring Security, Kafka, AI provider SDKs, or object-storage SDKs unle
 
 Root package: `com.antar`
 
-Modules: `identity`, `scripture`, `reading`, `reflection`, `journey`, `guidance`, `understanding`, `saar`, `search`, `platform`, `shared`
+Modules: `identity`, `scripture`, `translation`, `reading`, `reflection`, `journey`, `guidance`, `understanding`, `saar`, `search`, `platform`, `shared`
+
+Translation is its own bounded context (ADR-012). Scripture must not depend on
+`com.antar.translation`. Translation may reference Verse identity only.
 
 Prefer layer packages inside a module only when implementing that slice:
 
@@ -46,6 +49,8 @@ api / application / domain / infrastructure
 - Initial foundation migration may create extensions and schemas only.
 - Product tables belong to later module-owned migrations.
 - Do not write across module schemas.
+- Translation owns `translation.*` tables. There is no `scripture.translations`
+  table.
 
 ## Transactions and Consistency
 
@@ -70,6 +75,7 @@ api / application / domain / infrastructure
 - Preserve and extend ArchUnit module/layer rules; do not weaken them to hide violations.
 - Temporary `allowEmptyShould(true)` is allowed only while packages are genuinely absent, and must be documented with a first-product-slice tightening TODO.
 - Scripture Package Format v1 Java/Python parity tests require `python3` and `content/packages/tools/validate_package.py`. Missing Python must fail verification (fail closed), not skip. Runtime importer execution must not spawn Python.
+- Translation Package Format v1 Java/Python parity tests require `python3` and `content/packages/translation/tools/validate_package.py`. Missing Python must fail verification (fail closed), not skip. Runtime importer execution must not spawn Python.
 
 ## Local Infrastructure
 

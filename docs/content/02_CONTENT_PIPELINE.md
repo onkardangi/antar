@@ -18,8 +18,9 @@ Immutable content packages under `content/packages/` are the only importer input
 
 **Still out of scope / not done:**
 
-- Translation / Commentary / transliteration persistence,
-- mobile changes,
+- Real Translation corpus selection / import (Translation foundation exists; synthetic fixtures only),
+- Commentary / transliteration persistence,
+- mobile Translation consumption,
 - public Reader import APIs.
 
 Chapter 1 status (2026-08-04): all 47 Verses are `APPROVED` in the canonical draft (34 `NORMALIZATION_MATCH` + 11 orthographic resolutions + 2 final-conflict resolutions; Wikisource exact copy; transliteration `null`). Production package `bhagavad-gita-chapter-01-v1` is built and was successfully imported into PostgreSQL (47 Sanskrit Verses).
@@ -237,14 +238,19 @@ Do not claim DB versions advanced until import actually runs.
 
 ## 8. Future translation policy (pipeline view)
 
-Translations are **not** Scripture. Pipeline implications:
+Translations are **not** Scripture. Pipeline implications (ADR-012):
 
-1. Separate raw/normalized trees or clearly separated package sections (`translations/`).
-2. Require `translation_sources` metadata: translator, edition, language, license.
-3. Validate 1:1 Verse mapping to Antar identities.
+1. Separate package tree under `content/packages/translation/` (independent of
+   Scripture packages).
+2. Require translation-source metadata: provider, name, language, license.
+3. Validate 1:1 Verse mapping to Antar Verse identities (`scripture.verses.id`).
 4. **Do not import unlicensed Translation content** (MVP plan).
-5. Attribution must survive into `scripture.translations` / `scripture.translation_sources`.
-6. Prefer one approved Translation source for early product surfaces; additional sources are additive.
+5. Attribution must survive into `translation.translations` /
+   `translation.translation_sources` (not `scripture.*`).
+6. Prefer one approved Translation source for early product surfaces; additional
+   sources are additive. Explicit language/provider selection is deferred.
+7. No real Translation corpus has been selected or imported yet; foundation work
+   uses synthetic fixture text only.
 
 Detailed editorial rules: `03_EDITORIAL_POLICY.md`.
 
@@ -267,7 +273,7 @@ Commentary is traditional attribution, not Verse text.
 | Non-goal | Status |
 |----------|--------|
 | Production Sanskrit corpus import (Chapters 2–18) | Not done (Chapter 1 imported via `bhagavad-gita-chapter-01-v1`) |
-| Translation / Commentary import | Not built |
+| Translation / Commentary real corpus import | Not done (Translation BC foundation only; synthetic fixtures) |
 | Transliteration persistence | Not built (importer rejects non-null transliteration) |
 | Public import API | Not built (and not planned for Reader surface) |
 | Mobile changes | Not done |

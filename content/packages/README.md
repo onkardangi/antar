@@ -147,6 +147,28 @@ cd backend
 using non-scriptural fixture text. It documents the format. It is not an
 approved Bhagavad Gita corpus and must not be imported.
 
+## Translation packages
+
+Translation is a separate bounded context (ADR-012). Its packages live under
+`content/packages/translation/` and are independent of Scripture packages.
+
+| Item | Location |
+|------|----------|
+| Format + schemas | `content/packages/translation/schema/` |
+| Validator | `content/packages/translation/tools/validate_package.py` |
+| Synthetic fixture | `content/packages/translation/fixtures/fixture-translation-en-chapter-01-v1/` |
+| Package builder | Java test fixture builder `SyntheticTranslationPackageFixtureBuilder`; production editorial builder deferred |
+
+```bash
+python3 content/packages/translation/tools/validate_package.py \
+  content/packages/translation/fixtures/fixture-translation-en-chapter-01-v1
+
+python3 -m unittest discover content/packages/translation/tools/tests
+```
+
+See `content/packages/translation/README.md` and
+`backend/src/main/java/com/antar/translation/README.md`.
+
 ## Implementation status
 
 | Item | Status |

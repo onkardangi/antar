@@ -945,10 +945,10 @@ This provides stable canonical lookup without requiring clients to know internal
 GET /api/v1/scripture/chapters/{chapterId}/verses
 ```
 
-Optional query parameters:
+Optional query parameters (Verse Reader composition; **not** Translation module APIs):
 
 ```text
-translationId
+translationId   # future preference; not implemented in current Translation foundation
 language
 includeProgress
 ```
@@ -973,6 +973,10 @@ Response:
 
 Canonical ordering is mandatory.
 
+`translationPreview` in Chapter verse lists is a future Verse Reader composition
+concern. Current Translation ownership and read path are defined in section 22.8
+and ADR-012; do not treat Scripture endpoints as owners of Translation rows.
+
 ---
 
 ## 22.5 Get Verse
@@ -984,7 +988,7 @@ GET /api/v1/scripture/verses/{verseId}
 Query parameters:
 
 ```text
-translationId
+translationId              # future preference; deferred
 includeTransliteration
 ```
 
@@ -1031,6 +1035,12 @@ Response:
 }
 ```
 
+**Superseded ownership note:** Embedding a full `translation` object inside the
+Scripture Verse response remains a later Verse Reader composition goal. The
+authoritative Translation bounded context and current implemented read API are
+documented in section 22.8 (ADR-012). Scripture does not own `translation.*`
+tables.
+
 ---
 
 ## 22.6 Get Verse by Canonical Reference
@@ -1059,30 +1069,57 @@ Missing canonical content returns:
 
 ---
 
-## 22.7 List Translation Sources
+## 22.7 List Translation Sources — SUPERSEDED
 
 ```http
 GET /api/v1/scripture/translation-sources
 ```
 
-Response:
+**Status: superseded by ADR-012.**
+
+Do not implement this endpoint under the Scripture module. Translation sources
+are owned by the Translation bounded context (`translation.translation_sources`).
+Listing sources / explicit provider selection is future Translation work, not a
+Scripture API.
+
+---
+
+## 22.8 Get Published Translation for Verse — CURRENT
+
+Owned by the Translation module.
+
+```http
+GET /api/v1/translations/verses/{verseId}
+```
+
+### Response fields (current)
 
 ```json
 {
-  "items": [
-    {
-      "id": "018f...",
-      "name": "Edition Name",
-      "translator": "Translator Name",
-      "languageCode": "en",
-      "publicationYear": 1980,
-      "licenseType": "LICENSED"
-    }
-  ]
+  "id": "0191...",
+  "verseId": "0190...",
+  "language": "en",
+  "provider": "FIXTURE_PROVIDER",
+  "translationText": "FIXTURE_TRANSLATION_VERSE_1",
+  "contentVersion": 1
 }
 ```
 
-Only approved, published, and licensed sources are returned.
+Only these fields are part of the current contract. The response must not include
+Sanskrit, commentary, notes, package checksums, source-package IDs, or import
+metadata.
+
+### Behavior
+
+- Returns one **PUBLISHED** translation for the Verse, or `404 RESOURCE_NOT_FOUND`.
+- Missing and unpublished rows both return `404` with Problem Details
+  (`RESOURCE_NOT_FOUND`).
+- V1 provider selection: when multiple published translations exist for one
+  Verse, the API returns the row ordered by **provider name ascending**
+  (deterministic tie-break). Explicit language/provider query parameters are
+  deferred future work.
+- No real Translation corpus is claimed as product content in the current
+  foundation; synthetic fixtures exercise this API.
 
 ---
 
@@ -2701,7 +2738,14 @@ GET /api/v1/scripture/chapters/by-number/{chapterNumber}
 GET /api/v1/scripture/chapters/{chapterId}/verses
 GET /api/v1/scripture/verses/{verseId}
 GET /api/v1/scripture/verses/by-reference/{reference}
-GET /api/v1/scripture/translation-sources
+```
+
+`GET /api/v1/scripture/translation-sources` — **superseded** (ADR-012); do not implement.
+
+## Translation
+
+```text
+GET /api/v1/translations/verses/{verseId}
 ```
 
 ## Reading
@@ -2845,7 +2889,11 @@ Administrative content workflows
 
 ### Temporary implementation status
 
-The current Chapter-listing slice intentionally returns a reduced response until Translation and Reading Progress are implemented.
+The current Chapter-listing slice intentionally returns a reduced response until
+Translation composition and Reading Progress are wired into Verse Reader
+surfaces. Translation itself is a separate bounded context (ADR-012) with
+`GET /api/v1/translations/verses/{verseId}` already implemented for foundation
+use; no real Translation corpus is claimed as product content.
 
 Current response shape:
 

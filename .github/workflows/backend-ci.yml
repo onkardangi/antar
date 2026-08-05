@@ -58,3 +58,16 @@ jobs:
           grep -q 'errors="0"' "$report"
           # Positive assertion: skipped must be exactly zero (not merely absent).
           grep -E 'skipped="0"' "$report"
+
+      - name: Confirm Translation Package Format v1 Python parity gate executed
+        run: |
+          set -euo pipefail
+          report="target/surefire-reports/TEST-com.antar.translation.infrastructure.packageformat.TranslationPackageFormatV1PythonParityTest.xml"
+          test -f "$report"
+          grep -q 'missingPython3FailsClosed' "$report"
+          grep -q 'approvedChapterTwelveFixtureMatchesPython' "$report"
+          grep -q 'tests="11"' "$report"
+          grep -q 'skipped="0"' "$report"
+          grep -q 'failures="0"' "$report"
+          grep -q 'errors="0"' "$report"
+          grep -E 'skipped="0"' "$report"

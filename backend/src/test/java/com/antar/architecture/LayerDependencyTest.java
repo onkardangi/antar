@@ -61,4 +61,14 @@ class LayerDependencyTest {
                             "jakarta.persistence..",
                             "jakarta.servlet..")
                     .because("Scripture domain types must remain free of Spring and JPA");
+
+    @ArchTest
+    static final ArchRule translationDomainMustRemainFrameworkFree =
+            noClasses()
+                    .that().resideInAPackage("com.antar.translation.domain..")
+                    .should().dependOnClassesThat().resideInAnyPackage(
+                            "org.springframework..",
+                            "jakarta.persistence..",
+                            "jakarta.servlet..")
+                    .because("Translation domain types must remain free of Spring and JPA");
 }

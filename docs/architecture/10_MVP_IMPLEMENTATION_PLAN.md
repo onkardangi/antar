@@ -521,33 +521,39 @@ Verse
 
 ## Domain Scope
 
-Implement the Scripture module.
+Implement the Scripture module for Sanskrit Chapter/Verse identity and content.
 
-Core concepts:
+Core Scripture concepts:
 
 ```text
 Chapter
 Verse
 CanonicalReference
-TranslationSource
-Translation
 Transliteration
 ```
 
-Commentary may remain deferred until the Understanding phase.
+Translation is a **separate bounded context** (ADR-012), not a Scripture-owned
+table set. Commentary may remain deferred until the Understanding phase.
 
 ---
 
 ## Database Deliverables
 
-Create Flyway migrations for:
+Create Flyway migrations for Scripture:
 
 ```text
 scripture.chapters
 scripture.verses
 scripture.transliterations
-scripture.translation_sources
-scripture.translations
+```
+
+Translation tables are owned by the Translation module (Flyway V007):
+
+```text
+translation.translation_sources
+translation.translations
+translation.content_packages
+translation.content_package_imports
 ```
 
 Enforce:
@@ -556,9 +562,14 @@ Enforce:
 - canonical Chapter order,
 - Verse uniqueness within Chapter,
 - canonical reference uniqueness,
-- Translation attribution,
+- Translation attribution (in `translation.*`),
 - publication state,
 - and content versioning.
+
+**Status:** Scripture Chapter/Verse identity and Sanskrit package import are
+implemented. Translation bounded-context foundation (`translation.*`, package
+format, importer, read API) is implemented with synthetic fixtures only. No real
+Translation corpus has been selected or imported.
 
 ---
 
@@ -573,7 +584,7 @@ Chapter 1
 Chapter 2
 A representative subset of Verses
 At least one Transliteration
-At least one Translation
+At least one Translation (later; separate Translation packages)
 ```
 
 After the import path is stable, expand to all approved canonical Scripture content.
@@ -584,7 +595,7 @@ Do not import unlicensed Translation content.
 
 ## Backend Deliverables
 
-Implement:
+Implement Scripture Reader APIs:
 
 ```text
 GET /api/v1/scripture/chapters
@@ -598,16 +609,23 @@ GET /api/v1/scripture/chapters/{chapterId}/verses
 GET /api/v1/scripture/verses/{verseId}
 
 GET /api/v1/scripture/verses/by-reference/{reference}
-
-GET /api/v1/scripture/translation-sources
 ```
+
+Translation read API (Translation module, ADR-012):
+
+```text
+GET /api/v1/translations/verses/{verseId}
+```
+
+`GET /api/v1/scripture/translation-sources` is **superseded** and must not be
+implemented under Scripture. Explicit language/provider selection on Translation
+APIs is deferred.
 
 Implement:
 
 - canonical-reference parser,
 - Chapter query service,
 - Verse query service,
-- Translation selection,
 - previous and next Verse resolution,
 - and publication filtering.
 

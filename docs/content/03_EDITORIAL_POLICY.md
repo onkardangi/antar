@@ -100,12 +100,21 @@ When Sanskrit is approved for import into `scripture.verses.sanskrit_text`:
 
 ## 6. Future translation policy
 
-1. Translations require identifiable sources (`scripture.translation_sources` fields: name, translator, publisher, edition, year, language, license).
+1. Translations require identifiable sources in `translation.translation_sources`
+   (provider, name, language, license). Scripture does not own Translation tables
+   (ADR-012).
 2. **Do not import unlicensed Translation content.**
-3. Every Translation row retains attribution; no anonymous “English meaning.”
-4. Early product may ship with limited licensed Translation coverage; partial coverage is allowed if UX treats missing Translation as unavailable, not invented.
-5. Reader preference for Translation is explicit (API/product model); do not silently substitute another edition’s wording.
-6. AI must never author Translation presented as Scripture or as a traditional Translation source.
+3. Every Translation row in `translation.translations` retains attribution; no
+   anonymous “English meaning.”
+4. Early product may ship with limited licensed Translation coverage; partial
+   coverage is allowed if UX treats missing Translation as unavailable, not invented.
+5. Reader preference for Translation is explicit (API/product model); do not
+   silently substitute another edition’s wording. Current V1 API returns one
+   published row via provider-name ascending order; explicit selection is deferred.
+6. AI must never author Translation presented as Scripture or as a traditional
+   Translation source.
+7. No real Translation corpus has been selected or imported; foundation fixtures
+   are synthetic only.
 
 ---
 
@@ -156,6 +165,6 @@ The Tarun Tiwari Kaggle dataset remains `REJECTED_FOR_CANONICAL_IMPORT` under th
 |------|--------|
 | Editorial policy | Documented (this file) |
 | Approved corpus editorial pass | **Complete for Chapter 1** — 47 Verses approved (34 normalization-match + 11 orthographic + 2 final-conflict); packaged as `bhagavad-gita-chapter-01-v1`; imported |
-| Translation corpus | **Not started** |
+| Translation corpus | **Not started** (no real corpus selected/imported; Translation BC foundation uses synthetic fixtures only) |
 | Commentary corpus | **Not started** |
 | Database Scripture body text | **Imported** for Chapter 1 (47 Sanskrit Verses); Chapters 2–18 not imported |

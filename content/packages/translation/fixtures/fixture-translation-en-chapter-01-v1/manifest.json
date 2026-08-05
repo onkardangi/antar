@@ -1,0 +1,30 @@
+{
+  "canonicalReferenceRange": {
+    "expectedCount": 2,
+    "from": "1.1",
+    "to": "1.2"
+  },
+  "chapterNumber": 1,
+  "checksumAlgorithm": "SHA-256",
+  "contentVersion": 1,
+  "createdAt": "2026-08-04T00:00:00Z",
+  "editorialApprovalManifestChecksum": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "fileChecksums": {
+    "provenance.json": "c774bb824fbe228f433fff7f0844ecee3ba8fbf52f134c283a27721f6492ee3d",
+    "translations.jsonl": "3571a86e3bc3fd6b5bb06f65fe10847620878fa70015d78cbde6596be76b8c08"
+  },
+  "language": "en",
+  "licenseReference": "CC0 fixture",
+  "licenseType": "CC0",
+  "packageChecksum": "d79c11607ff0d199aa0ec15d1ca8f1968f59f8305c075539e00c1cb58c64d548",
+  "packageFormatVersion": 1,
+  "packageId": "fixture-translation-en-chapter-01-v1",
+  "packageStatus": "APPROVED",
+  "provider": "FIXTURE_PROVIDER",
+  "recordCount": 2,
+  "scriptureId": "bhagavad-gita",
+  "sourceName": "Antar Fixture Translation",
+  "sourceRegistryReferences": [
+    "fixture-antar-translation-v1"
+  ]
+}

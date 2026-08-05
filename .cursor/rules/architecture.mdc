@@ -57,7 +57,7 @@ Internal module interaction uses application-service calls, not HTTP between mod
 Backend modules:
 
 ```text
-identity, scripture, reading, reflection, journey,
+identity, scripture, translation, reading, reflection, journey,
 guidance, understanding, saar, search, platform, shared
 ```
 
@@ -68,6 +68,8 @@ Rules:
 - Platform owns cross-cutting operational concerns only.
 - Shared holds small primitives, not business workflows.
 - Do not create empty Controllers, Services, Repositories, or Entities for every future module.
+- Translation is its own bounded context (ADR-012). It may reference Scripture
+  Verse identity only. Scripture must not depend on Translation.
 
 ## Vertical-Slice Discipline
 

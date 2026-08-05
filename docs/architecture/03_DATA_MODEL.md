@@ -379,9 +379,11 @@ user_id → identity.users.id
 
 One Reader has one active preference record.
 
-`translation_id` references an approved translation in the Scripture domain.
+`translation_id` references an approved translation owned by the Translation
+module (`translation.translations`).
 
-The Identity module should access the translation through an explicit contract rather than directly mutating Scripture records.
+The Identity module should access the translation through an explicit contract
+rather than directly mutating Translation records.
 
 ---
 
@@ -614,44 +616,58 @@ UNIQUE (verse_id, scheme, source_id)
 
 ---
 
-## 12.4 `scripture.translation_sources`
+## 12.4 Translation tables (`translation` schema)
 
-Represents an identifiable translation edition.
+Owned by the Translation bounded context (ADR-012). Implemented by Flyway
+`V007__create_translation_schema_and_tables.sql`.
+
+Scripture does not own translation tables. There is no `scripture.translations`
+or `scripture.translation_sources` table.
+
+### `translation.translation_sources`
+
+Represents an identifiable translation edition / provider.
 
 ```text
-scripture.translation_sources
------------------------------
+translation.translation_sources
+-------------------------------
 id
+provider
 name
-translator
-publisher
-edition
-publication_year
 language_code
 license_type
 license_reference
-source_url
 publication_status
 created_at
 updated_at
 ```
 
-Licensing information is mandatory before publication.
-
----
-
-## 12.5 `scripture.translations`
+Constraints:
 
 ```text
-scripture.translations
-----------------------
+PRIMARY KEY (id)
+UNIQUE (provider, language_code)
+```
+
+Licensing information is mandatory before publication.
+
+### `translation.translations`
+
+Per-Verse translation text. No commentary or notes.
+
+```text
+translation.translations
+------------------------
 id
 verse_id
 translation_source_id
 language_code
-content
+provider
+translation_text
 publication_status
 content_version
+source_package_id
+source_package_checksum
 created_at
 updated_at
 ```
@@ -661,11 +677,71 @@ Constraints:
 ```text
 FOREIGN KEY (verse_id) REFERENCES scripture.verses(id)
 FOREIGN KEY (translation_source_id)
-  REFERENCES scripture.translation_sources(id)
+  REFERENCES translation.translation_sources(id)
+FOREIGN KEY (source_package_id)
+  REFERENCES translation.content_packages(package_id)
 UNIQUE (verse_id, translation_source_id)
 ```
 
-A translation must always retain attribution.
+A translation must always retain attribution (provider + language + source).
+
+### `translation.content_packages` and import audit
+
+Mirror Scripture package provenance philosophy for Translation packages.
+
+```text
+translation.content_packages
+----------------------------
+package_id
+package_format_version
+scripture_id
+chapter_number
+language_code
+provider
+content_version
+package_status          -- APPROVED | SUPERSEDED | REVOKED
+package_checksum        -- UNIQUE
+manifest_checksum
+provenance_checksum
+translations_checksum
+source_registry_references
+importer_version
+first_imported_at
+last_verified_at
+created_at
+updated_at
+```
+
+Invariants:
+
+```text
+PRIMARY KEY (package_id)
+UNIQUE (package_checksum)
+UNIQUE (language_code, provider, scripture_id, chapter_number)
+  WHERE package_status = 'APPROVED'
+```
+
+```text
+translation.content_package_imports
+-----------------------------------
+id
+package_id                 -- FK; NULL for FAILED
+attempted_package_id
+package_checksum
+chapter_number
+import_status              -- IMPORTED | FAILED | REVOKED | SUPERSEDED
+records_*
+failure_code / failure_message
+importer_version
+started_at / completed_at / duration_ms
+```
+
+Rules:
+
+- DRAFT packages and failed attempts are never stored in `content_packages`.
+- Dry-run writes nothing.
+- Do not store local paths, translation body text, package blobs, or stack traces
+  in failure messages.
 
 ---
 
@@ -1855,8 +1931,16 @@ users(lower(email))
 chapters(chapter_number)
 verses(chapter_id, verse_number)
 verses(canonical_reference)
-translations(verse_id, translation_source_id)
 commentary_passages(verse_id)
+```
+
+## Translation
+
+```text
+translation_sources(provider, language_code)
+translations(verse_id, translation_source_id)
+translations(verse_id) WHERE publication_status = 'PUBLISHED'
+content_packages(package_checksum)
 ```
 
 ## Reading
@@ -2138,12 +2222,20 @@ scripture.chapters
     └── scripture.verses
             │
             ├── scripture.transliterations
-            ├── scripture.translations
+            ├── translation.translations
             ├── scripture.commentary_passages
             ├── understanding.articles
             ├── reflection.reflection_entries
             ├── reading.reading_progress
             └── saar.conversations
+
+translation.translation_sources
+    │
+    └── translation.translations
+            │
+            └── translation.content_packages
+                    │
+                    └── translation.content_package_imports
 
 understanding.articles
     │
@@ -2176,10 +2268,19 @@ privacy_preferences
 chapters
 verses
 transliterations
-translation_sources
-translations
 commentary_sources
 commentary_passages
+content_packages
+content_package_imports
+```
+
+## Translation
+
+```text
+translation_sources
+translations
+content_packages
+content_package_imports
 ```
 
 ## Reading

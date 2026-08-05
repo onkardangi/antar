@@ -14,6 +14,7 @@ class ModuleDependencyTest {
     private static final List<String> MODULES = List.of(
             "identity",
             "scripture",
+            "translation",
             "reading",
             "reflection",
             "journey",
@@ -31,6 +32,10 @@ class ModuleDependencyTest {
     @ArchTest
     static final ArchRule scriptureMustNotDependOnForeignInfrastructure =
             forbidForeignInfrastructure("scripture");
+
+    @ArchTest
+    static final ArchRule translationMustNotDependOnForeignInfrastructure =
+            forbidForeignInfrastructure("translation");
 
     @ArchTest
     static final ArchRule readingMustNotDependOnForeignInfrastructure =
@@ -74,6 +79,13 @@ class ModuleDependencyTest {
                     .that().resideInAPackage("com.antar.platform..")
                     .should().dependOnClassesThat().resideInAPackage("com.antar.scripture..")
                     .because("Platform must not depend on Scripture business types");
+
+    @ArchTest
+    static final ArchRule scriptureMustNotDependOnTranslation =
+            noClasses()
+                    .that().resideInAPackage("com.antar.scripture..")
+                    .should().dependOnClassesThat().resideInAPackage("com.antar.translation..")
+                    .because("Scripture must not depend on Translation");
 
     private static ArchRule forbidForeignInfrastructure(String module) {
         String[] otherInfrastructure = MODULES.stream()

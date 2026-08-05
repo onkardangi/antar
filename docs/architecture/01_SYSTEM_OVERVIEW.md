@@ -413,7 +413,8 @@ Identity does not own reflections, reading history, or conversations.
 
 ## 6.2 Scripture
 
-Scripture owns canonical content and source metadata.
+Scripture owns canonical Sanskrit content and related Scripture-owned source
+metadata.
 
 It includes:
 
@@ -421,15 +422,36 @@ It includes:
 - verses,
 - Sanskrit text,
 - transliterations,
-- translations,
-- translators,
 - chapter metadata,
 - commentary sources,
 - and canonical relationships.
 
+Licensed translations are **not** owned by Scripture. Translation is a separate
+bounded context (ADR-012) that references Verse identity only
+(`scripture.verses.id`).
+
 Scripture content is primarily read-only at runtime.
 
 Changes should occur through controlled content-ingestion or administration workflows.
+
+---
+
+## 6.2a Translation
+
+Translation owns licensed translation editions and per-Verse translation text.
+
+It includes:
+
+- translation sources / providers,
+- translation rows,
+- Translation package provenance and import audit,
+- and the read-only Translation API.
+
+Translation may reference Scripture Verse identity only. Scripture must not
+depend on Translation. See ADR-012.
+
+No real Translation corpus is claimed as imported in the current foundation;
+synthetic fixture content supports the bounded-context slice.
 
 ---
 
@@ -856,7 +878,8 @@ Conceptual ownership:
 | Domain | Owned Data |
 |---|---|
 | Identity | users, credentials, preferences |
-| Scripture | chapters, verses, translations, commentaries |
+| Scripture | chapters, verses, transliterations, commentaries |
+| Translation | translation sources, translations, translation packages / import audit |
 | Reading | reading positions, sessions, bookmarks |
 | Reflection | quick reflections, journal entries, revisions |
 | Journey | derived memory metadata and revisit state |
