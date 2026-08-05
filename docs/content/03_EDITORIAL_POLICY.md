@@ -1,6 +1,6 @@
 # 03 — Editorial Policy
 
-**Status:** Foundation (policy only; no corpus editorial pass completed)  
+**Status:** Foundation (policy + Chapter 1 Sanskrit editorial approval complete; package built and imported)
 **Owner:** Content / Product  
 **Last Updated:** August 2026
 
@@ -155,7 +155,7 @@ The Tarun Tiwari Kaggle dataset remains `REJECTED_FOR_CANONICAL_IMPORT` under th
 | Item | Status |
 |------|--------|
 | Editorial policy | Documented (this file) |
-| Approved corpus editorial pass | **Not started** |
+| Approved corpus editorial pass | **Complete for Chapter 1** — 47 Verses approved (34 normalization-match + 11 orthographic + 2 final-conflict); packaged as `bhagavad-gita-chapter-01-v1`; imported |
 | Translation corpus | **Not started** |
 | Commentary corpus | **Not started** |
-| Database Scripture body text | **Not imported** |
+| Database Scripture body text | **Imported** for Chapter 1 (47 Sanskrit Verses); Chapters 2–18 not imported |

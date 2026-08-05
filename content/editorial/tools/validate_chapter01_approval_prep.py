@@ -125,33 +125,71 @@ def validate_approval_prep(
         if c.get("approvalStatus") != "PENDING":
             result.errors.append(f"{ref}: conflict approvalStatus must be PENDING")
 
-    if manifest.get("approved") != 0:
-        result.errors.append("manifest approved must be 0")
-    if manifest.get("status") == "APPROVED":
-        result.errors.append("manifest must not be APPROVED")
-    if manifest.get("reviewer") is not None or manifest.get("secondReviewer") is not None:
-        result.errors.append("manifest reviewers must remain null until human review")
     if manifest.get("normalizationMatchCandidates") != 34:
         result.errors.append("manifest candidate count mismatch")
     if manifest.get("sourceConflicts") != 13:
         result.errors.append("manifest conflict count mismatch")
-    if manifest.get("pending") != 47:
-        result.errors.append("manifest pending must be 47")
+
+    status = manifest.get("status")
+    if status == "PENDING_EDITORIAL_REVIEW":
+        if manifest.get("approved") != 0:
+            result.errors.append("manifest approved must be 0")
+        if manifest.get("reviewer") is not None or manifest.get("secondReviewer") is not None:
+            result.errors.append("manifest reviewers must remain null until human review")
+        if manifest.get("pending") != 47:
+            result.errors.append("manifest pending must be 47")
+        if draft_path.is_file():
+            digest = sha256_file(draft_path)
+            if draft_sha_expected and digest != draft_sha_expected:
+                result.errors.append("canonical-draft.jsonl checksum changed")
+            draft_rows = load_jsonl(draft_path)
+            approved = sum(1 for r in draft_rows if r.get("approvalStatus") == "APPROVED")
+            if approved != 0:
+                result.errors.append("draft approved count must remain 0")
+    elif status == "PARTIALLY_APPROVED":
+        approved_count = manifest.get("approved")
+        pending_count = manifest.get("pending")
+        if approved_count not in {34, 45}:
+            result.errors.append(
+                f"PARTIALLY_APPROVED manifest approved must be 34 or 45, found {approved_count}"
+            )
+        if pending_count not in {13, 2}:
+            result.errors.append(
+                f"PARTIALLY_APPROVED manifest pending must be 13 or 2, found {pending_count}"
+            )
+        if manifest.get("rejected") != 0:
+            result.errors.append("PARTIALLY_APPROVED manifest rejected must be 0")
+        if not manifest.get("reviewer"):
+            result.errors.append("PARTIALLY_APPROVED requires reviewer")
+        if manifest.get("secondReviewer") is not None:
+            result.errors.append("secondReviewer must remain null")
+        if draft_path.is_file():
+            draft_rows = load_jsonl(draft_path)
+            approved = sum(1 for r in draft_rows if r.get("approvalStatus") == "APPROVED")
+            if approved != approved_count:
+                result.errors.append(
+                    f"PARTIALLY_APPROVED draft approved count must equal manifest ({approved_count})"
+                )
+    elif status == "APPROVED":
+        if manifest.get("approved") != 47 or manifest.get("pending") != 0:
+            result.errors.append("APPROVED manifest must be approved=47 pending=0")
+        if manifest.get("importReady") is not True:
+            result.errors.append("APPROVED manifest importReady must be true")
+        if manifest.get("unresolvedReferences") not in ([], None):
+            result.errors.append("APPROVED unresolvedReferences must be empty")
+        if draft_path.is_file():
+            draft_rows = load_jsonl(draft_path)
+            approved = sum(1 for r in draft_rows if r.get("approvalStatus") == "APPROVED")
+            if approved != 47:
+                result.errors.append("APPROVED draft must have 47 APPROVED rows")
+    else:
+        result.errors.append(f"unexpected manifest status {status!r}")
 
     for e in queue.get("entries") or []:
         if e["canonicalReference"] not in conf_refs:
             result.errors.append(
                 f"queue {e['canonicalReference']} not in conflict set"
             )
-
-    if draft_path.is_file():
-        digest = sha256_file(draft_path)
-        if draft_sha_expected and digest != draft_sha_expected:
-            result.errors.append("canonical-draft.jsonl checksum changed")
-        draft_rows = load_jsonl(draft_path)
-        approved = sum(1 for r in draft_rows if r.get("approvalStatus") == "APPROVED")
-        if approved != 0:
-            result.errors.append("draft approved count must remain 0")
 
     return result
 

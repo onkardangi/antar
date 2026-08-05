@@ -17,6 +17,14 @@
       "url": "https://creativecommons.org/licenses/by-sa/4.0/",
       "text_path": "content/licenses/cc-by-sa-4.0.txt",
       "notes": "Recorded from sa.wikisource.org site rightsinfo for contributor transcription/markup. Underlying ancient Sanskrit work remains public domain. Attribution required. No Wikisource endorsement of Antar. License alone does not imply canonical import approval."
+    },
+    {
+      "id": "sanskritdocuments-volunteer-study-research",
+      "name": "Sanskrit Documents volunteer study/research terms",
+      "spdx": null,
+      "url": "https://sanskritdocuments.org/faq",
+      "text_path": null,
+      "notes": "Not a standard open license. Header and FAQ permit personal study and research; forbid commercial redistribution / site promotion without permission. Recorded for THIRD_EDITORIAL_VERIFICATION_REFERENCE provenance only. Does not authorize Antar canonical import."
     }
   ]
 }

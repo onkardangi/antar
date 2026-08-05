@@ -118,15 +118,19 @@ class ValidateReviewTests(unittest.TestCase):
         errors = validate_review_text(text, expected_ref="9.9")
         self.assertTrue(any("audit log" in e.lower() for e in errors), errors)
 
-    def test_existing_verse_1_1_review_valid_and_unapproved(self) -> None:
+    def test_existing_verse_1_1_review_valid(self) -> None:
         path = REPO_ROOT / "content/editorial/reviews/1.1.md"
         self.assertTrue(path.is_file())
         errors = validate_review_file(path)
         self.assertEqual(errors, [], errors)
         text = path.read_text(encoding="utf-8")
         status_block = text.split("# Status", 1)[-1].split("#", 1)[0]
-        self.assertIn("UNDER_REVIEW", status_block)
-        self.assertNotIn("APPROVED", status_block.split())
+        status_token = next((ln.strip() for ln in status_block.splitlines() if ln.strip()), "")
+        self.assertIn(status_token, {"UNDER_REVIEW", "APPROVED"})
+        if status_token == "APPROVED":
+            approval = text.split("# Approval", 1)[-1].split("#", 1)[0]
+            self.assertRegex(approval, r"(?m)^Reviewer:\s+\S+")
+            self.assertRegex(approval, r"(?m)^Date:\s+\S+")
 
     def test_validate_reviews_dir_includes_1_1(self) -> None:
         result = validate_reviews_dir(REPO_ROOT / "content/editorial/reviews")

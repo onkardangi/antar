@@ -1,0 +1,44 @@
+{
+  "canonicalReference": "1.22",
+  "chapterNumber": 1,
+  "editionIdentifier": "bhagvadnew.itx; Latest update: May 15, 2021",
+  "excerptPath": "content/raw/sanskrit/sanskrit-documents/chapter-01-verses-1.20-1.22/verses-1.20-1.22-root-excerpt.txt",
+  "excerptSha256": "328c55b48943c5eb9826278ed95fa64501cb029dfc0f595a86f6fb467ed4b7ae",
+  "excluded": [
+    "commentary",
+    "translation",
+    "navigation",
+    "unrelated_verses",
+    "page_ui",
+    "full_html_page",
+    "full_itx_corpus"
+  ],
+  "itxUrl": "https://sanskritdocuments.org/doc_giitaa/bhagvadnew.itx",
+  "licenseDisplayed": "VOLUNTEER_STUDY_RESEARCH_ONLY; personal study and research permitted; not for commercial redistribution or site promotion without permission; underlying ancient Sanskrit work public domain; transcription volunteer layer — reuse terms per sanskritdocuments.org FAQ/header",
+  "licenseStatus": "VERIFICATION_ONLY_VOLUNTEER_TERMS_NOT_IMPORT_CORPUS",
+  "notes": [
+    "Acquired as THIRD_EDITORIAL_VERIFICATION_REFERENCE for Chapter 1 final conflicts only.",
+    "Not approved as Antar import corpus.",
+    "Sanskrit Documents does not endorse Antar.",
+    "Chapter 1 numbering observed as 47 verses (१-१ through १-४७).",
+    "Parent excerpt checksum: 328c55b48943c5eb9826278ed95fa64501cb029dfc0f595a86f6fb467ed4b7ae"
+  ],
+  "observedRootText": "यावदेतान्निरीक्षेऽहं योद्धुकामानवस्थितान् ।\nकैर्मया सह योद्धव्यमस्मिन् रणसमुद्यमे ॥ १-२२॥",
+  "observedRootTextChecksumSha256": "71f278827b91362555b221f28a5081ff667160590a3f9ce8de433634e24c7275",
+  "observedSourceLocalReference": "१-२२",
+  "provider": "Sanskrit Documents (sanskritdocuments.org)",
+  "redistribution": "VERIFICATION_ONLY_NOT_APPROVED_FOR_CANONICAL_IMPORT",
+  "retrievalStatus": "ACQUIRED_VERIFICATION_ONLY",
+  "retrievalTimestamp": "2026-08-04T22:24:04Z",
+  "schemaVersion": 1,
+  "sourceId": "bhagavad-gita-sanskrit-sanskritdocuments-bhagvadnew-verse-1.22-verification-v1",
+  "sourceLocalSegmentationMarkers": [
+    "।",
+    "॥",
+    "१-२२"
+  ],
+  "sourceRole": "THIRD_EDITORIAL_VERIFICATION_REFERENCE",
+  "sourceUrl": "https://sanskritdocuments.org/doc_giitaa/bhagvadnew.html",
+  "title": "shrImadbhagavadgItA (bhagvadnew) — root Sanskrit excerpt Ch.1 vv.20,22",
+  "verseNumber": 22
+}

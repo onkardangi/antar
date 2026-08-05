@@ -36,8 +36,8 @@ Raw Sources
 3. **Package validation is not scholarly approval.** Structural checks prove
    format integrity. Editorial approval must already have happened upstream.
 4. **Editorial approval precedes packaging.** The builder refuses pending and
-   conflicted records. Chapter 1 currently has **zero** approved Verses, so a
-   real Chapter 1 package build fails.
+   conflicted records. Incomplete Chapters cannot become `APPROVED` full-chapter
+   packages.
 5. **Revoked packages remain preserved** for audit history (`REVOKED` status).
 6. **Only `APPROVED` packages may be imported.** `DRAFT` packages
    are never importable and are never persisted by the importer.
@@ -96,7 +96,7 @@ identical checksums when `createdAt` and other declared fields are held fixed.
 ```bash
 # Validate a package
 python3 content/packages/tools/validate_package.py \
-  content/packages/examples/bhagavad-gita-chapter-01-v1-example
+  content/packages/bhagavad-gita-chapter-01-v1
 
 # Build from approved editorial records (refuses pending/conflicted)
 python3 content/packages/tools/build_package.py \
@@ -105,14 +105,15 @@ python3 content/packages/tools/build_package.py \
   --output-parent content/packages \
   --package-id bhagavad-gita-chapter-01-v1 \
   --chapter-number 1 \
-  --package-status DRAFT \
+  --package-status APPROVED \
   --created-at 2026-08-04T00:00:00Z
 
-# Attempt real Chapter 1 workspace build (expected failure today)
+# Build from Chapter 1 workspace when editorial importReady=true
 python3 content/packages/tools/build_package.py \
   --chapter-workspace content/editorial/bhagavad-gita/chapter-01 \
   --package-id bhagavad-gita-chapter-01-v1 \
   --chapter-number 1 \
+  --package-status APPROVED \
   --created-at 2026-08-04T00:00:00Z
 
 # Tests (stdlib unittest only)
@@ -132,7 +133,6 @@ commands. Summary:
 - Dry-run failures retain `dryRun=true` and write nothing
 - Never runs on normal application startup
 - No public Reader import API
-- Real Chapter 1 is still not importable (example remains `DRAFT`; no approved corpus)
 
 ```bash
 cd backend

@@ -151,11 +151,37 @@ def validate_report(
         draft_sha = sha256_text(draft_path.read_text(encoding="utf-8"))
         if draft_sha_before and draft_sha != draft_sha_before:
             result.errors.append("canonical-draft.jsonl checksum changed")
-        # Draft must not contain APPROVED
+        # Phase 2 comparison must not itself grant approval. Human-approved
+        # draft rows are allowed after controlled batch/editorial approval.
         for d in load_jsonl(draft_path):
             if d.get("approvalStatus") == "APPROVED":
                 approved_count += 1
-                result.errors.append(f"draft {d.get('canonicalReference')}: APPROVED not allowed in Phase 2")
+                if d.get("classification") not in {
+                    None,
+                    "NORMALIZATION_MATCH",
+                    "AUTO_MATCH",
+                    "ORTHOGRAPHIC_EQUIVALENCE",
+                    "FINAL_CONFLICT_RESOLUTION",
+                }:
+                    result.errors.append(
+                        f"draft {d.get('canonicalReference')}: unexpected "
+                        "classification on APPROVED row"
+                    )
+                continue
+            if d.get("approvalStatus") not in {
+                None,
+                "UNREVIEWED",
+                "READY_FOR_REVIEW",
+                "UNDER_REVIEW",
+                "SOURCE_CONFLICT",
+                "SOURCE_MISSING",
+                "NEEDS_SOURCE",
+                "PENDING",
+            }:
+                result.errors.append(
+                    f"draft {d.get('canonicalReference')}: unexpected approvalStatus "
+                    f"{d.get('approvalStatus')!r}"
+                )
 
     if sample_path.is_file():
         sample = load_json(sample_path)

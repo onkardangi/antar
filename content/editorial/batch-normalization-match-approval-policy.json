@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "name": "antar-batch-normalization-match-approval",
+  "description": "Controlled human batch approval for NORMALIZATION_MATCH Verses only. Never auto-approves. Never approves SOURCE_CONFLICT.",
+  "decisionType": "BATCH_NORMALIZATION_MATCH_APPROVAL",
+  "requiresSecondReviewer": false,
+  "allowedClassifications": ["NORMALIZATION_MATCH"],
+  "forbiddenClassifications": ["SOURCE_CONFLICT", "INSUFFICIENT_SOURCES", "AUTO_MATCH"],
+  "requiredSelectedSourceRole": "PRIMARY_TRANSCRIPTION_CANDIDATE",
+  "requiredSupportingSourceRole": "SECONDARY_VERIFICATION_REFERENCE",
+  "transliterationMustRemainNull": true,
+  "canonicalTextMustBeExactSelectedSourceCopy": true,
+  "frontMatterPolicy": {
+    "category": "FRONT_MATTER",
+    "batchEligible": true,
+    "condition": "Candidate must define proposedSanskritText as an exact byte copy of the selected PRIMARY_TRANSCRIPTION_CANDIDATE source. Selecting that text retains front matter explicitly; silent strip or rewrite is forbidden.",
+    "notes": [
+      "FRONT_MATTER remains a mandatory human-review category under AUTOMATED_REVIEW_POLICY.md.",
+      "Batch eligibility does not invent a front-matter boundary decision beyond retaining the selected source text.",
+      "IIT verification absence of front matter is not grounds to strip Wikisource front matter."
+    ]
+  },
+  "manifestStatuses": {
+    "before": ["PENDING_EDITORIAL_REVIEW"],
+    "afterPartial": "PARTIALLY_APPROVED",
+    "chapterApproved": "APPROVED",
+    "notes": [
+      "PARTIALLY_APPROVED means some Verses are APPROVED while others remain unresolved.",
+      "PARTIALLY_APPROVED is not Chapter import-ready and must not imply a complete approved package."
+    ]
+  },
+  "atomicity": "all-or-nothing",
+  "notes": [
+    "Explicit --apply with named reviewer and decision date is required.",
+    "Dry-run must mutate zero files.",
+    "Do not invent, merge, split, reconstruct, or rewrite Sanskrit."
+  ]
+}

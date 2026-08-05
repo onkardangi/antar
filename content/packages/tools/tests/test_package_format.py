@@ -392,16 +392,53 @@ class BuilderRejectionTests(unittest.TestCase):
                 )
             self.assertEqual(sha256_file(p1 / "SHA256SUMS"), sha256_file(p2 / "SHA256SUMS"))
 
-    def test_chapter1_cannot_produce_approved_package(self) -> None:
+    def test_chapter1_package_gate(self) -> None:
         manifest = load_json(CHAPTER01 / "chapter-01-approval-manifest.json")
-        self.assertEqual(manifest.get("approved"), 0)
+        self.assertIn(
+            manifest.get("status"),
+            {"PENDING_EDITORIAL_REVIEW", "PARTIALLY_APPROVED", "APPROVED"},
+        )
         with tempfile.TemporaryDirectory() as tmp:
-            with self.assertRaises(BuildError) as ctx:
-                build_package(
+            if manifest.get("status") != "APPROVED" or manifest.get("importReady") is not True:
+                with self.assertRaises(BuildError) as ctx:
+                    build_package(
+                        approval_manifest_path=CHAPTER01 / "chapter-01-approval-manifest.json",
+                        approved_records_path=None,
+                        output_parent=Path(tmp),
+                        package_id="bhagavad-gita-chapter-01-v1",
+                        scripture_id="bhagavad-gita",
+                        chapter_number=1,
+                        content_version=1,
+                        package_status="APPROVED",
+                        created_at=CREATED_AT,
+                        sources_registry=SOURCES,
+                        allow_null_transliteration=True,
+                        normalization_policy_version=1,
+                        comparison_engine_version=1,
+                        source_selection_rationale="n/a",
+                        known_caveats=[],
+                        require_complete_chapter=True,
+                        chapter_workspace=CHAPTER01,
+                    )
+                msg = str(ctx.exception).lower()
+                self.assertTrue(
+                    "no approved" in msg
+                    or "approved=0" in msg
+                    or "incomplete" in msg
+                    or "expected 47" in msg
+                    or "found 34" in msg
+                    or "found 45" in msg,
+                    msg,
+                )
+                self.assertFalse((Path(tmp) / "bhagavad-gita-chapter-01-v1").exists())
+            else:
+                self.assertEqual(manifest.get("approved"), 47)
+                self.assertEqual(manifest.get("pending"), 0)
+                path = build_package(
                     approval_manifest_path=CHAPTER01 / "chapter-01-approval-manifest.json",
-                    approved_records_path=None,
+                    approved_records_path=CHAPTER01 / "canonical-draft.jsonl",
                     output_parent=Path(tmp),
-                    package_id="bhagavad-gita-chapter-01-v1",
+                    package_id="bhagavad-gita-chapter-01-v1-test",
                     scripture_id="bhagavad-gita",
                     chapter_number=1,
                     content_version=1,
@@ -411,25 +448,126 @@ class BuilderRejectionTests(unittest.TestCase):
                     allow_null_transliteration=True,
                     normalization_policy_version=1,
                     comparison_engine_version=1,
-                    source_selection_rationale="n/a",
-                    known_caveats=[],
+                    source_selection_rationale=(
+                        "Wikisource PRIMARY_TRANSCRIPTION exact copy for all 47 "
+                        "Chapter 1 Verses; IIT Kanpur is SECONDARY_VERIFICATION and "
+                        "Sanskrit Documents is third-witness SUPPORTING_REFERENCE. "
+                        "Transliteration remains null. No synthesis."
+                    ),
+                    known_caveats=[
+                        "Verse 1.22: Wikisource minority reading retained for edition coherence.",
+                        "IIT Kanpur and Sanskrit Documents are verification-only.",
+                    ],
                     require_complete_chapter=True,
-                    chapter_workspace=CHAPTER01,
                 )
-            msg = str(ctx.exception).lower()
-            self.assertTrue("no approved" in msg or "approved=0" in msg)
-            self.assertFalse((Path(tmp) / "bhagavad-gita-chapter-01-v1").exists())
+                result = validate_package(path, sources_registry=SOURCES)
+                self.assertTrue(result.structurally_valid, result.errors)
+                self.assertTrue(result.editorially_valid, result.errors)
+                self.assertTrue(result.importable, result.errors)
+                self.assertEqual(result.warnings, [])
+                self.assertEqual(load_json(path / "manifest.json")["recordCount"], 47)
+
+
+class ProductionPackageTests(unittest.TestCase):
+    """Gate the first production Chapter 1 package when present."""
+
+    PRODUCTION = REPO_ROOT / "content/packages/bhagavad-gita-chapter-01-v1"
+
+    def test_production_package_importable_without_warnings(self) -> None:
+        if not self.PRODUCTION.is_dir():
+            self.skipTest("production package not built yet")
+        result = validate_package(self.PRODUCTION, sources_registry=SOURCES)
+        self.assertTrue(result.structurally_valid, result.errors)
+        self.assertTrue(result.editorially_valid, result.errors)
+        self.assertTrue(result.importable, result.errors)
+        self.assertEqual(result.warnings, [])
+        self.assertEqual(result.errors, [])
+        manifest = load_json(self.PRODUCTION / "manifest.json")
+        self.assertEqual(manifest["packageId"], "bhagavad-gita-chapter-01-v1")
+        self.assertEqual(manifest["packageStatus"], "APPROVED")
+        self.assertEqual(manifest["chapterNumber"], 1)
+        self.assertEqual(manifest["contentVersion"], 1)
+        self.assertEqual(manifest["recordCount"], 47)
+        self.assertEqual(
+            manifest["canonicalReferenceRange"],
+            {"from": "1.1", "to": "1.47", "expectedCount": 47},
+        )
+        verses = [
+            json.loads(line)
+            for line in (self.PRODUCTION / "verses.jsonl")
+            .read_text(encoding="utf-8")
+            .splitlines()
+            if line.strip()
+        ]
+        self.assertEqual(len(verses), 47)
+        self.assertTrue(all(v.get("transliteration") is None for v in verses))
+        draft = [
+            json.loads(line)
+            for line in (CHAPTER01 / "canonical-draft.jsonl")
+            .read_text(encoding="utf-8")
+            .splitlines()
+            if line.strip()
+        ]
+        by_ref = {r["canonicalReference"]: r for r in draft}
+        for verse in verses:
+            draft_row = by_ref[verse["canonicalReference"]]
+            self.assertEqual(verse["sanskritText"], draft_row["sanskritText"])
+            self.assertEqual(
+                verse["editorialApprovalChecksum"],
+                draft_row["editorialApprovalChecksum"],
+            )
+            self.assertEqual(
+                verse["editorialDecisionId"],
+                draft_row["editorialDecisionId"],
+            )
+
+    def test_production_package_layout_exactly_four_files(self) -> None:
+        if not self.PRODUCTION.is_dir():
+            self.skipTest("production package not built yet")
+        names = sorted(p.name for p in self.PRODUCTION.iterdir() if p.is_file())
+        self.assertEqual(
+            names,
+            ["SHA256SUMS", "manifest.json", "provenance.json", "verses.jsonl"],
+        )
+
+    def test_production_rebuild_is_byte_identical(self) -> None:
+        if not self.PRODUCTION.is_dir():
+            self.skipTest("production package not built yet")
+        prod_manifest = load_json(self.PRODUCTION / "manifest.json")
+        prod_prov = load_json(self.PRODUCTION / "provenance.json")
+        with tempfile.TemporaryDirectory() as tmp:
+            rebuilt = build_package(
+                approval_manifest_path=CHAPTER01 / "chapter-01-approval-manifest.json",
+                approved_records_path=CHAPTER01 / "canonical-draft.jsonl",
+                output_parent=Path(tmp),
+                package_id="bhagavad-gita-chapter-01-v1",
+                scripture_id="bhagavad-gita",
+                chapter_number=1,
+                content_version=1,
+                package_status="APPROVED",
+                created_at=prod_manifest["createdAt"],
+                sources_registry=SOURCES,
+                allow_null_transliteration=True,
+                normalization_policy_version=prod_prov["normalizationPolicyVersion"],
+                comparison_engine_version=prod_prov["comparisonEngineVersion"],
+                source_selection_rationale=prod_prov["sourceSelectionRationale"],
+                known_caveats=list(prod_prov["knownCaveats"]),
+                require_complete_chapter=True,
+            )
+            for name in ("manifest.json", "verses.jsonl", "provenance.json", "SHA256SUMS"):
+                self.assertEqual(
+                    (self.PRODUCTION / name).read_bytes(),
+                    (rebuilt / name).read_bytes(),
+                    msg=name,
+                )
+            self.assertEqual(
+                load_json(rebuilt / "manifest.json")["packageChecksum"],
+                prod_manifest["packageChecksum"],
+            )
 
 
 class Chapter1WorkspaceGuardTests(unittest.TestCase):
-    def test_no_verse_approved_in_workspace(self) -> None:
-        draft = [
-            json.loads(l)
-            for l in (CHAPTER01 / "canonical-draft.jsonl").read_text(encoding="utf-8").splitlines()
-            if l.strip()
-        ]
-        self.assertTrue(draft)
-        self.assertTrue(all(r.get("approvalStatus") != "APPROVED" for r in draft))
+    def test_conflicts_and_candidates_remain_pending_in_prep_artifacts(self) -> None:
         candidates = [
             json.loads(l)
             for l in (
@@ -437,8 +575,46 @@ class Chapter1WorkspaceGuardTests(unittest.TestCase):
             ).read_text(encoding="utf-8").splitlines()
             if l.strip()
         ]
-        self.assertTrue(all(r.get("approvalStatus") != "APPROVED" for r in candidates))
+        conflicts = [
+            json.loads(l)
+            for l in (
+                CHAPTER01 / "source-conflict-analysis.jsonl"
+            ).read_text(encoding="utf-8").splitlines()
+            if l.strip()
+        ]
+        self.assertTrue(all(r.get("approvalStatus") == "PENDING" for r in candidates))
+        self.assertTrue(all(r.get("approvalStatus") == "PENDING" for r in conflicts))
 
+    def test_draft_approval_is_partial_or_empty(self) -> None:
+        draft = [
+            json.loads(l)
+            for l in (CHAPTER01 / "canonical-draft.jsonl").read_text(encoding="utf-8").splitlines()
+            if l.strip()
+        ]
+        approved = [r for r in draft if r.get("approvalStatus") == "APPROVED"]
+        self.assertIn(len(approved), {0, 34, 45, 47})
+        if approved:
+            self.assertTrue(all(r.get("transliteration") is None for r in approved))
+            if len(approved) == 47:
+                self.assertTrue(all(r.get("approvalStatus") == "APPROVED" for r in draft))
+            elif len(approved) == 45:
+                unresolved = {
+                    r["canonicalReference"]
+                    for r in draft
+                    if r.get("approvalStatus") != "APPROVED"
+                }
+                self.assertEqual(unresolved, {"1.20", "1.22"})
+            elif len(approved) == 34:
+                conflict_refs = {
+                    json.loads(l)["canonicalReference"]
+                    for l in (
+                        CHAPTER01 / "source-conflict-analysis.jsonl"
+                    ).read_text(encoding="utf-8").splitlines()
+                    if l.strip()
+                }
+                self.assertTrue(
+                    all(r["canonicalReference"] not in conflict_refs for r in approved)
+                )
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,21 @@
+{
+  "canonicalReference": "1.22",
+  "chapterNumber": 1,
+  "editionIdentifier": "bhagvadnew.itx; Latest update: May 15, 2021",
+  "evidencePath": "content/raw/sanskrit/sanskrit-documents/chapter-01-verses-1.20-1.22/verse-1.22-root-evidence.json",
+  "evidenceSha256": "68a6608b87ad2bb9121e78eeb1899c5b83a1e2490ec1280e601fbc2058d09f09",
+  "excerptPath": "content/raw/sanskrit/sanskrit-documents/chapter-01-verses-1.20-1.22/verses-1.20-1.22-root-excerpt.txt",
+  "excerptSha256": "328c55b48943c5eb9826278ed95fa64501cb029dfc0f595a86f6fb467ed4b7ae",
+  "itxUrl": "https://sanskritdocuments.org/doc_giitaa/bhagvadnew.itx",
+  "licenseDisplayed": "VOLUNTEER_STUDY_RESEARCH_ONLY; personal study and research permitted; not for commercial redistribution or site promotion without permission; underlying ancient Sanskrit work public domain; transcription volunteer layer — reuse terms per sanskritdocuments.org FAQ/header",
+  "licenseStatus": "VERIFICATION_ONLY_VOLUNTEER_TERMS_NOT_IMPORT_CORPUS",
+  "observedRootTextChecksumSha256": "71f278827b91362555b221f28a5081ff667160590a3f9ce8de433634e24c7275",
+  "provider": "Sanskrit Documents (sanskritdocuments.org)",
+  "redistribution": "VERIFICATION_ONLY_NOT_APPROVED_FOR_CANONICAL_IMPORT",
+  "retrievalTimestamp": "2026-08-04T22:24:04Z",
+  "sourceId": "bhagavad-gita-sanskrit-sanskritdocuments-bhagvadnew-verse-1.22-verification-v1",
+  "sourceRole": "THIRD_EDITORIAL_VERIFICATION_REFERENCE",
+  "sourceUrl": "https://sanskritdocuments.org/doc_giitaa/bhagvadnew.html",
+  "status": "VERIFICATION_ONLY",
+  "verseNumber": 22
+}

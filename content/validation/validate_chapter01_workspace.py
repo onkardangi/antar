@@ -186,7 +186,23 @@ def validate_workspace(
 
         iitk_id = f"bhagavad-gita-sanskrit-iitk-verse-{ref}-verification-v1"
         iitk = [s for s in sources if s.get("sourceId") == iitk_id]
-        if len(sources) != 2:
+        if ref in {"1.20", "1.22"}:
+            if len(sources) != 3:
+                result.errors.append(
+                    f"comparison {ref}: expected three source references "
+                    "(Wikisource + IIT + Sanskrit Documents)"
+                )
+            third = [
+                s
+                for s in sources
+                if s.get("sourceRole") == "THIRD_EDITORIAL_VERIFICATION_REFERENCE"
+                or "sanskritdocuments" in str(s.get("sourceId") or "")
+            ]
+            if len(third) != 1:
+                result.errors.append(
+                    f"comparison {ref}: missing THIRD_EDITORIAL_VERIFICATION_REFERENCE"
+                )
+        elif len(sources) != 2:
             result.errors.append(
                 f"comparison {ref}: expected exactly two source references (Wikisource + IIT)"
             )
@@ -256,30 +272,35 @@ def validate_workspace(
             )
     result.info["iitkRegistryCount"] = len(iitk_entries)
 
-    # Review file 1.1
+    # Review file 1.1 — status may be UNDER_REVIEW (pre-approval) or APPROVED (batch approved)
     review_path = repo_root / "content/editorial/reviews/1.1.md"
     if not review_path.is_file():
         result.errors.append("missing review file content/editorial/reviews/1.1.md")
     else:
         review_text = review_path.read_text(encoding="utf-8")
-        if "# Status\n\nUNDER_REVIEW\n" not in review_text and "\nUNDER_REVIEW\n" not in review_text.split("# Status", 1)[-1].split("#", 1)[0]:
-            # looser check
-            status_block = review_text.split("# Status", 1)[-1].split("#", 1)[0]
-            if "UNDER_REVIEW" not in status_block:
-                result.errors.append("review 1.1 status must be UNDER_REVIEW")
+        status_block = review_text.split("# Status", 1)[-1].split("#", 1)[0]
+        status_token = next((ln.strip() for ln in status_block.splitlines() if ln.strip()), "")
+        if status_token not in {"UNDER_REVIEW", "APPROVED"}:
+            result.errors.append(
+                f"review 1.1 status must be UNDER_REVIEW or APPROVED, found {status_token!r}"
+            )
         if SOURCE_ID not in review_text or IITK_SOURCE_ID not in review_text:
             result.errors.append("review 1.1 must reference both Wikisource and IIT source IDs")
-        status_block = review_text.split("# Status", 1)[-1].split("#", 1)[0]
-        if "APPROVED" in status_block.split():
-            result.errors.append("review 1.1 must not be APPROVED")
         approval_block = review_text.split("# Approval", 1)[-1].split("#", 1)[0]
         if "Reviewer:" not in approval_block or "Date:" not in approval_block:
             result.errors.append("review 1.1 Approval section incomplete")
-        # blank reviewer/date: no non-space after colon on same line
-        for label in ("Reviewer", "Second Reviewer", "Date"):
-            m = re.search(rf"^{label}:[ \t]*(.*)$", approval_block, re.M)
-            if m and m.group(1).strip():
-                result.errors.append(f"review 1.1 Approval {label} must remain blank")
+        if status_token == "UNDER_REVIEW":
+            for label in ("Reviewer", "Second Reviewer", "Date"):
+                m = re.search(rf"^{label}:[ \t]*(.*)$", approval_block, re.M)
+                if m and m.group(1).strip():
+                    result.errors.append(f"review 1.1 Approval {label} must remain blank")
+        elif status_token == "APPROVED":
+            reviewer = re.search(r"^Reviewer:[ \t]*(.*)$", approval_block, re.M)
+            date_value = re.search(r"^Date:[ \t]*(.*)$", approval_block, re.M)
+            if not reviewer or not reviewer.group(1).strip():
+                result.errors.append("review 1.1 APPROVED requires Reviewer")
+            if not date_value or not date_value.group(1).strip():
+                result.errors.append("review 1.1 APPROVED requires Date")
         audit = review_text.split("# Audit Log", 1)[-1]
         if "TEXT_MATCH_AFTER_DOCUMENTED_NORMALIZATION" not in audit and "SOURCE_CONFLICT" not in audit:
             result.errors.append("review 1.1 audit log missing comparison event")
@@ -291,12 +312,25 @@ def validate_workspace(
         result.errors.extend(f"canonical-draft: {e}" for e in draft_result.errors)
     result.info["draftApprovedCount"] = draft_result.approved_count
     result.info["draftImportReady"] = draft_result.import_ready
-    if draft_result.approved_count != 0:
-        result.errors.append("canonical-draft must still have 0 APPROVED records")
+    result.info["draftSanskritPopulated"] = draft_result.sanskrit_populated
+
+    # Pre-approval: 0. Norm-match: 34. Orthographic: 45. Final conflicts: 47.
+    # Draft-level import_ready also requires transliteration; Sanskrit-only 47 stays false.
     if draft_result.import_ready:
         result.errors.append("import readiness must remain false")
-    if draft_result.sanskrit_populated != 0:
+    if draft_result.approved_count not in {0, 34, 45, 47}:
+        result.errors.append(
+            f"canonical-draft approved count must be 0, 34, 45, or 47, found {draft_result.approved_count}"
+        )
+    if draft_result.approved_count == 0 and draft_result.sanskrit_populated != 0:
         result.errors.append("canonical-draft must not yet contain Sanskrit text")
+    if draft_result.approved_count in {34, 45, 47}:
+        if draft_result.sanskrit_populated != draft_result.approved_count:
+            result.errors.append(
+                "approved count must equal Sanskrit-populated count for Sanskrit-only approvals"
+            )
+        if draft_result.transliteration_populated != 0:
+            result.errors.append("transliteration must remain null after Sanskrit-only approval")
 
     result.info["extractionCount"] = len(extraction)
     result.info["sourceAcquisitionValidated"] = (
@@ -308,7 +342,7 @@ def validate_workspace(
     result.info["structuralExtractionValidated"] = len(extraction) == EXPECTED and not any(
         e.startswith("extraction") for e in result.errors
     )
-    result.info["textualAccuracyEditoriallyApproved"] = False
+    result.info["textualAccuracyEditoriallyApproved"] = draft_result.approved_count == EXPECTED
     return result
 
 

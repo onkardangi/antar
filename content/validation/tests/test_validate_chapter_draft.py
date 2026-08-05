@@ -108,7 +108,7 @@ class ValidateChapterDraftTests(unittest.TestCase):
         self.assertFalse(result.ok)
         self.assertTrue(any("sanskritText" in e for e in result.errors))
 
-    def test_approved_missing_transliteration(self) -> None:
+    def test_approved_blank_transliteration_invalid(self) -> None:
         records = [make_record(v) for v in range(1, 48)]
         records[0]["approvalStatus"] = "APPROVED"
         records[0]["sanskritText"] = "धृतराष्ट्र उवाच"
@@ -116,6 +116,16 @@ class ValidateChapterDraftTests(unittest.TestCase):
         result = validate_records(records)
         self.assertFalse(result.ok)
         self.assertTrue(any("transliteration" in e for e in result.errors))
+
+    def test_approved_null_transliteration_allowed_not_import_ready(self) -> None:
+        records = [make_record(v) for v in range(1, 48)]
+        records[0]["approvalStatus"] = "APPROVED"
+        records[0]["sanskritText"] = "धृतराष्ट्र उवाच"
+        records[0]["transliteration"] = None
+        result = validate_records(records)
+        self.assertTrue(result.ok, result.errors)
+        self.assertEqual(result.approved_count, 1)
+        self.assertFalse(result.import_ready)
 
     def test_invalid_approval_status(self) -> None:
         records = [make_record(v) for v in range(1, 48)]

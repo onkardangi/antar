@@ -191,9 +191,7 @@ def validate_approved_inputs(
 
         source_ids = record.get("sourceIds") or record.get("approvedSourceIds")
         if not source_ids and record.get("selectedSourceId"):
-            source_ids = [record["selectedSourceId"]] + list(
-                record.get("supportingSourceIds") or []
-            )
+            source_ids = [record["selectedSourceId"]] + supporting_source_ids(record)
         if not source_ids:
             raise BuildError(f"{ref}: missing sourceIds")
 
@@ -232,12 +230,22 @@ def validate_approved_inputs(
             )
 
 
+def supporting_source_ids(record: dict[str, Any]) -> list[str]:
+    """Supporting / verification source IDs for an approved editorial record."""
+    explicit = record.get("supportingSourceIds")
+    if explicit:
+        return [str(s) for s in explicit]
+    selected = record.get("selectedSourceId")
+    approved = record.get("approvedSourceIds") or record.get("sourceIds") or []
+    if selected and approved:
+        return [str(s) for s in approved if str(s) != str(selected)]
+    return []
+
+
 def to_verse_record(record: dict[str, Any], content_version: int) -> dict[str, Any]:
     source_ids = list(record.get("sourceIds") or record.get("approvedSourceIds") or [])
     if not source_ids and record.get("selectedSourceId"):
-        source_ids = [record["selectedSourceId"]] + list(
-            record.get("supportingSourceIds") or []
-        )
+        source_ids = [record["selectedSourceId"]] + supporting_source_ids(record)
     source_ids = [str(s) for s in source_ids]
 
     checksums = dict(record.get("sourceChecksums") or {})
@@ -332,8 +340,13 @@ def build_provenance(
             if rec.get("selectedSourceId") == sid:
                 role = "PRIMARY_TRANSCRIPTION"
                 break
-            if sid in (rec.get("supportingSourceIds") or []):
-                role = "SECONDARY_VERIFICATION"
+            if sid in supporting_source_ids(rec):
+                # Third-witness corpora stay SUPPORTING_REFERENCE; others are
+                # secondary verification (e.g. IIT Kanpur).
+                if "sanskritdocuments" in sid:
+                    role = "SUPPORTING_REFERENCE"
+                else:
+                    role = "SECONDARY_VERIFICATION"
         source_roles[sid] = role
         licenses[sid] = {
             "licenseDisplayed": str(
@@ -453,7 +466,12 @@ def atomic_move_package(staging_dir: Path, target_dir: Path) -> None:
 
 
 def load_chapter_workspace_records(chapter_dir: Path) -> tuple[dict[str, Any], list[dict[str, Any]]]:
-    """Load Chapter editorial workspace inputs without mutating them."""
+    """Load Chapter editorial workspace inputs without mutating them.
+
+    Prefers ``canonical-draft.jsonl`` / ``approved-canonical-records.jsonl`` as the
+    approved Sanskrit source of truth. Prep artifacts (candidates, conflict
+    analysis) may still be present but are never packaged unless APPROVED.
+    """
     manifest_path = chapter_dir / "chapter-01-approval-manifest.json"
     if not manifest_path.is_file():
         # Generic name fallback
@@ -463,19 +481,38 @@ def load_chapter_workspace_records(chapter_dir: Path) -> tuple[dict[str, Any], l
         manifest_path = matches[0]
     approval_manifest = load_json(manifest_path)
 
+    # Canonical approved text first — never regenerate from comparison artifacts.
+    preferred_approved_paths = (
+        chapter_dir / "canonical-draft.jsonl",
+        chapter_dir / "approved-canonical-records.jsonl",
+    )
     records: list[dict[str, Any]] = []
-    for name in (
-        "normalization-match-approval-candidate.jsonl",
-        "source-conflict-analysis.jsonl",
-        "canonical-draft.jsonl",
-        "approved-canonical-records.jsonl",
-    ):
-        path = chapter_dir / name
+    for path in preferred_approved_paths:
         if path.is_file():
             records.extend(load_jsonl(path))
 
+    if not records:
+        for name in (
+            "normalization-match-approval-candidate.jsonl",
+            "source-conflict-analysis.jsonl",
+        ):
+            path = chapter_dir / name
+            if path.is_file():
+                records.extend(load_jsonl(path))
+
     # Only APPROVED records are eligible; others cause rejection if selected.
     approved_only = [r for r in records if record_approval_status(r) == "APPROVED"]
+    # Deduplicate by canonical reference, preferring first occurrence (canonical draft).
+    seen_refs: set[str] = set()
+    deduped: list[dict[str, Any]] = []
+    for record in approved_only:
+        ref = str(record.get("canonicalReference"))
+        if ref in seen_refs:
+            continue
+        seen_refs.add(ref)
+        deduped.append(record)
+    approved_only = deduped
+
     # If caller attempts to build and any conflicted/pending are the only content,
     # approved_only may be empty → BuildError in validate.
     # Also explicitly reject if workspace still has pending/conflicted and zero approved.

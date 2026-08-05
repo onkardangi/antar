@@ -1,6 +1,6 @@
 # 01 — Scripture Provenance
 
-**Status:** Foundation (implemented as policy; no approved corpus yet)  
+**Status:** Foundation (Chapter 1 production package built and imported)
 **Owner:** Content / Scripture  
 **Last Updated:** August 2026
 
@@ -12,7 +12,7 @@ Define how Antar acquires, identifies, inspects, and approves (or rejects) Scrip
 
 Scripture is the source of truth (ADR-010). Provenance must remain auditable.
 
-This document does **not** import Sanskrit. Verse identities already exist in the database with `sanskrit_text = NULL` until an approved corpus is loaded.
+This document does **not** import Sanskrit. Verse identities exist in the database; Chapter 1 Sanskrit is loaded from package `bhagavad-gita-chapter-01-v1`, while other Chapters remain `sanskrit_text = NULL` until approved corpora are loaded.
 
 ---
 
@@ -167,5 +167,5 @@ Machine-readable copy: `content/validation/antar_verse_counts.json`.
 |------|--------|
 | Provenance policy | Documented (this file) |
 | Registry + checksums + licenses layout | Implemented under `content/` |
-| Approved Sanskrit corpus | **Not present** |
-| Database Sanskrit import | **Not performed** |
+| Approved Sanskrit corpus package | **Present** — `content/packages/bhagavad-gita-chapter-01-v1` (Chapter 1, 47 Verses, content version 1, `APPROVED`, imported) |
+| Database Sanskrit import | **Performed** for Chapter 1 (`bhagavad-gita-chapter-01-v1`; 47 Verses) |

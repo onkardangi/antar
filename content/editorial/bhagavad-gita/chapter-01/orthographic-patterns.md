@@ -1,6 +1,11 @@
 # Chapter 1 orthographic pattern clusters
 
-**Analysis only. No normalization rules were added.**
+**Analysis originally prepared without adding comparison-engine rules.**
+
+On 2026-08-04, Chapter 1–scoped comparison-only resolution rules were recorded in
+`content/editorial/orthographic-resolution-policy.json` and applied only to the
+11 orthographic-only conflicts listed there. Those rules do **not** auto-apply
+to other chapters and do **not** rewrite stored source Sanskrit.
 
 Automated comparison is not scholarly approval.
 

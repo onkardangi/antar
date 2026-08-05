@@ -2578,6 +2578,116 @@
       "updated_at": "2026-08-04"
     },
     {
+      "id": "bhagavad-gita-sanskrit-sanskritdocuments-bhagvadnew-verse-1.20-verification-v1",
+      "title": "shrImadbhagavadgItA (bhagvadnew) — root Sanskrit excerpt Ch.1 vv.20,22",
+      "creator": "Sanskrit Documents volunteers",
+      "platform": "Sanskrit Documents",
+      "provider": "Sanskrit Documents (sanskritdocuments.org)",
+      "source_url": "https://sanskritdocuments.org/doc_giitaa/bhagvadnew.html",
+      "itx_url": "https://sanskritdocuments.org/doc_giitaa/bhagvadnew.itx",
+      "edition_identifier": "bhagvadnew.itx; Latest update: May 15, 2021",
+      "retrieval_timestamp": "2026-08-04T22:24:04Z",
+      "license_displayed": "VOLUNTEER_STUDY_RESEARCH_ONLY; personal study and research permitted; not for commercial redistribution or site promotion without permission; underlying ancient Sanskrit work public domain; transcription volunteer layer — reuse terms per sanskritdocuments.org FAQ/header",
+      "license_status": "VERIFICATION_ONLY_VOLUNTEER_TERMS_NOT_IMPORT_CORPUS",
+      "license_catalog_id": "sanskritdocuments-volunteer-study-research",
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "THIRD_EDITORIAL_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.20",
+      "expected_verse_count": 1,
+      "chapter_1_verse_count": 47,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/sanskrit-documents/chapter-01-verses-1.20-1.22/verse-1.20-root-evidence.json",
+      "excerpt_path": "content/raw/sanskrit/sanskrit-documents/chapter-01-verses-1.20-1.22/verses-1.20-1.22-root-excerpt.txt",
+      "excerpt_sha256": "328c55b48943c5eb9826278ed95fa64501cb029dfc0f595a86f6fb467ed4b7ae",
+      "sha256": "7b4ed199c06027a36205d6dce9d69fadaa2f8c32b72404f7ebb4fb80094b97a0",
+      "observed_root_text_sha256": "85d9b7a51cf9005d35e6271d76d27b10dd84b4635946e6483e11bb599182f0dd",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/sanskrit-documents/chapter-01-verses-1.20-1.22/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.20.md",
+      "decision_summary": "Third-editorial verification excerpt for Verse 1.20 from Sanskrit Documents bhagvadnew (May 15, 2021). Not approved for canonical import.",
+      "known_caveats": [
+        "Volunteer study/research terms; not a product-import redistribution license.",
+        "Full HTML/ITX corpus not retained; minimal root excerpt only.",
+        "Sanskrit Documents does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-sanskrit-sanskritdocuments-bhagvadnew-verse-1.22-verification-v1",
+      "title": "shrImadbhagavadgItA (bhagvadnew) — root Sanskrit excerpt Ch.1 vv.20,22",
+      "creator": "Sanskrit Documents volunteers",
+      "platform": "Sanskrit Documents",
+      "provider": "Sanskrit Documents (sanskritdocuments.org)",
+      "source_url": "https://sanskritdocuments.org/doc_giitaa/bhagvadnew.html",
+      "itx_url": "https://sanskritdocuments.org/doc_giitaa/bhagvadnew.itx",
+      "edition_identifier": "bhagvadnew.itx; Latest update: May 15, 2021",
+      "retrieval_timestamp": "2026-08-04T22:24:04Z",
+      "license_displayed": "VOLUNTEER_STUDY_RESEARCH_ONLY; personal study and research permitted; not for commercial redistribution or site promotion without permission; underlying ancient Sanskrit work public domain; transcription volunteer layer — reuse terms per sanskritdocuments.org FAQ/header",
+      "license_status": "VERIFICATION_ONLY_VOLUNTEER_TERMS_NOT_IMPORT_CORPUS",
+      "license_catalog_id": "sanskritdocuments-volunteer-study-research",
+      "content_kinds": [
+        "sanskrit"
+      ],
+      "source_role": "THIRD_EDITORIAL_VERIFICATION_REFERENCE",
+      "chapter_scope": 1,
+      "verse_scope": "1.22",
+      "expected_verse_count": 1,
+      "chapter_1_verse_count": 47,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/sanskrit/sanskrit-documents/chapter-01-verses-1.20-1.22/verse-1.22-root-evidence.json",
+      "excerpt_path": "content/raw/sanskrit/sanskrit-documents/chapter-01-verses-1.20-1.22/verses-1.20-1.22-root-excerpt.txt",
+      "excerpt_sha256": "328c55b48943c5eb9826278ed95fa64501cb029dfc0f595a86f6fb467ed4b7ae",
+      "sha256": "68a6608b87ad2bb9121e78eeb1899c5b83a1e2490ec1280e601fbc2058d09f09",
+      "observed_root_text_sha256": "71f278827b91362555b221f28a5081ff667160590a3f9ce8de433634e24c7275",
+      "approved_fields": [
+        "verification_checksum",
+        "comparison_evidence"
+      ],
+      "prohibited_fields": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "prohibited_uses": [
+        "canonical_import",
+        "bulk_corpus_extraction",
+        "commentary_import",
+        "translation_import"
+      ],
+      "status": "VERIFICATION_ONLY",
+      "inspection_doc": "content/raw/sanskrit/sanskrit-documents/chapter-01-verses-1.20-1.22/README.md",
+      "editorial_workspace": "content/editorial/reviews/1.22.md",
+      "decision_summary": "Third-editorial verification excerpt for Verse 1.22 from Sanskrit Documents bhagvadnew (May 15, 2021). Not approved for canonical import.",
+      "known_caveats": [
+        "Volunteer study/research terms; not a product-import redistribution license.",
+        "Full HTML/ITX corpus not retained; minimal root excerpt only.",
+        "Sanskrit Documents does not endorse Antar.",
+        "Do not place this transcription into the canonical corpus."
+      ],
+      "updated_at": "2026-08-04"
+    },
+    {
       "id": "fixture-antar-content-package-v1",
       "title": "Antar Content Package Format Fixture (non-scriptural)",
       "creator": "Antar Content Engineering",

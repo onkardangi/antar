@@ -38,6 +38,19 @@ The engine may recommend readiness. It must **never** set review status to `APPR
 
 Streamlined still means a human must eventually approve. Automation only prepares evidence.
 
+### Controlled batch approval (explicit `--apply` only)
+
+A narrowly scoped tool may perform **human-authorized** batch approval of `NORMALIZATION_MATCH` candidates when:
+
+1. The operator supplies `--apply` with named reviewer identity and decision date
+2. Every candidate passes eligibility (exact selected-source Sanskrit copy; registered primary + verification sources; no `SOURCE_CONFLICT`)
+3. Policy `content/editorial/batch-normalization-match-approval-policy.json` permits the path
+4. The operation is all-or-nothing (no partial subset writes)
+
+`FRONT_MATTER` Verses are batch-eligible only when the candidate already defines `proposedSanskritText` as an exact selected-source copy (retention is explicit; silent strip is forbidden).
+
+This path still records Reviewer, Date, Decision text, and Audit Log. It is **not** automatic approval by the comparison engine.
+
 ## Final `APPROVED` still requires
 
 1. Named reviewer

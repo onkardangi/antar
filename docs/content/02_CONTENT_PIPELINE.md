@@ -1,6 +1,6 @@
 # 02 — Content Pipeline
 
-**Status:** Foundation + Package Format importer v1 (no approved production corpus yet)  
+**Status:** Foundation + Package Format importer v1 (Chapter 1 production package built and imported)
 **Owner:** Content / Engineering  
 **Last Updated:** August 2026
 
@@ -18,11 +18,11 @@ Immutable content packages under `content/packages/` are the only importer input
 
 **Still out of scope / not done:**
 
-- approving real Chapter 1 Verses,
-- loading a production Sanskrit corpus,
 - Translation / Commentary / transliteration persistence,
 - mobile changes,
 - public Reader import APIs.
+
+Chapter 1 status (2026-08-04): all 47 Verses are `APPROVED` in the canonical draft (34 `NORMALIZATION_MATCH` + 11 orthographic resolutions + 2 final-conflict resolutions; Wikisource exact copy; transliteration `null`). Production package `bhagavad-gita-chapter-01-v1` is built and was successfully imported into PostgreSQL (47 Sanskrit Verses).
 
 ---
 
@@ -123,7 +123,7 @@ Rules:
 - Imports never run on normal application startup.
 - No public Reader HTTP import endpoint.
 - Non-null transliteration is rejected until transliteration persistence exists.
-- Real Chapter 1 remains unimported (no approved package).
+- Real Chapter 1 package (`content/packages/bhagavad-gita-chapter-01-v1`) has been successfully imported into PostgreSQL.
 - Validation / CLI / FAILED audit messages use stable path-free text (no absolute paths or Verse dumps).
 - Backend `./mvnw verify` requires Python 3 for the Java/Python Package Format v1 parity gate; runtime import does not spawn Python.
 
@@ -141,7 +141,7 @@ Commands (from `backend/`):
 
 See `backend/src/main/java/com/antar/scripture/README.md` and `content/packages/README.md`.
 
-Until an approved production package is imported, `sanskrit_text` remains NULL by design (`V004` / `V005`).
+Chapter 1 `sanskrit_text` is populated from `bhagavad-gita-chapter-01-v1`. Chapters 2–18 remain NULL by design until approved packages are imported (`V004` / `V005`).
 
 ### 3.8 Publish (future)
 
@@ -266,7 +266,7 @@ Commentary is traditional attribution, not Verse text.
 
 | Non-goal | Status |
 |----------|--------|
-| Production Sanskrit corpus import | Not done (no approved package) |
+| Production Sanskrit corpus import (Chapters 2–18) | Not done (Chapter 1 imported via `bhagavad-gita-chapter-01-v1`) |
 | Translation / Commentary import | Not built |
 | Transliteration persistence | Not built (importer rejects non-null transliteration) |
 | Public import API | Not built (and not planned for Reader surface) |
@@ -286,5 +286,5 @@ Commentary is traditional attribution, not Verse text.
 | Immutable content packages | Implemented (`content/packages/`) |
 | Package Format importer v1 | Implemented (backend administrative CLI + tests) |
 | Normalization tooling | **Deferred** |
-| Approved Chapter 1 package | **Not present** |
-| Production PostgreSQL Sanskrit load | **Not performed** |
+| Approved Chapter 1 package | **Present** (`bhagavad-gita-chapter-01-v1`, 47 Verses, content version 1) |
+| Production PostgreSQL Sanskrit load | **Performed** for Chapter 1 (`bhagavad-gita-chapter-01-v1`; 47 Verses) |

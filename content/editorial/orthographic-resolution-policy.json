@@ -1,0 +1,196 @@
+{
+  "version": 1,
+  "name": "antar-chapter-01-orthographic-resolution",
+  "description": "Narrow, comparison-only orthographic equivalence rules for Chapter 1 SOURCE_CONFLICT Verses attested as orthographic-only. Never rewrite stored source Sanskrit. Never auto-apply to other chapters.",
+  "scope": "bhagavad-gita-chapter-01-only",
+  "autoApplyToFutureChapters": false,
+  "decisionType": "ORTHOGRAPHIC_SOURCE_CONFLICT_RESOLUTION",
+  "requiresSecondReviewer": false,
+  "selectedCanonicalSourceId": "bhagavad-gita-sanskrit-wikisource-sa-chapter-01-r343151",
+  "selectedCanonicalSourceRole": "PRIMARY_TRANSCRIPTION_CANDIDATE",
+  "supportingSourceRole": "SECONDARY_VERIFICATION_REFERENCE",
+  "transliterationMustRemainNull": true,
+  "canonicalTextMustBeExactSelectedSourceCopy": true,
+  "eligibleReferences": [
+    "1.2",
+    "1.8",
+    "1.15",
+    "1.24",
+    "1.26",
+    "1.28",
+    "1.34",
+    "1.41",
+    "1.42",
+    "1.43",
+    "1.47"
+  ],
+  "forbiddenReferences": [
+    "1.20",
+    "1.22"
+  ],
+  "forbiddenReason": "1.20 and 1.22 retain substantive / segmentation / word differences and require a third witness or separate editorial process.",
+  "eligibilityRequirements": {
+    "conflictClassification": "SOURCE_CONFLICT",
+    "orthographicOnlyFlag": true,
+    "mustNotHaveFlags": [
+      "wordDifference",
+      "wordOrderDifference",
+      "extraText",
+      "missingText",
+      "segmentationDifference"
+    ],
+    "afterFoldRootsMustMatch": true
+  },
+  "rules": [
+    {
+      "id": "ch01_anusvara_vs_nga_before_ka_ga_v1",
+      "version": 1,
+      "comparisonOnly": true,
+      "reversible": true,
+      "observedForms": [
+        ["संगम्य", "सङ्गम्य"],
+        ["संकर", "सङ्कर"],
+        ["संकरः", "सङ्करः"],
+        ["संकरो", "सङ्करो"],
+        ["संकरकारकैः", "सङ्करकारकैः"]
+      ],
+      "linguisticDescription": "Anusvāra (ं) versus explicit velar nasal cluster (ङ्) before क/ग in attested Chapter 1 lemmas (उपसंगम्य / वर्णसंकर forms).",
+      "differenceClass": "anusvara_vs_explicit_homorganic_nasal",
+      "affectedReferences": ["1.2", "1.41", "1.42", "1.43"],
+      "selectedCanonicalSource": "bhagavad-gita-sanskrit-wikisource-sa-chapter-01-r343151",
+      "changesLexicalIdentity": false,
+      "risk": "medium",
+      "reviewerDecision": "ACCEPT_AS_ORTHOGRAPHIC_EQUIVALENCE_SELECT_WIKISOURCE",
+      "reviewerId": "onkar-dangi",
+      "reviewerName": "Onkar Dangi",
+      "effectiveDate": "2026-08-04",
+      "notes": [
+        "Do not generalize beyond these Chapter 1 attested environments.",
+        "Stored Wikisource and IIT forms remain unchanged in source-comparison evidence."
+      ]
+    },
+    {
+      "id": "ch01_anusvara_vs_nya_in_jaya_epithets_v1",
+      "version": 1,
+      "comparisonOnly": true,
+      "reversible": true,
+      "observedForms": [
+        ["समितिंजयः", "समितिञ्जयः"],
+        ["धनञ्जयः", "धनंजयः"],
+        ["संजय", "सञ्जय"]
+      ],
+      "linguisticDescription": "Anusvāra versus ñ-cluster (ञ्ज) in -जय epithets and the already-attested संजय↔सञ्जय speaker/epithet pair.",
+      "differenceClass": "anusvara_vs_conjunct_nasal_cluster",
+      "affectedReferences": ["1.8", "1.15", "1.24"],
+      "selectedCanonicalSource": "bhagavad-gita-sanskrit-wikisource-sa-chapter-01-r343151",
+      "changesLexicalIdentity": false,
+      "risk": "medium",
+      "reviewerDecision": "ACCEPT_AS_ORTHOGRAPHIC_EQUIVALENCE_SELECT_WIKISOURCE",
+      "reviewerId": "onkar-dangi",
+      "reviewerName": "Onkar Dangi",
+      "effectiveDate": "2026-08-04",
+      "notes": [
+        "Distinct from broad nasal spelling substitution.",
+        "1.24 speaker-label संजय↔सञ्जय is covered here and by existing orthography_sanjaya_equivalence for comparison."
+      ]
+    },
+    {
+      "id": "ch01_sanjaya_speaker_label_extension_v1",
+      "version": 1,
+      "comparisonOnly": true,
+      "reversible": true,
+      "observedForms": [
+        ["सञ्जय उवाच", "संजय उवाच"]
+      ],
+      "linguisticDescription": "Speaker-label application of approved संजय↔सञ्जय orthographic equivalence.",
+      "differenceClass": "speaker_label_variant",
+      "affectedReferences": ["1.24"],
+      "selectedCanonicalSource": "bhagavad-gita-sanskrit-wikisource-sa-chapter-01-r343151",
+      "changesLexicalIdentity": false,
+      "risk": "low",
+      "reviewerDecision": "ACCEPT_AS_ORTHOGRAPHIC_EQUIVALENCE_SELECT_WIKISOURCE",
+      "reviewerId": "onkar-dangi",
+      "reviewerName": "Onkar Dangi",
+      "effectiveDate": "2026-08-04",
+      "notes": [
+        "Does not invent a new speaker; only folds nasal orthography in the same lemma."
+      ]
+    },
+    {
+      "id": "ch01_anusvara_vs_ma_before_ba_v1",
+      "version": 1,
+      "comparisonOnly": true,
+      "reversible": true,
+      "observedForms": [
+        ["संबन्धिनस्तथा", "सम्बन्धिनस्तथा"]
+      ],
+      "linguisticDescription": "Anusvāra versus explicit म् before ब (homorganic labial) in संबन्धिनः.",
+      "differenceClass": "anusvara_vs_explicit_homorganic_nasal",
+      "affectedReferences": ["1.34"],
+      "selectedCanonicalSource": "bhagavad-gita-sanskrit-wikisource-sa-chapter-01-r343151",
+      "changesLexicalIdentity": false,
+      "risk": "medium",
+      "reviewerDecision": "ACCEPT_AS_ORTHOGRAPHIC_EQUIVALENCE_SELECT_WIKISOURCE",
+      "reviewerId": "onkar-dangi",
+      "reviewerName": "Onkar Dangi",
+      "effectiveDate": "2026-08-04",
+      "notes": [
+        "Limited to the attested Chapter 1 lemma; not a generic म्↔ं rule."
+      ]
+    },
+    {
+      "id": "ch01_avagraha_optional_vowel_sandhi_v1",
+      "version": 1,
+      "comparisonOnly": true,
+      "reversible": true,
+      "observedForms": [
+        ["परयाविष्टो", "परयाऽऽविष्टो"],
+        ["एवमुक्त्वार्जुनः", "एवमुक्त्वाऽर्जुनः"]
+      ],
+      "linguisticDescription": "Presence/absence of avagraha (ऽ) marking vowel sandhi elision where the underlying sandhi reading is otherwise identical.",
+      "differenceClass": "avagraha_presence_absence",
+      "affectedReferences": ["1.28", "1.47"],
+      "selectedCanonicalSource": "bhagavad-gita-sanskrit-wikisource-sa-chapter-01-r343151",
+      "changesLexicalIdentity": false,
+      "risk": "medium",
+      "reviewerDecision": "ACCEPT_AS_ORTHOGRAPHIC_EQUIVALENCE_SELECT_WIKISOURCE",
+      "reviewerId": "onkar-dangi",
+      "reviewerName": "Onkar Dangi",
+      "effectiveDate": "2026-08-04",
+      "notes": [
+        "Do not strip avagraha from stored IIT evidence.",
+        "Canonical draft selects Wikisource form without synthesizing a hybrid."
+      ]
+    },
+    {
+      "id": "ch01_vocalic_rr_vs_r_nukta_presentation_v1",
+      "version": 1,
+      "comparisonOnly": true,
+      "reversible": true,
+      "observedForms": [
+        ["पितॄनथ", "पितृ़नथ"],
+        ["भ्रातॄन्", "भ्रातृ़न्"]
+      ],
+      "linguisticDescription": "Long vocalic ṝ versus ṛ + nukta-like presentation for the same parental accusative plurals in Verse 1.26.",
+      "differenceClass": "vocalic_r_rr_presentation",
+      "affectedReferences": ["1.26"],
+      "selectedCanonicalSource": "bhagavad-gita-sanskrit-wikisource-sa-chapter-01-r343151",
+      "changesLexicalIdentity": false,
+      "risk": "high",
+      "reviewerDecision": "ACCEPT_AS_ORTHOGRAPHIC_EQUIVALENCE_SELECT_WIKISOURCE_FOR_ATTESTED_1_26_ONLY",
+      "reviewerId": "onkar-dangi",
+      "reviewerName": "Onkar Dangi",
+      "effectiveDate": "2026-08-04",
+      "notes": [
+        "High risk if generalized; scoped only to attested 1.26 forms after human review of conflict analysis.",
+        "Does not authorize resolving 1.20, which also mentions vocalic-r patterns but has substantive differences."
+      ]
+    }
+  ],
+  "notes": [
+    "Rules are comparison-only aids for human eligibility; they never rewrite stored source Sanskrit.",
+    "Canonical text is always an exact copy of the selected Wikisource source.",
+    "Unicode similarity alone is insufficient for approval; orthographicOnly flags, fold-match, and exact source selection are all required.",
+    "Do not apply these rules to other chapters without a separate reviewed policy version."
+  ]
+}

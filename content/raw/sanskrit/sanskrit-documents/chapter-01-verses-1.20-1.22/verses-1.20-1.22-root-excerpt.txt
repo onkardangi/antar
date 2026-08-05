@@ -1,0 +1,19 @@
+# Source: shrImadbhagavadgItA (bhagvadnew) — root Sanskrit excerpt Ch.1 vv.20,22
+# Provider: Sanskrit Documents (sanskritdocuments.org)
+# HTML URL: https://sanskritdocuments.org/doc_giitaa/bhagvadnew.html
+# ITX URL: https://sanskritdocuments.org/doc_giitaa/bhagvadnew.itx
+# ITX latest update (header): May 15, 2021
+# Retrieval timestamp: 2026-08-04T22:24:04Z
+# Source role: THIRD_EDITORIAL_VERIFICATION_REFERENCE
+# License/reuse: VOLUNTEER_STUDY_RESEARCH_ONLY; personal study and research permitted; not for commercial redistribution or site promotion without permission; underlying ancient Sanskrit work public domain; transcription volunteer layer — reuse terms per sanskritdocuments.org FAQ/header
+# Chapter 1 observed verse markers: 47 (१-१ … १-४७)
+# Scope: root Sanskrit for Antar Verses 1.20 and 1.22 only
+# Excluded: commentary, translation, navigation, unrelated verses, page UI
+
+## 1.20
+अथ व्यवस्थितान्दृष्ट्वा धार्तराष्ट्रान् कपिध्वजः ।
+प्रवृत्ते शस्त्रसम्पाते धनुरुद्यम्य पाण्डवः ॥ १-२०॥
+
+## 1.22
+यावदेतान्निरीक्षेऽहं योद्धुकामानवस्थितान् ।
+कैर्मया सह योद्धव्यमस्मिन् रणसमुद्यमे ॥ १-२२॥

@@ -1,19 +1,29 @@
 {
-  "approved": 0,
-  "candidatePath": "content/editorial/bhagavad-gita/chapter-01/normalization-match-approval-candidate.jsonl",
+  "approved": 47,
+  "candidatePath": "content/editorial/bhagavad-gita/chapter-01/final-conflict-resolution-candidates.jsonl",
   "chapterNumber": 1,
   "conflictAnalysisPath": "content/editorial/bhagavad-gita/chapter-01/source-conflict-analysis.jsonl",
   "corpusVersion": "antar-bhagavad-gita-chapter-01-v1",
-  "decisionDate": null,
+  "decisionDate": "2026-08-04",
+  "decisionType": "FINAL_CHAPTER01_CONFLICT_RESOLUTION",
+  "finalConflictResolutions": 2,
+  "importReady": true,
   "normalizationMatchCandidates": 34,
   "notes": [
-    "Manifest must not become APPROVED automatically.",
-    "Human reviewers must record names/dates before any Verse approval."
+    "APPROVED: all 47 Chapter 1 Verses approved (34 NORMALIZATION_MATCH + 11 orthographic + 2 final-conflict).",
+    "Final conflicts 1.20 and 1.22 resolved with third witness Sanskrit Documents bhagvadnew.",
+    "Selected canonical source: Wikisource PRIMARY_TRANSCRIPTION_CANDIDATE (exact copy; no synthesis).",
+    "IIT remains SECONDARY_VERIFICATION_REFERENCE / verification-only.",
+    "Sanskrit Documents remains THIRD_EDITORIAL_VERIFICATION_REFERENCE / verification-only.",
+    "Transliteration remains null. No package built. No database import performed by this tool."
   ],
-  "pending": 47,
+  "orthographicResolutions": 11,
+  "pending": 0,
   "rejected": 0,
-  "reviewer": null,
+  "reviewer": "onkar-dangi",
   "secondReviewer": null,
   "sourceConflicts": 13,
-  "status": "PENDING_EDITORIAL_REVIEW"
+  "status": "APPROVED",
+  "unresolvedReferences": [],
+  "unresolvedSourceConflicts": 0
 }

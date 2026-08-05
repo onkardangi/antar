@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import hashlib
 import json
 import sys
 import tempfile
@@ -151,17 +150,32 @@ class PolicyAndWorkspaceTests(unittest.TestCase):
                 if sid and "iitk" in sid:
                     self.assertIn("verification", sid)
 
-    def test_canonical_draft_remains_byte_identical(self) -> None:
-        digest = hashlib.sha256(
-            (
+    def test_canonical_draft_unresolved_conflict_rows_remain_null_sanskrit(self) -> None:
+        """IIT acquisition must not populate unresolved conflict Verses."""
+        import json
+
+        draft = [
+            json.loads(l)
+            for l in (
                 REPO_ROOT
                 / "content/editorial/bhagavad-gita/chapter-01/canonical-draft.jsonl"
-            ).read_bytes()
-        ).hexdigest()
-        self.assertEqual(
-            digest,
-            "31ff228c649096422a20bbe43423b9fcce28e6ce32d7e1e7a6462e9a92717d1a",
-        )
+            ).read_text(encoding="utf-8").splitlines()
+            if l.strip()
+        ]
+        final_refs = {"1.20", "1.22"}
+        for row in draft:
+            if row["canonicalReference"] not in final_refs:
+                continue
+            if row.get("approvalStatus") == "APPROVED":
+                # Allowed only via later final-conflict human apply, not IIT acquisition.
+                self.assertEqual(
+                    row.get("decisionType"),
+                    "FINAL_CHAPTER01_CONFLICT_RESOLUTION",
+                )
+                self.assertIsNotNone(row.get("sanskritText"))
+                self.assertNotIn("iitk", str(row.get("selectedSourceId") or ""))
+            else:
+                self.assertIsNone(row.get("sanskritText"))
 
 
 if __name__ == "__main__":

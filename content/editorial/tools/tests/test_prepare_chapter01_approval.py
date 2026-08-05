@@ -124,17 +124,31 @@ class ApprovalPrepTests(unittest.TestCase):
         self.assertFalse(cands & confs)
         self.assertEqual(cands | confs, {f"1.{i}" for i in range(1, 48)})
 
-    def test_no_automatic_approval(self) -> None:
-        manifest = json.loads(
-            (CHAPTER_DIR / "chapter-01-approval-manifest.json").read_text(encoding="utf-8")
-        )
-        self.assertEqual(manifest["approved"], 0)
-        self.assertEqual(manifest["status"], "PENDING_EDITORIAL_REVIEW")
-        self.assertIsNone(manifest["reviewer"])
+    def test_no_automatic_approval_in_prep_artifacts(self) -> None:
+        """Prep candidates/conflicts remain PENDING; approval is a separate controlled tool."""
         for c in load_jsonl(CHAPTER_DIR / "normalization-match-approval-candidate.jsonl"):
             self.assertEqual(c["approvalStatus"], "PENDING")
         for c in load_jsonl(CHAPTER_DIR / "source-conflict-analysis.jsonl"):
             self.assertEqual(c["approvalStatus"], "PENDING")
+        manifest = json.loads(
+            (CHAPTER_DIR / "chapter-01-approval-manifest.json").read_text(encoding="utf-8")
+        )
+        self.assertIn(
+            manifest["status"],
+            {"PENDING_EDITORIAL_REVIEW", "PARTIALLY_APPROVED", "APPROVED"},
+        )
+        if manifest["status"] == "PENDING_EDITORIAL_REVIEW":
+            self.assertEqual(manifest["approved"], 0)
+            self.assertIsNone(manifest["reviewer"])
+        elif manifest["status"] == "PARTIALLY_APPROVED":
+            self.assertIn(manifest["approved"], {34, 45})
+            self.assertIn(manifest["pending"], {13, 2})
+            self.assertIsNotNone(manifest["reviewer"])
+        else:
+            self.assertEqual(manifest["approved"], 47)
+            self.assertEqual(manifest["pending"], 0)
+            self.assertTrue(manifest["importReady"])
+            self.assertIsNotNone(manifest["reviewer"])
 
     def test_deterministic_output(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

@@ -30,7 +30,8 @@
       "exactEvidenceNeeded": "Independent root-Sanskrit witness for this Verse identity, with clear edition statement and license suitable for verification.",
       "reasonThirdReferenceRequired": "Difference is not clearly orthographic-only under current policy; Wikisource vs IIT alone is insufficient to choose a canonical form.",
       "recommendedTrustedManualReference": "A printed critical edition or other trusted scholarly edition (e.g. well-documented BORI / Gita Press critical apparatus citation) consulted manually — not bulk-scraped.",
-      "status": "QUEUED_NOT_ACQUIRED"
+      "status": "RESOLVED_BY_FINAL_CONFLICT_APPLY",
+      "acquiredSourceId": "bhagavad-gita-sanskrit-sanskritdocuments-bhagvadnew-verse-1.20-verification-v1"
     },
     {
       "canonicalReference": "1.22",
@@ -90,13 +91,15 @@
       "exactEvidenceNeeded": "Independent root-Sanskrit witness for this Verse identity, with clear edition statement and license suitable for verification.",
       "reasonThirdReferenceRequired": "Difference is not clearly orthographic-only under current policy; Wikisource vs IIT alone is insufficient to choose a canonical form.",
       "recommendedTrustedManualReference": "A printed critical edition or other trusted scholarly edition (e.g. well-documented BORI / Gita Press critical apparatus citation) consulted manually — not bulk-scraped.",
-      "status": "QUEUED_NOT_ACQUIRED"
+      "status": "RESOLVED_BY_FINAL_CONFLICT_APPLY",
+      "acquiredSourceId": "bhagavad-gita-sanskrit-sanskritdocuments-bhagvadnew-verse-1.22-verification-v1"
     }
   ],
   "entryCount": 2,
   "notes": [
-    "No third source was acquired in this task.",
-    "IIT remains verification-only and not an import corpus."
+    "Sanskrit Documents bhagvadnew acquired as THIRD_EDITORIAL_VERIFICATION_REFERENCE.",
+    "Human apply completed via approve_final_chapter01_conflicts.py (2026-08-04).",
+    "IIT and Sanskrit Documents remain verification-only / not import corpora."
   ],
-  "status": "PENDING_MANUAL_ACQUISITION"
+  "status": "RESOLVED"
 }

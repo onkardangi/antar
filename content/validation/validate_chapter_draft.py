@@ -137,9 +137,12 @@ def validate_records(
                 result.errors.append(
                     f"record {index} ({ref}): APPROVED requires nonblank sanskritText"
                 )
-            if not _is_nonblank(transliteration):
+            # Sanskrit-only editorial approval may keep transliteration null.
+            # Blank/whitespace strings are invalid; import_ready still requires
+            # nonblank transliteration for every Verse.
+            if transliteration is not None and not _is_nonblank(transliteration):
                 result.errors.append(
-                    f"record {index} ({ref}): APPROVED requires nonblank transliteration"
+                    f"record {index} ({ref}): transliteration must be null or nonblank"
                 )
 
     expected_set = set(range(1, expected_verses + 1))
