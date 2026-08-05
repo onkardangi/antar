@@ -41,6 +41,14 @@ python3 content/acquisition/integrate_iitk_workspace.py \
   --manifest content/raw/sanskrit/iit-kanpur/chapter-01-manifest.json
 
 python3 -m unittest discover content/acquisition/tests
+
+# Translation (Internet Archive) — see content/acquisition/translation/README.md
+python3 content/acquisition/translation/fetch_internet_archive_item.py \
+  --item-id in.ernet.dli.2015.386852 \
+  --output-dir content/raw/translations/swarupananda-1909
+
+python3 -m unittest discover content/acquisition/translation/tests
 ```
 
 See `IITK_ACQUISITION_ETHICS.md` for robots/delay/redistribution rules.
+Translation IA acquisition: `content/acquisition/translation/README.md`.

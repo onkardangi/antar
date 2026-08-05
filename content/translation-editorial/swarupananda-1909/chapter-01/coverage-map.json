@@ -1,0 +1,218 @@
+{
+  "chapterNumber": 1,
+  "combinedLabelInventory": [
+    {
+      "evidence": "page_image",
+      "from": 4,
+      "label": "I. 4. 5. 6.",
+      "segmentId": "swarupananda-1909-bg-1-004-006",
+      "to": 6
+    },
+    {
+      "evidence": "page_image",
+      "from": 21,
+      "label": "I. 21—22.",
+      "segmentId": "swarupananda-1909-bg-1-021-022",
+      "to": 22
+    },
+    {
+      "evidence": "page_image",
+      "from": 24,
+      "label": "I. 24—25.",
+      "segmentId": "swarupananda-1909-bg-1-024-025",
+      "to": 25
+    },
+    {
+      "evidence": "secondary_transcription_pending_page_image",
+      "from": 28,
+      "label": "I. 28—29.",
+      "segmentId": "swarupananda-1909-bg-1-028-029",
+      "to": 29
+    },
+    {
+      "evidence": "secondary_transcription_pending_page_image",
+      "from": 32,
+      "label": "I. 32—34.",
+      "segmentId": "swarupananda-1909-bg-1-032-034",
+      "to": 34
+    },
+    {
+      "evidence": "page_image",
+      "from": 38,
+      "label": "I. 38. 39.",
+      "segmentId": "swarupananda-1909-bg-1-038-039",
+      "to": 39
+    }
+  ],
+  "expectedVerseCount": 47,
+  "importReady": false,
+  "multiplyCoveredVerses": [],
+  "packageReady": false,
+  "pinnedScanGaps": {
+    "missingPrintedPages": [
+      14,
+      15,
+      17,
+      18,
+      20,
+      21
+    ],
+    "notes": [
+      "Pinned IA/DLI master skips six Chapter 1 body pages.",
+      "Gap segments marked SOURCE_CONFLICT; not APPROVED.",
+      "I. 28—29. added from secondary evidence; not in Phase 2 page-image combined-label list because those pages are missing."
+    ],
+    "observedLeafPageJumps": [
+      {
+        "printedPage": 13,
+        "scanLeaf": 34
+      },
+      {
+        "printedPage": 16,
+        "scanLeaf": 35
+      },
+      {
+        "printedPage": 19,
+        "scanLeaf": 36
+      },
+      {
+        "printedPage": 22,
+        "scanLeaf": 37
+      },
+      {
+        "printedPage": 23,
+        "scanLeaf": 38
+      }
+    ]
+  },
+  "segmentCount": 39,
+  "segmentsWithMultiVerseCoverage": [
+    {
+      "coveredCanonicalReferences": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "coveredVerseNumbers": [
+        4,
+        5,
+        6
+      ],
+      "segmentId": "swarupananda-1909-bg-1-004-006",
+      "sourceLabel": "I. 4. 5. 6."
+    },
+    {
+      "coveredCanonicalReferences": [
+        "1.21",
+        "1.22"
+      ],
+      "coveredVerseNumbers": [
+        21,
+        22
+      ],
+      "segmentId": "swarupananda-1909-bg-1-021-022",
+      "sourceLabel": "I. 21—22."
+    },
+    {
+      "coveredCanonicalReferences": [
+        "1.24",
+        "1.25"
+      ],
+      "coveredVerseNumbers": [
+        24,
+        25
+      ],
+      "segmentId": "swarupananda-1909-bg-1-024-025",
+      "sourceLabel": "I. 24—25."
+    },
+    {
+      "coveredCanonicalReferences": [
+        "1.28",
+        "1.29"
+      ],
+      "coveredVerseNumbers": [
+        28,
+        29
+      ],
+      "segmentId": "swarupananda-1909-bg-1-028-029",
+      "sourceLabel": "I. 28—29."
+    },
+    {
+      "coveredCanonicalReferences": [
+        "1.32",
+        "1.33",
+        "1.34"
+      ],
+      "coveredVerseNumbers": [
+        32,
+        33,
+        34
+      ],
+      "segmentId": "swarupananda-1909-bg-1-032-034",
+      "sourceLabel": "I. 32—34."
+    },
+    {
+      "coveredCanonicalReferences": [
+        "1.38",
+        "1.39"
+      ],
+      "coveredVerseNumbers": [
+        38,
+        39
+      ],
+      "segmentId": "swarupananda-1909-bg-1-038-039",
+      "sourceLabel": "I. 38. 39."
+    }
+  ],
+  "status": "DRAFT_WITH_SOURCE_GAPS",
+  "uncoveredVerses": [],
+  "verseToSegment": {
+    "1.1": "swarupananda-1909-bg-1-001",
+    "1.10": "swarupananda-1909-bg-1-010",
+    "1.11": "swarupananda-1909-bg-1-011",
+    "1.12": "swarupananda-1909-bg-1-012",
+    "1.13": "swarupananda-1909-bg-1-013",
+    "1.14": "swarupananda-1909-bg-1-014",
+    "1.15": "swarupananda-1909-bg-1-015",
+    "1.16": "swarupananda-1909-bg-1-016",
+    "1.17": "swarupananda-1909-bg-1-017",
+    "1.18": "swarupananda-1909-bg-1-018",
+    "1.19": "swarupananda-1909-bg-1-019",
+    "1.2": "swarupananda-1909-bg-1-002",
+    "1.20": "swarupananda-1909-bg-1-020",
+    "1.21": "swarupananda-1909-bg-1-021-022",
+    "1.22": "swarupananda-1909-bg-1-021-022",
+    "1.23": "swarupananda-1909-bg-1-023",
+    "1.24": "swarupananda-1909-bg-1-024-025",
+    "1.25": "swarupananda-1909-bg-1-024-025",
+    "1.26": "swarupananda-1909-bg-1-026",
+    "1.27": "swarupananda-1909-bg-1-027",
+    "1.28": "swarupananda-1909-bg-1-028-029",
+    "1.29": "swarupananda-1909-bg-1-028-029",
+    "1.3": "swarupananda-1909-bg-1-003",
+    "1.30": "swarupananda-1909-bg-1-030",
+    "1.31": "swarupananda-1909-bg-1-031",
+    "1.32": "swarupananda-1909-bg-1-032-034",
+    "1.33": "swarupananda-1909-bg-1-032-034",
+    "1.34": "swarupananda-1909-bg-1-032-034",
+    "1.35": "swarupananda-1909-bg-1-035",
+    "1.36": "swarupananda-1909-bg-1-036",
+    "1.37": "swarupananda-1909-bg-1-037",
+    "1.38": "swarupananda-1909-bg-1-038-039",
+    "1.39": "swarupananda-1909-bg-1-038-039",
+    "1.4": "swarupananda-1909-bg-1-004-006",
+    "1.40": "swarupananda-1909-bg-1-040",
+    "1.41": "swarupananda-1909-bg-1-041",
+    "1.42": "swarupananda-1909-bg-1-042",
+    "1.43": "swarupananda-1909-bg-1-043",
+    "1.44": "swarupananda-1909-bg-1-044",
+    "1.45": "swarupananda-1909-bg-1-045",
+    "1.46": "swarupananda-1909-bg-1-046",
+    "1.47": "swarupananda-1909-bg-1-047",
+    "1.5": "swarupananda-1909-bg-1-004-006",
+    "1.6": "swarupananda-1909-bg-1-004-006",
+    "1.7": "swarupananda-1909-bg-1-007",
+    "1.8": "swarupananda-1909-bg-1-008",
+    "1.9": "swarupananda-1909-bg-1-009"
+  }
+}

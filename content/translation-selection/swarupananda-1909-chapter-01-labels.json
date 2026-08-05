@@ -1,0 +1,118 @@
+{
+  "chapterNumber": 1,
+  "chapterTitle": "The Grief of Arjuna",
+  "expectedVerseCount": 47,
+  "observedIdentitySchemeMax": 47,
+  "observedLabels": [
+    "1.1",
+    "1.2",
+    "1.3",
+    "1.4",
+    "1.5",
+    "1.6",
+    "1.7",
+    "1.8",
+    "1.9",
+    "1.10",
+    "1.11",
+    "1.12",
+    "1.13",
+    "1.14",
+    "1.15",
+    "1.16",
+    "1.17",
+    "1.18",
+    "1.19",
+    "1.20",
+    "1.21",
+    "1.22",
+    "1.23",
+    "1.24",
+    "1.25",
+    "1.26",
+    "1.27",
+    "1.28",
+    "1.29",
+    "1.30",
+    "1.31",
+    "1.32",
+    "1.33",
+    "1.34",
+    "1.35",
+    "1.36",
+    "1.37",
+    "1.38",
+    "1.39",
+    "1.40",
+    "1.41",
+    "1.42",
+    "1.43",
+    "1.44",
+    "1.45",
+    "1.46",
+    "1.47"
+  ],
+  "missingLabels": [],
+  "duplicateLabels": [],
+  "combinedLabels": [
+    {
+      "label": "I. 4. 5. 6.",
+      "from": 4,
+      "to": 6,
+      "antarLabels": ["1.4", "1.5", "1.6"],
+      "evidence": "page_image"
+    },
+    {
+      "label": "I. 21-22.",
+      "from": 21,
+      "to": 22,
+      "antarLabels": ["1.21", "1.22"],
+      "evidence": "page_image"
+    },
+    {
+      "label": "I. 24—25.",
+      "from": 24,
+      "to": 25,
+      "antarLabels": ["1.24", "1.25"],
+      "evidence": "page_image"
+    },
+    {
+      "label": "I. 32—34.",
+      "from": 32,
+      "to": 34,
+      "antarLabels": ["1.32", "1.33", "1.34"],
+      "evidence": "page_image"
+    },
+    {
+      "label": "I. 38. 39.",
+      "from": 38,
+      "to": 39,
+      "antarLabels": ["1.38", "1.39"],
+      "evidence": "page_image"
+    }
+  ],
+  "runningHeadersNotCombinedLabels": [
+    "Examples such as 8-10], 45-47], [ Chap. I. are pagination aids only"
+  ],
+  "sourcePageRange": {
+    "printedFrom": 1,
+    "printedTo": 23,
+    "scanLeafFrom": 22,
+    "scanLeafTo": 38,
+    "notes": "Chapter 2 begins scan leaf 39 / printed page 24 per TOC and page image"
+  },
+  "chapter13Observation": {
+    "endsAtVerse": 34,
+    "evidence": "page_image_xiii_34_and_chapter_end",
+    "printedPageEnd": 269,
+    "confidence": "high"
+  },
+  "ocrIsAuthoritative": false,
+  "translationTextIncluded": false,
+  "status": "NEEDS_MANUAL_SEGMENTATION_POLICY",
+  "notes": [
+    "observedLabels lists Antar identities present in the edition scheme (1..47).",
+    "Combined English editorial units are listed under combinedLabels; do not invent splits in this phase.",
+    "Singleton labels were spot-confirmed on page images; DjVu OCR inventory is not authoritative."
+  ]
+}

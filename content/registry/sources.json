@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-04",
+  "updated_at": "2026-08-05",
   "antar_numbering": {
     "chapters": 18,
     "total_verses": 700,
@@ -2710,6 +2710,76 @@
       "inspection_doc": "content/packages/README.md",
       "decision_summary": "Synthetic non-scriptural fixture for content package format tests only. Never import as Scripture.",
       "updated_at": "2026-08-04"
+    },
+    {
+      "id": "bhagavad-gita-translation-en-swarupananda-1909-v1",
+      "title": "Srimad-Bhagavad-Gita (First Edition, 1909)",
+      "creator": "Swami Swarupananda",
+      "translator": "Swami Swarupananda",
+      "publisher": "Prabuddha Bharata Press, Mayavati, Almora, Himalayas",
+      "year": 1909,
+      "edition": "First Edition, 1909",
+      "platform": "Internet Archive",
+      "provider": "Internet Archive / Digital Library of India scan",
+      "source_url": "https://archive.org/details/in.ernet.dli.2015.386852",
+      "item_identifier": "in.ernet.dli.2015.386852",
+      "retrieval_timestamp": "2026-08-05T16:24:37Z",
+      "license_displayed": "US public domain (1909 first edition; historical imprint rights notice present)",
+      "license_catalog_id": "us-pd-pre-1931",
+      "license_status": "underlying_work=us_public_domain_pre_1931; no_ia_or_ashrama_endorsement",
+      "content_kinds": [
+        "translation"
+      ],
+      "language": "en",
+      "edition_tradition": "antar-47-34-candidate",
+      "edition_scope": "full_gita_volume_acquired; chapter_01_inspected",
+      "source_role": "PRIMARY_TRANSLATION_CANDIDATE",
+      "chapter_scope": 1,
+      "chapter_1_verse_count": 47,
+      "chapter_13_verse_count": 34,
+      "expected_verse_count": 47,
+      "total_verses": 700,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/translations/swarupananda-1909/2015.386852.Srimad-Bhagavad.pdf",
+      "raw_directory": "content/raw/translations/swarupananda-1909/",
+      "original_filename": "2015.386852.Srimad-Bhagavad.pdf",
+      "sha256": "ab9e38c2f252574de88d55374fb8c97c7c2998b4442e9e8f32cda8713a99315e",
+      "approved_fields": [
+        "english_translation_prose",
+        "verse_labels"
+      ],
+      "prohibited_fields": [
+        "commentary",
+        "introductions",
+        "footnotes",
+        "word_by_word_paraphrase",
+        "running_headers",
+        "page_numbers",
+        "ocr_artifacts",
+        "unrelated_publisher_material"
+      ],
+      "status": "ACQUIRED_UNREVIEWED",
+      "inspection_doc": "content/translation-selection/swarupananda-1909-inspection.md",
+      "label_inventory": "content/translation-selection/swarupananda-1909-chapter-01-labels.json",
+      "decision_summary": "1909 first-edition scan acquired and Chapter 1 inspected. Identity scheme matches Antar 47/34, but combined English labels require a manual segmentation policy before normalization. No Translation text approved.",
+      "suitability_decision": "NEEDS_MANUAL_SEGMENTATION_POLICY",
+      "known_caveats": [
+        "Combined English labels observed for 4-6, 21-22, 24-25, 32-34, 38-39.",
+        "DjVu OCR aid is not authoritative; Image Container PDF has no usable text layer.",
+        "Word-by-word paraphrase and bracketed commentary must not enter translationText.",
+        "Running headers such as 45-47] are pagination aids, not combined verse labels.",
+        "Authorship debate (Sister Nivedita claim) recorded in Phase 1 risk analysis; attribute as published.",
+        "Sacred Texts HTML must not be used as redistribution master.",
+        "Rejected IA item in.ernet.dli.2015.237563 is a 1967 reprint.",
+        "Internet Archive / DLI / Advaita Ashrama do not endorse Antar."
+      ],
+      "rejected_alternate_items": [
+        {
+          "item_identifier": "in.ernet.dli.2015.237563",
+          "reason": "Tenth Impression, 1967 despite misleading 1909 metadata"
+        }
+      ],
+      "updated_at": "2026-08-05"
     }
   ]
 }

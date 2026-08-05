@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-04",
+  "updated_at": "2026-08-05",
   "licenses": [
     {
       "id": "cc0-1.0",
@@ -25,6 +25,14 @@
       "url": "https://sanskritdocuments.org/faq",
       "text_path": null,
       "notes": "Not a standard open license. Header and FAQ permit personal study and research; forbid commercial redistribution / site promotion without permission. Recorded for THIRD_EDITORIAL_VERIFICATION_REFERENCE provenance only. Does not authorize Antar canonical import."
+    },
+    {
+      "id": "us-pd-pre-1931",
+      "name": "United States Public Domain (works published before 1931)",
+      "spdx": null,
+      "url": "https://copyright.gov/circs/circ15a.pdf",
+      "text_path": null,
+      "notes": "Classification for US-published or US-PD-eligible works published before 1931. Recorded for Swarupananda 1909 first-edition acquisition. Historical imprint notices (e.g. ALL RIGHTS RESERVED) do not by themselves defeat US public-domain status for this class. License alone does not imply Antar import approval."
     }
   ]
 }

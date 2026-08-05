@@ -14,8 +14,13 @@ content/
 ├── registry/       Source registry and approval status
 ├── validation/     Validation rules, Chapter draft validator, and reports
 ├── checksums/      SHA-256 manifests for raw and normalized artifacts
-└── licenses/       License texts and license catalog entries
+├── licenses/       License texts and license catalog entries
+├── translation-selection/  Phase 1–2 English Translation selection + inspection
+└── translation-editorial/  Phase 3 Translation segmentation policy (no normalization)
 ```
+
+Translation selection foundation: [`translation-selection/README.md`](translation-selection/README.md).
+Translation segmentation policy: [`translation-editorial/README.md`](translation-editorial/README.md).
 
 ## Status (foundation)
 

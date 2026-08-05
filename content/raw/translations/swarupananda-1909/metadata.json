@@ -1,0 +1,157 @@
+{
+  "creatorDisplayed": "The Swami Swarupananda",
+  "dateDisplayed": "1909",
+  "editionTarget": {
+    "edition": "First Edition",
+    "publisher": "Prabuddha Bharata Press, Mayavati, Almora, Himalayas",
+    "series": "Himalayan Series \u2014 No. XX",
+    "verification": "Confirmed from scan title page and imprint page",
+    "year": 1909
+  },
+  "editionVerification": {
+    "imprintPageEvidence": [
+      "PRINTED BY MOHAN LAL SAH CHOWDHARI",
+      "PUBLISHED BY THE PRABUDDHA BHARATA PRESS",
+      "MAYAVATI, ALMORA, HIMALAYAS."
+    ],
+    "rejectedAlternateItem": "in.ernet.dli.2015.237563 (1967 tenth impression)",
+    "titlePageEvidence": [
+      "Himalayan Series.\u2014No. XX.",
+      "SRIMAD-BHAGAVAD-GITA",
+      "BY THE SWAMI SWARUPANANDA",
+      "FIRST EDITION",
+      "1909"
+    ],
+    "verifiedAt": "2026-08-05",
+    "verifiedFromScan": true
+  },
+  "endorsement": "Internet Archive / Digital Library of India / Advaita Ashrama do not endorse Antar.",
+  "iaMetadataSummary": {
+    "collection": [
+      "digitallibraryindia",
+      "JaiGyan"
+    ],
+    "creator": "The Swami Swarupananda",
+    "date": "1909",
+    "identifier": "in.ernet.dli.2015.386852",
+    "identifierArk": "ark:/13960/t1mh3057k",
+    "language": [
+      "san\n",
+      "eng\n"
+    ],
+    "publicdate": "2017-01-21 20:13:19",
+    "title": "Srimad Bhagavad Gita",
+    "year": "1909"
+  },
+  "itemId": "in.ernet.dli.2015.386852",
+  "itemUrl": "https://archive.org/details/in.ernet.dli.2015.386852",
+  "language": "en",
+  "metadataApiUrl": "https://archive.org/metadata/in.ernet.dli.2015.386852",
+  "ocrIsAuthoritative": false,
+  "pinnedMasterFilename": "2015.386852.Srimad-Bhagavad.pdf",
+  "platform": "Internet Archive",
+  "rejectedMasters": [
+    {
+      "itemId": "in.ernet.dli.2015.237563",
+      "reason": "Title-page/OCR evidence indicates Tenth Impression, 1967, despite misleading 1909 metadata"
+    }
+  ],
+  "retainedArtifacts": [
+    {
+      "authoritativeForTranscription": true,
+      "filename": "2015.386852.Srimad-Bhagavad.pdf",
+      "format": "Image Container PDF",
+      "iaMd5": "be9c40626d9fa3989bd4d4f0ac677c42",
+      "iaSha1": "f0b7b189e506464b32134989db8f249ef8ba5960",
+      "ocrInspectionAidOnly": false,
+      "role": "pinned_master",
+      "sha256": "ab9e38c2f252574de88d55374fb8c97c7c2998b4442e9e8f32cda8713a99315e",
+      "sizeBytes": 25704747,
+      "sourceUrl": "https://archive.org/download/in.ernet.dli.2015.386852/2015.386852.Srimad-Bhagavad.pdf",
+      "writeStatus": "written"
+    },
+    {
+      "authoritativeForTranscription": false,
+      "filename": "in.ernet.dli.2015.386852_meta.xml",
+      "format": "Metadata",
+      "iaMd5": "08199933f09467d9eb9bb1b8bfa5c029",
+      "iaSha1": "4d6c3c222ecbced19b00abdcbd6c7dfeab04a7cd",
+      "ocrInspectionAidOnly": false,
+      "role": "retained",
+      "sha256": "2af6b1375b96105b2694b30dc080c8893452f3b91953a8b06cd615aabc817517",
+      "sizeBytes": 2935,
+      "sourceUrl": "https://archive.org/download/in.ernet.dli.2015.386852/in.ernet.dli.2015.386852_meta.xml",
+      "writeStatus": "written"
+    },
+    {
+      "authoritativeForTranscription": false,
+      "filename": "in.ernet.dli.2015.386852_files.xml",
+      "format": "Metadata",
+      "iaMd5": "554107c80c56da6af9a213b818a7910b",
+      "iaSha1": null,
+      "ocrInspectionAidOnly": false,
+      "role": "retained",
+      "sha256": "bca41683208aa7d04df0af57c23495c5e7a5a0ad0e0bc8180c4ec53582f3d7d8",
+      "sizeBytes": 8457,
+      "sourceUrl": "https://archive.org/download/in.ernet.dli.2015.386852/in.ernet.dli.2015.386852_files.xml",
+      "writeStatus": "written"
+    },
+    {
+      "authoritativeForTranscription": false,
+      "filename": "2015.386852.Srimad-Bhagavad_djvu.txt",
+      "format": "DjVuTXT",
+      "iaMd5": "9bf33e50a60972e8abc99c033d6c1743",
+      "iaSha1": "a2387ce6521d22c78dbbcc33c14f141f7f384b93",
+      "ocrInspectionAidOnly": true,
+      "role": "retained",
+      "sha256": "9d9433da635d1f92284c391b734632a58d42b70b1a1579e6b86587ac6410b477",
+      "sizeBytes": 699462,
+      "sourceUrl": "https://archive.org/download/in.ernet.dli.2015.386852/2015.386852.Srimad-Bhagavad_djvu.txt",
+      "writeStatus": "written"
+    },
+    {
+      "authoritativeForTranscription": false,
+      "filename": "2015.386852.Srimad-Bhagavad_page_numbers.json",
+      "format": "Page Numbers JSON",
+      "iaMd5": "6d291bd06fc6efef5d329c670ca33a5c",
+      "iaSha1": "c494fc1081fb957b1e6602b420415c141a173de3",
+      "ocrInspectionAidOnly": false,
+      "role": "retained",
+      "sha256": "4832b8c615ae1f15d88d94f0e0f0dcff12a447ab652d2bbfd32e2be8852e1f53",
+      "sizeBytes": 79054,
+      "sourceUrl": "https://archive.org/download/in.ernet.dli.2015.386852/2015.386852.Srimad-Bhagavad_page_numbers.json",
+      "writeStatus": "written"
+    },
+    {
+      "authoritativeForTranscription": false,
+      "filename": "2015.386852.Srimad-Bhagavad_scandata.xml",
+      "format": "Scandata",
+      "iaMd5": "c3bf955834e127d55932a66348db8140",
+      "iaSha1": "f955801a921aafb853d6dd3fbb26cadf2fe40c8b",
+      "ocrInspectionAidOnly": false,
+      "role": "retained",
+      "sha256": "f16f7e68df6b4dd7d6b6be2fcc06d3b8d7506ebbe168533d3c5bd342a0ea5b9d",
+      "sizeBytes": 136325,
+      "sourceUrl": "https://archive.org/download/in.ernet.dli.2015.386852/2015.386852.Srimad-Bhagavad_scandata.xml",
+      "writeStatus": "written"
+    },
+    {
+      "authoritativeForTranscription": false,
+      "filename": "ia-metadata-api.json",
+      "format": "JSON",
+      "ocrInspectionAidOnly": false,
+      "role": "ia_metadata_api_snapshot",
+      "sha256": "b14c3a2a68469637dba08cf2ff5c7ca2d0dfce2d2363933754da65baa526c58b",
+      "sizeBytes": 12443,
+      "sourceUrl": "https://archive.org/metadata/in.ernet.dli.2015.386852",
+      "writeStatus": "present"
+    }
+  ],
+  "retrievalTimestamp": "2026-08-05T16:24:37Z",
+  "scope": "Chapter 1 inspection acquisition; no Translation approval",
+  "sourceRole": "PRIMARY_TRANSLATION_CANDIDATE",
+  "status": "ACQUIRED_UNREVIEWED",
+  "title": "Srimad Bhagavad Gita",
+  "translator": "Swami Swarupananda",
+  "userAgent": "AntarContentAcquisition/0.1 (+https://github.com/antar-project/antar; content-acquisition@antar.example)"
+}
