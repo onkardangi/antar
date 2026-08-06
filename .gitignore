@@ -35,6 +35,7 @@ mobile/expo-env.d.ts
 .env.*
 !.env.example
 !**/.env.example
+.local/
 
 # Coverage and tooling
 coverage/

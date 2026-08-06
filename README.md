@@ -53,6 +53,33 @@ antar/
 - Xcode and/or Android Studio for simulator or emulator runs
 - Docker is required for backend infrastructure tests unless you explicitly opt out locally
 
+## Quick start (one command)
+
+From the repository root:
+
+```bash
+make start
+```
+
+This starts:
+
+- PostgreSQL (pgvector) + Redis via Docker Compose
+- Spring Boot backend (`local` profile)
+- Expo iOS Simulator
+
+It resolves common host port conflicts (for example Postgres `5432` → `5435`, API `8080` → `8082`) and syncs `mobile/.env` to the backend port.
+
+Useful variants:
+
+```bash
+make start-backend   # infra + API only
+make start-android   # infra + API + Android
+make stop            # stop backend + mobile (leave Docker up)
+make stop-all        # also docker compose down
+```
+
+Equivalent script entrypoint: `./scripts/development/start-local.sh`.
+
 ## Local infrastructure
 
 ```bash
@@ -63,7 +90,7 @@ docker compose ps
 
 This starts:
 
-- PostgreSQL with pgvector on port `5432`
+- PostgreSQL with pgvector on port `5432` (or `POSTGRES_PORT` from `.env`)
 - Redis on port `6379`
 
 Stop with:
@@ -77,6 +104,14 @@ docker compose down
 ```bash
 cd backend
 ./mvnw spring-boot:run -Dspring-boot.run.profiles=local
+```
+
+If Postgres is published on a non-default host port:
+
+```bash
+POSTGRES_PORT=5435 ./mvnw spring-boot:run \
+  -Dspring-boot.run.profiles=local \
+  -Dspring-boot.run.arguments=--server.port=8082
 ```
 
 Foundation connectivity endpoint (temporary, **local and test profiles only**):
@@ -119,7 +154,7 @@ Set `EXPO_PUBLIC_API_BASE_URL`:
 | Android emulator | `http://10.0.2.2:8080` |
 | Physical device | `http://<your-lan-ip>:8080` |
 
-Do not assume `localhost` works on every platform.
+Do not assume `localhost` works on every platform. `make start` writes the matching URL into `mobile/.env` automatically.
 
 ## Test commands
 
