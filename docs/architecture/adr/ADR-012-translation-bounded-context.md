@@ -44,7 +44,11 @@ ownership until those contracts are revised for Verse Reader composition.
   `content_package_imports`. There is no `scripture.translations` table.
 - `docs/architecture/03_DATA_MODEL.md` and `09_REPOSITORY_STRUCTURE.md` describe
   Translation as an implemented module owning `translation.*`.
-- Product composition of Sanskrit + Translation in the Verse Reader remains a
-  later slice.
+- Mobile Verse Reader now composes Scripture and Translation independently via
+  two API calls (`GET /api/v1/scripture/verses/{verseId}` and
+  `GET /api/v1/translations/verses/{verseId}`). Scripture remains
+  Translation-free. Translation remains optional and subordinate; missing
+  Translation never blocks Scripture. No Translation ownership moved into
+  Scripture. Provider/language selection remains deferred.
 - V1 read API returns one published translation per Verse via stable
   provider-asc ordering; explicit language/provider selection is deferred.

@@ -116,19 +116,23 @@ Translation data should originate from trusted, versioned sources.
 
 # Anatomy
 
-Translation Block contains:
+Translation Block contains, in reading order:
 
-1. Translation Text
-2. Translation Attribution
+1. Translation label
+2. Provider attribution
+3. Translation body
 
 ```text
+Translation
+
+FIXTURE_PROVIDER
+
 You have a right to perform your prescribed duty,
 but you are not entitled to the fruits of your actions.
-
-— Swami Gambirananda
 ```
 
-Attribution should remain visually secondary to the translation itself.
+Provider attribution should remain visually secondary to the translation body.
+The label identifies the layer; it must not compete with Sanskrit above.
 
 ---
 

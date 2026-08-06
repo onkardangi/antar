@@ -73,6 +73,9 @@ export const verseSpacing = {
   contentTop: 34,
   metaStackGap: 8,
   metaToBodyGap: 28,
+  /** Gap between Sanskrit and the subordinate Translation section. */
+  bodyToTranslationGap: 36,
+  translationStackGap: 8,
   bodyToNavGap: 32,
   navGap: 24,
   bottomPadding: 64,

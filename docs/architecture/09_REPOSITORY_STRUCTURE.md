@@ -803,10 +803,21 @@ translation/
 ```
 
 **Implemented now:** `translation.*` persistence (Flyway V007), Package Format v1
-importer (admin CLI), synthetic fixture packages, read-only Translation API.
+importer (admin CLI), synthetic fixture packages, read-only Translation API, and
+mobile Verse Reader composition of Scripture + Translation.
 
-**Not implemented yet:** real translation corpus, language/provider query selection,
-Verse Reader composition, commentary/notes, public import HTTP.
+Mobile Verse Reader composes Scripture and Translation independently via two
+API calls:
+
+- `GET /api/v1/scripture/verses/{verseId}`
+- `GET /api/v1/translations/verses/{verseId}`
+
+Scripture remains Translation-free. Translation remains optional and
+subordinate. Missing Translation never blocks Scripture. No Translation
+ownership moved into Scripture.
+
+**Not implemented yet:** real translation corpus, language/provider query
+selection, commentary/notes, public import HTTP.
 
 V1 published lookup returns the first published row for a Verse ordered by
 `provider` ascending (stable tie-break). Explicit provider/language selection is

@@ -21,9 +21,15 @@ import type { ReadingProgressService } from '../../reading-progress/application/
 import { useReadingProgressService } from '../../reading-progress/composition/ReadingProgressProvider';
 import { listChapterVerses } from '../../chapter/api/chapterDetailClient';
 import type { VerseListItem } from '../../chapter/model/chapterTypes';
+import { getVerseTranslation } from '../api/translationClient';
 import { getVerse } from '../api/verseClient';
+import {
+  TranslationBlock,
+  type TranslationBlockState,
+} from '../components/TranslationBlock';
 import { VerseNavigation } from '../components/VerseNavigation';
 import { VerseReadingBody } from '../components/VerseReadingBody';
+import type { VerseTranslation } from '../model/translationTypes';
 import type { VerseDetail } from '../model/verseTypes';
 
 type VerseState =
@@ -31,12 +37,19 @@ type VerseState =
   | { kind: 'success'; verse: VerseDetail }
   | { kind: 'error' };
 
+type TranslationState =
+  | { kind: 'idle' }
+  | { kind: 'loading' }
+  | { kind: 'ready'; translation: VerseTranslation }
+  | { kind: 'unavailable' };
+
 type NeighborsState =
   | { kind: 'idle' }
   | { kind: 'ready'; previous: VerseListItem | null; next: VerseListItem | null };
 
 type Props = NativeStackScreenProps<RootStackParamList, 'VerseReader'> & {
   loadVerse?: (verseId: string) => Promise<VerseDetail>;
+  loadTranslation?: (verseId: string) => Promise<VerseTranslation>;
   loadChapterVerses?: (chapterId: string) => Promise<VerseListItem[]>;
   /**
    * Test override. Production always receives the real service from
@@ -51,10 +64,23 @@ function hasRealSanskrit(verse: VerseDetail): boolean {
   );
 }
 
+function toTranslationBlockState(
+  state: TranslationState,
+): TranslationBlockState | null {
+  if (state.kind === 'idle') {
+    return null;
+  }
+  if (state.kind === 'ready') {
+    return { kind: 'ready', translation: state.translation };
+  }
+  return { kind: state.kind };
+}
+
 export function VerseScreen({
   navigation,
   route,
   loadVerse = getVerse,
+  loadTranslation = getVerseTranslation,
   loadChapterVerses = listChapterVerses,
   readingProgressService: readingProgressOverride,
 }: Props) {
@@ -65,6 +91,9 @@ export function VerseScreen({
     readingProgressOverride ?? contextReadingProgress;
 
   const [verseState, setVerseState] = useState<VerseState>({ kind: 'loading' });
+  const [translationState, setTranslationState] = useState<TranslationState>({
+    kind: 'idle',
+  });
   const [neighbors, setNeighbors] = useState<NeighborsState>({ kind: 'idle' });
   const [retryToken, setRetryToken] = useState(0);
   const loadGenerationRef = useRef(0);
@@ -73,6 +102,7 @@ export function VerseScreen({
     const generation = ++loadGenerationRef.current;
     // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional mount/param fetch
     setVerseState({ kind: 'loading' });
+    setTranslationState({ kind: 'idle' });
     setNeighbors({ kind: 'idle' });
 
     let cancelled = false;
@@ -86,6 +116,7 @@ export function VerseScreen({
 
         if (!hasRealSanskrit(verse)) {
           setVerseState({ kind: 'error' });
+          setTranslationState({ kind: 'idle' });
           setNeighbors({ kind: 'idle' });
           return;
         }
@@ -102,6 +133,22 @@ export function VerseScreen({
           .catch(() => {
             // Persistence must never block Scripture rendering.
           });
+
+        setTranslationState({ kind: 'loading' });
+        void (async () => {
+          try {
+            const translation = await loadTranslation(verse.id);
+            if (cancelled || generation !== loadGenerationRef.current) {
+              return;
+            }
+            setTranslationState({ kind: 'ready', translation });
+          } catch {
+            if (cancelled || generation !== loadGenerationRef.current) {
+              return;
+            }
+            setTranslationState({ kind: 'unavailable' });
+          }
+        })();
 
         try {
           const verses = await loadChapterVerses(verse.chapterId);
@@ -129,6 +176,7 @@ export function VerseScreen({
           return;
         }
         setVerseState({ kind: 'error' });
+        setTranslationState({ kind: 'idle' });
         setNeighbors({ kind: 'idle' });
       }
     })();
@@ -136,7 +184,14 @@ export function VerseScreen({
     return () => {
       cancelled = true;
     };
-  }, [loadChapterVerses, loadVerse, readingProgressService, retryToken, verseId]);
+  }, [
+    loadChapterVerses,
+    loadTranslation,
+    loadVerse,
+    readingProgressService,
+    retryToken,
+    verseId,
+  ]);
 
   const goToNeighbor = useCallback(
     (neighbor: VerseListItem) => {
@@ -159,6 +214,7 @@ export function VerseScreen({
 
   const previousEnabled = neighbors.kind === 'ready' && neighbors.previous != null;
   const nextEnabled = neighbors.kind === 'ready' && neighbors.next != null;
+  const translationBlockState = toTranslationBlockState(translationState);
 
   return (
     <View
@@ -219,6 +275,9 @@ export function VerseScreen({
             canonicalReference={verseState.verse.canonicalReference}
             sanskritText={verseState.verse.sanskritText}
           />
+          {translationBlockState != null ? (
+            <TranslationBlock state={translationBlockState} />
+          ) : null}
           <View style={styles.navWrap}>
             <VerseNavigation
               previousEnabled={previousEnabled}

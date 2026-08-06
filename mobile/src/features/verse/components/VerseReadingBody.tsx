@@ -11,7 +11,7 @@ type Props = {
 
 /**
  * Calm Sanskrit reading body for the Verse Reader.
- * No cards, icons, translation, or commentary.
+ * Translation is composed separately (TranslationBlock). No cards, icons, or commentary.
  */
 export function VerseReadingBody({
   chapterNumber,

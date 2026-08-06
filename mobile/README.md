@@ -9,10 +9,10 @@ The mobile application currently includes:
 - Foundation connectivity screen
 - Library screen (canonical Chapter list)
 - Chapter detail with Verse list
-- Verse Reader (Sanskrit)
+- Verse Reader (Sanskrit + optional Translation composition; provider attribution)
 - Local-only Reading Progress foundation (persists last-read Verse; no Home / Continue Reading UI yet)
 
-No Home, Reflection, Journey, Search, Guidance, Understanding, Saar, transliteration, commentary, authentication, cloud sync, or bottom navigation yet.
+No Home, Reflection, Journey, Search, Guidance, Understanding, Saar, transliteration, commentary, authentication, cloud sync, or bottom navigation yet. Real Translation corpus is not imported — missing Translation shows a quiet unavailable state.
 
 ## Stack
 
