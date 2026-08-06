@@ -8,9 +8,11 @@ The mobile application currently includes:
 
 - Foundation connectivity screen
 - Library screen (canonical Chapter list)
-- Minimal Chapter placeholder destination
+- Chapter detail with Verse list
+- Verse Reader (Sanskrit)
+- Local-only Reading Progress foundation (persists last-read Verse; no Home / Continue Reading UI yet)
 
-No Verse reader, Home, Reflection, Journey, Search, Guidance, Understanding, Saar, authentication, or bottom navigation yet.
+No Home, Reflection, Journey, Search, Guidance, Understanding, Saar, transliteration, commentary, authentication, cloud sync, or bottom navigation yet.
 
 ## Stack
 
@@ -97,10 +99,10 @@ See `src/navigation/NAVIGATION.md`.
 
 Note: Expo CLI may mention `src/app` in relation to Expo Router because that directory name overlaps Expo Router conventions. This project does **not** use Expo Router. Entry remains `index.ts` → `App.tsx`, and navigation lives under `src/navigation/`.
 
-## Secure storage boundary
+## Storage boundaries
 
-`expo-secure-store` backs `ExpoSecureStoreAdapter` so future authentication can store secrets outside AsyncStorage.
-No tokens are stored and no authentication flow exists yet.
+- **Secure storage** — `expo-secure-store` backs `ExpoSecureStoreAdapter` for future authentication secrets. No tokens are stored and no authentication flow exists yet.
+- **Ordinary local storage** — `@react-native-async-storage/async-storage` backs `AsyncStorageAdapter` for non-secret state such as Reading Progress (`antar.reading-progress.v1`).
 
 ## Commands
 

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   Pressable,
@@ -17,6 +17,8 @@ import {
   verseSpacing,
 } from '../../../design-system';
 import type { RootStackParamList } from '../../../navigation/types';
+import type { ReadingProgressService } from '../../reading-progress/application/ReadingProgressService';
+import { useReadingProgressService } from '../../reading-progress/composition/ReadingProgressProvider';
 import { listChapterVerses } from '../../chapter/api/chapterDetailClient';
 import type { VerseListItem } from '../../chapter/model/chapterTypes';
 import { getVerse } from '../api/verseClient';
@@ -36,52 +38,105 @@ type NeighborsState =
 type Props = NativeStackScreenProps<RootStackParamList, 'VerseReader'> & {
   loadVerse?: (verseId: string) => Promise<VerseDetail>;
   loadChapterVerses?: (chapterId: string) => Promise<VerseListItem[]>;
+  /**
+   * Test override. Production always receives the real service from
+   * ReadingProgressProvider — this prop is never required at runtime.
+   */
+  readingProgressService?: ReadingProgressService;
 };
+
+function hasRealSanskrit(verse: VerseDetail): boolean {
+  return (
+    typeof verse.sanskritText === 'string' && verse.sanskritText.trim().length > 0
+  );
+}
 
 export function VerseScreen({
   navigation,
   route,
   loadVerse = getVerse,
   loadChapterVerses = listChapterVerses,
+  readingProgressService: readingProgressOverride,
 }: Props) {
   const { verseId, chapterNumber, verseNumber } = route.params;
   const insets = useSafeAreaInsets();
+  const contextReadingProgress = useReadingProgressService();
+  const readingProgressService =
+    readingProgressOverride ?? contextReadingProgress;
+
   const [verseState, setVerseState] = useState<VerseState>({ kind: 'loading' });
   const [neighbors, setNeighbors] = useState<NeighborsState>({ kind: 'idle' });
-
-  const refreshVerse = useCallback(async () => {
-    setVerseState({ kind: 'loading' });
-    setNeighbors({ kind: 'idle' });
-    try {
-      const verse = await loadVerse(verseId);
-      setVerseState({ kind: 'success', verse });
-
-      try {
-        const verses = await loadChapterVerses(verse.chapterId);
-        const index = verses.findIndex((item) => item.id === verse.id);
-        if (index < 0) {
-          setNeighbors({ kind: 'ready', previous: null, next: null });
-          return;
-        }
-        setNeighbors({
-          kind: 'ready',
-          previous: index > 0 ? verses[index - 1]! : null,
-          next: index < verses.length - 1 ? verses[index + 1]! : null,
-        });
-      } catch {
-        // Detail succeeded; neighbor failure only disables Previous/Next.
-        setNeighbors({ kind: 'ready', previous: null, next: null });
-      }
-    } catch {
-      setVerseState({ kind: 'error' });
-      setNeighbors({ kind: 'idle' });
-    }
-  }, [loadChapterVerses, loadVerse, verseId]);
+  const [retryToken, setRetryToken] = useState(0);
+  const loadGenerationRef = useRef(0);
 
   useEffect(() => {
+    const generation = ++loadGenerationRef.current;
     // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional mount/param fetch
-    void refreshVerse();
-  }, [refreshVerse]);
+    setVerseState({ kind: 'loading' });
+    setNeighbors({ kind: 'idle' });
+
+    let cancelled = false;
+
+    void (async () => {
+      try {
+        const verse = await loadVerse(verseId);
+        if (cancelled || generation !== loadGenerationRef.current) {
+          return;
+        }
+
+        if (!hasRealSanskrit(verse)) {
+          setVerseState({ kind: 'error' });
+          setNeighbors({ kind: 'idle' });
+          return;
+        }
+
+        setVerseState({ kind: 'success', verse });
+        void readingProgressService
+          .recordVerseOpened({
+            verseId: verse.id,
+            chapterId: verse.chapterId,
+            chapterNumber: verse.chapterNumber,
+            verseNumber: verse.verseNumber,
+            canonicalReference: verse.canonicalReference,
+          })
+          .catch(() => {
+            // Persistence must never block Scripture rendering.
+          });
+
+        try {
+          const verses = await loadChapterVerses(verse.chapterId);
+          if (cancelled || generation !== loadGenerationRef.current) {
+            return;
+          }
+          const index = verses.findIndex((item) => item.id === verse.id);
+          if (index < 0) {
+            setNeighbors({ kind: 'ready', previous: null, next: null });
+            return;
+          }
+          setNeighbors({
+            kind: 'ready',
+            previous: index > 0 ? verses[index - 1]! : null,
+            next: index < verses.length - 1 ? verses[index + 1]! : null,
+          });
+        } catch {
+          if (cancelled || generation !== loadGenerationRef.current) {
+            return;
+          }
+          setNeighbors({ kind: 'ready', previous: null, next: null });
+        }
+      } catch {
+        if (cancelled || generation !== loadGenerationRef.current) {
+          return;
+        }
+        setVerseState({ kind: 'error' });
+        setNeighbors({ kind: 'idle' });
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [loadChapterVerses, loadVerse, readingProgressService, retryToken, verseId]);
 
   const goToNeighbor = useCallback(
     (neighbor: VerseListItem) => {
@@ -140,7 +195,7 @@ export function VerseScreen({
             accessibilityRole="button"
             accessibilityLabel="Retry loading verse"
             hitSlop={8}
-            onPress={() => void refreshVerse()}
+            onPress={() => setRetryToken((token) => token + 1)}
             style={({ pressed }) => [
               styles.retryTarget,
               pressed ? styles.retryPressed : null,

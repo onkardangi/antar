@@ -1,8 +1,9 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react-native';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react-native';
 import type { ComponentProps } from 'react';
 
 import { VerseScreen } from './VerseScreen';
 import { renderWithProviders } from '../../../test/renderWithProviders';
+import type { ReadingProgressService } from '../../reading-progress/application/ReadingProgressService';
 import type { VerseListItem } from '../../chapter/model/chapterTypes';
 import type { VerseDetail } from '../model/verseTypes';
 
@@ -49,6 +50,23 @@ const VERSES: VerseListItem[] = [
   },
 ];
 
+function createProgressServiceMock(): ReadingProgressService {
+  return {
+    recordVerseOpened: jest.fn(async () => ({
+      persisted: true as const,
+      progress: {
+        schemaVersion: 1 as const,
+        lastRead: null,
+        chapters: {},
+      },
+    })),
+    getReadingProgress: jest.fn(),
+    getLastRead: jest.fn(),
+    getChapterProgress: jest.fn(),
+    clearReadingProgress: jest.fn(),
+  } as unknown as ReadingProgressService;
+}
+
 function createNavigationMock(
   overrides: Partial<{ canGoBack: boolean; setParams: jest.Mock }> = {},
 ): VerseProps['navigation'] {
@@ -69,15 +87,19 @@ function renderVerse(
     loadVerse?: (verseId: string) => Promise<VerseDetail>;
     loadChapterVerses?: (chapterId: string) => Promise<VerseListItem[]>;
     navigation?: VerseProps['navigation'];
+    readingProgressService?: ReadingProgressService;
   } = {},
 ) {
   const navigation = options.navigation ?? createNavigationMock();
   const verseId = options.verseId ?? VERSE_1.id;
   const verseNumber = options.verseNumber ?? VERSE_1.verseNumber;
   const chapterNumber = options.chapterNumber ?? VERSE_1.chapterNumber;
+  const readingProgressService =
+    options.readingProgressService ?? createProgressServiceMock();
 
   return {
     navigation,
+    readingProgressService,
     ...renderWithProviders(
       <VerseScreen
         navigation={navigation}
@@ -91,7 +113,9 @@ function renderVerse(
           ?? (async (id) => (id === VERSE_2.id ? VERSE_2 : VERSE_1))
         }
         loadChapterVerses={options.loadChapterVerses ?? (async () => VERSES)}
+        readingProgressService={readingProgressService}
       />,
+      { readingProgressService },
     ),
   };
 }
@@ -102,13 +126,20 @@ describe('VerseScreen', () => {
     const pending = new Promise<VerseDetail>((resolve) => {
       resolveVerse = resolve;
     });
+    const progress = createProgressServiceMock();
 
-    renderVerse({ loadVerse: () => pending });
+    renderVerse({
+      loadVerse: () => pending,
+      readingProgressService: progress,
+    });
 
     expect(screen.getByTestId('verse-loading')).toBeTruthy();
     expect(screen.getByLabelText('Loading verse')).toBeTruthy();
+    expect(progress.recordVerseOpened).not.toHaveBeenCalled();
 
-    resolveVerse?.(VERSE_1);
+    await act(async () => {
+      resolveVerse?.(VERSE_1);
+    });
     await waitFor(() => {
       expect(screen.getByTestId('verse-success')).toBeTruthy();
     });
@@ -130,6 +161,66 @@ describe('VerseScreen', () => {
     expect(screen.queryByText('Verse reading will arrive')).toBeNull();
   });
 
+  it('records progress after a successful Verse load', async () => {
+    const progress = createProgressServiceMock();
+    renderVerse({
+      readingProgressService: progress,
+    });
+
+    await waitFor(() => {
+      expect(screen.getByTestId('verse-success')).toBeTruthy();
+    });
+
+    expect(progress.recordVerseOpened).toHaveBeenCalledTimes(1);
+    expect(progress.recordVerseOpened).toHaveBeenCalledWith({
+      verseId: 'verse-1',
+      chapterId: 'chapter-1',
+      chapterNumber: 1,
+      verseNumber: 1,
+      canonicalReference: '1.1',
+    });
+  });
+
+  it('does not record progress while loading', async () => {
+    const progress = createProgressServiceMock();
+    const pending = new Promise<VerseDetail>(() => {});
+    renderVerse({
+      loadVerse: () => pending,
+      readingProgressService: progress,
+    });
+
+    expect(screen.getByTestId('verse-loading')).toBeTruthy();
+    expect(progress.recordVerseOpened).not.toHaveBeenCalled();
+  });
+
+  it('does not record progress on API failure', async () => {
+    const progress = createProgressServiceMock();
+    renderVerse({
+      loadVerse: async () => {
+        throw new Error('RESOURCE_NOT_FOUND');
+      },
+      readingProgressService: progress,
+    });
+
+    await waitFor(() => {
+      expect(screen.getByTestId('verse-error')).toBeTruthy();
+    });
+    expect(progress.recordVerseOpened).not.toHaveBeenCalled();
+  });
+
+  it('does not record progress when Sanskrit is missing', async () => {
+    const progress = createProgressServiceMock();
+    renderVerse({
+      loadVerse: async () => ({ ...VERSE_1, sanskritText: '   ' }),
+      readingProgressService: progress,
+    });
+
+    await waitFor(() => {
+      expect(screen.getByTestId('verse-error')).toBeTruthy();
+    });
+    expect(progress.recordVerseOpened).not.toHaveBeenCalled();
+  });
+
   it('navigates to the next verse within the chapter', async () => {
     const setParams = jest.fn();
     const navigation = createNavigationMock({ setParams });
@@ -147,6 +238,135 @@ describe('VerseScreen', () => {
       verseNumber: 2,
       chapterNumber: 1,
     });
+  });
+
+  it('records progress for a newly loaded Verse after Previous/Next', async () => {
+    const progress = createProgressServiceMock();
+    const navigation = createNavigationMock();
+
+    const first = renderVerse({
+      navigation,
+      readingProgressService: progress,
+    });
+
+    await waitFor(() => {
+      expect(screen.getByTestId('verse-success')).toBeTruthy();
+    });
+    expect(progress.recordVerseOpened).toHaveBeenLastCalledWith(
+      expect.objectContaining({ canonicalReference: '1.1' }),
+    );
+
+    first.unmount();
+
+    renderVerse({
+      verseId: VERSE_2.id,
+      verseNumber: 2,
+      navigation,
+      readingProgressService: progress,
+    });
+
+    await waitFor(() => {
+      expect(screen.getByTestId('verse-sanskrit-text')).toHaveTextContent(
+        VERSE_2.sanskritText,
+      );
+    });
+    expect(progress.recordVerseOpened).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        verseId: 'verse-2',
+        canonicalReference: '1.2',
+      }),
+    );
+  });
+
+  it('ignores a stale Verse response and does not record it', async () => {
+    const progress = createProgressServiceMock();
+    let resolveFirst: ((value: VerseDetail) => void) | undefined;
+    const firstPending = new Promise<VerseDetail>((resolve) => {
+      resolveFirst = resolve;
+    });
+
+    let call = 0;
+    const loadVerse = jest.fn(async (id: string) => {
+      call += 1;
+      if (call === 1) {
+        return firstPending;
+      }
+      return id === VERSE_2.id ? VERSE_2 : VERSE_1;
+    });
+
+    const { rerender, readingProgressService } = renderVerse({
+      loadVerse,
+      readingProgressService: progress,
+    });
+
+    expect(screen.getByTestId('verse-loading')).toBeTruthy();
+
+    rerender(
+      <VerseScreen
+        navigation={createNavigationMock()}
+        route={{
+          key: 'VerseReader',
+          name: 'VerseReader',
+          params: {
+            verseId: VERSE_2.id,
+            verseNumber: 2,
+            chapterNumber: 1,
+          },
+        }}
+        loadVerse={loadVerse}
+        loadChapterVerses={async () => VERSES}
+        readingProgressService={readingProgressService}
+      />,
+    );
+
+    await waitFor(() => {
+      expect(screen.getByTestId('verse-success')).toBeTruthy();
+    });
+    expect(screen.getByTestId('verse-sanskrit-text')).toHaveTextContent(
+      VERSE_2.sanskritText,
+    );
+    expect(progress.recordVerseOpened).toHaveBeenCalledTimes(1);
+    expect(progress.recordVerseOpened).toHaveBeenCalledWith(
+      expect.objectContaining({ canonicalReference: '1.2' }),
+    );
+
+    await act(async () => {
+      resolveFirst?.(VERSE_1);
+    });
+
+    expect(screen.getByTestId('verse-sanskrit-text')).toHaveTextContent(
+      VERSE_2.sanskritText,
+    );
+    expect(progress.recordVerseOpened).toHaveBeenCalledTimes(1);
+  });
+
+  it('still renders Sanskrit when progress storage fails', async () => {
+    const progress = createProgressServiceMock();
+    (progress.recordVerseOpened as jest.Mock).mockRejectedValue(
+      new Error('storage down'),
+    );
+
+    renderVerse({
+      readingProgressService: progress,
+    });
+
+    await waitFor(() => {
+      expect(screen.getByTestId('verse-success')).toBeTruthy();
+    });
+    expect(screen.getByTestId('verse-sanskrit-text')).toHaveTextContent(
+      VERSE_1.sanskritText,
+    );
+  });
+
+  it('does not add Reading Progress UI', async () => {
+    renderVerse();
+
+    await waitFor(() => {
+      expect(screen.getByTestId('verse-success')).toBeTruthy();
+    });
+
+    expect(screen.queryByText(/continue reading/i)).toBeNull();
+    expect(screen.queryByTestId(/progress/i)).toBeNull();
   });
 
   it('disables Next on the last verse and enables Previous', async () => {
