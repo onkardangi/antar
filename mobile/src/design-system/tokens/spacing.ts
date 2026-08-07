@@ -81,6 +81,10 @@ export const verseSpacing = {
   bodyToNavGap: 40,
   navGap: 24,
   bottomPadding: 64,
+  /** Neutral structural-loading bar thickness (matches Library/Chapter). */
+  skeletonLineHeight: 12,
+  /** Gap between Sanskrit-slot placeholder bars. */
+  skeletonLineGap: 12,
 } as const;
 
 export type SpacingToken = keyof typeof spacing;

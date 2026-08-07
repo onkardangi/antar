@@ -12,15 +12,18 @@ export const TEST_WINDOW_METRICS: Metrics = {
 
 type TestProviderOptions = {
   readingProgressService?: ReadingProgressService;
+  /** Optional SafeArea metrics override (defaults to TEST_WINDOW_METRICS). */
+  initialMetrics?: Metrics;
 };
 
 function TestProviders({
   children,
   readingProgressService,
+  initialMetrics = TEST_WINDOW_METRICS,
 }: { children: ReactNode } & TestProviderOptions) {
   return (
     <AppProviders
-      initialMetrics={TEST_WINDOW_METRICS}
+      initialMetrics={initialMetrics}
       skipFontLoading
       readingProgressService={readingProgressService}
     >
@@ -33,10 +36,14 @@ export function renderWithProviders(
   ui: ReactElement,
   options?: Omit<RenderOptions, 'wrapper'> & TestProviderOptions,
 ) {
-  const { readingProgressService, ...renderOptions } = options ?? {};
+  const { readingProgressService, initialMetrics, ...renderOptions } =
+    options ?? {};
   return render(ui, {
     wrapper: ({ children }) => (
-      <TestProviders readingProgressService={readingProgressService}>
+      <TestProviders
+        readingProgressService={readingProgressService}
+        initialMetrics={initialMetrics}
+      >
         {children}
       </TestProviders>
     ),
