@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files>
+  <file name="__ia_thumb.jpg" source="original">
+    <mtime>1648257172</mtime>
+    <size>10668</size>
+    <md5>b0fe3381998c121cdba84c6893f9da8d</md5>
+    <crc32>07030614</crc32>
+    <sha1>477831b075d81a9cc2a17908c7e57de6767fcf0b</sha1>
+    <format>Item Tile</format>
+    <rotation>0</rotation>
+  </file>
+  <file name="bhagavadgitawith00londiala.djvu" source="derivative">
+    <format>DjVu</format>
+    <original>bhagavadgitawith00londiala_djvu.xml</original>
+    <md5>cae7a64ba489bacd92fff70bcb02af81</md5>
+    <mtime>1170739122</mtime>
+    <size>12238097</size>
+    <crc32>b4be5faa</crc32>
+    <sha1>aaa1470efc7e2e4f2a1f38dcea3237f82f8989b0</sha1>
+  </file>
+  <file name="bhagavadgitawith00londiala.epub" source="derivative">
+    <original>bhagavadgitawith00londiala_abbyy.gz</original>
+    <mtime>1700880805</mtime>
+    <size>1402184</size>
+    <md5>4b2f76409bb5afeef8df2597986d3a15</md5>
+    <crc32>11644f96</crc32>
+    <sha1>8567cfc98e5bf5a308bb18dd669fb96892b016a3</sha1>
+    <format>EPUB</format>
+  </file>
+  <file name="bhagavadgitawith00londiala.gif" source="derivative">
+    <format>Animated GIF</format>
+    <original>bhagavadgitawith00londiala_jp2.zip</original>
+    <md5>a1e5683a6f8cae4379aed24278f8244a</md5>
+    <mtime>1170735015</mtime>
+    <size>344897</size>
+    <crc32>e92774c5</crc32>
+    <sha1>03dc102d7c37ff5234da1fed7eba27ed9b47ca40</sha1>
+  </file>
+  <file name="bhagavadgitawith00londiala.pdf" source="derivative">
+    <format>Text PDF</format>
+    <original>bhagavadgitawith00londiala_page_numbers.json</original>
+    <mtime>1699123555</mtime>
+    <size>26498477</size>
+    <md5>ba7a03e14558247e75a75060300a90b9</md5>
+    <crc32>8ca5aac4</crc32>
+    <sha1>e07b4483339b2fe24248f718489a5de16c9bb273</sha1>
+  </file>
+  <file name="bhagavadgitawith00londiala_abbyy.gz" source="derivative">
+    <format>Abbyy GZ</format>
+    <original>bhagavadgitawith00londiala_jp2.zip</original>
+    <md5>5db99718cabf15a7c72202d9cad380d7</md5>
+    <mtime>1170737923</mtime>
+    <size>6063623</size>
+    <crc32>99cddf87</crc32>
+    <sha1>94d716cd81d832e875a36acaab0672c12cbb27cb</sha1>
+  </file>
+  <file name="bhagavadgitawith00londiala_archive.torrent" source="metadata">
+    <btih>ea478c0cabab607ceb89da21351676c898c0fcfc</btih>
+    <mtime>1724030500</mtime>
+    <size>15582</size>
+    <md5>3d1a96b4025d50da063e4e2c3fc8db01</md5>
+    <crc32>54f0b865</crc32>
+    <sha1>4b06583603daef52b49b966d5b2a9bb69a9216e1</sha1>
+    <format>Archive BitTorrent</format>
+  </file>
+  <file name="bhagavadgitawith00londiala_chocr.html.gz" source="derivative">
+    <ocr_module_version>0.0.21</ocr_module_version>
+    <ocr_converted>abbyy-to-hocr 1.1.37</ocr_converted>
+    <format>chOCR</format>
+    <original>bhagavadgitawith00londiala_abbyy.gz</original>
+    <mtime>1699122983</mtime>
+    <size>4732630</size>
+    <md5>5366fbc7f2883859f356c90fbc38dc06</md5>
+    <crc32>ec0143cc</crc32>
+    <sha1>f985007484d52995ddfcd3b6c5cbe4292b0be089</sha1>
+  </file>
+  <file name="bhagavadgitawith00londiala_daisy.zip" source="derivative">
+    <original>bhagavadgitawith00londiala_abbyy.gz</original>
+    <mtime>1724030496</mtime>
+    <size>261859</size>
+    <md5>a3a11794b8a646c5da16759a9e005e6f</md5>
+    <crc32>8f80a9a1</crc32>
+    <sha1>0357f384aa2a3344979e6dd5952fb81226e7a1f2</sha1>
+    <format>Daisy</format>
+    <filecount>9</filecount>
+  </file>
+  <file name="bhagavadgitawith00londiala_dc.xml" source="original">
+    <md5>8650da7b1c43e2aac86b92667169f080</md5>
+    <format>Dublin Core</format>
+    <mtime>1648257171</mtime>
+    <size>524</size>
+    <crc32>09ffc6f1</crc32>
+    <sha1>56aaa12819b4722c6d6b2a764e28cef173d969b5</sha1>
+  </file>
+  <file name="bhagavadgitawith00londiala_djvu.txt" source="derivative">
+    <format>DjVuTXT</format>
+    <original>bhagavadgitawith00londiala_djvu.xml</original>
+    <mtime>1699123512</mtime>
+    <size>432707</size>
+    <md5>e136355b2406eebb4252ce1a558bfe06</md5>
+    <crc32>7e9e96a9</crc32>
+    <sha1>b6273260a891acd0c3dcf700bb44a42e96f9af01</sha1>
+  </file>
+  <file name="bhagavadgitawith00londiala_djvu.xml" source="derivative">
+    <format>Djvu XML</format>
+    <original>bhagavadgitawith00londiala_hocr.html</original>
+    <mtime>1699123235</mtime>
+    <size>5520415</size>
+    <md5>99db9c62cb91e66e8370be874a3752d3</md5>
+    <crc32>f01784ac</crc32>
+    <sha1>1b85b06c1128ba014d1c8e17b9036b1079a40570</sha1>
+  </file>
+  <file name="bhagavadgitawith00londiala_files.xml" source="original">
+    <md5>0441349cfe13277f5310ff72893d74f3</md5>
+    <format>Metadata</format>
+    <summation>md5</summation>
+  </file>
+  <file name="bhagavadgitawith00londiala_hocr.html" source="derivative">
+    <hocr_char_to_word_module_version>1.2.0</hocr_char_to_word_module_version>
+    <hocr_char_to_word_hocr_version>1.1.45</hocr_char_to_word_hocr_version>
+    <ocr_module_version>0.0.21</ocr_module_version>
+    <ocr_converted>abbyy-to-hocr 1.1.37</ocr_converted>
+    <format>hOCR</format>
+    <original>bhagavadgitawith00londiala_chocr.html.gz</original>
+    <mtime>1699123204</mtime>
+    <size>10222661</size>
+    <md5>15f19171153a9520a0938940bce9f4a1</md5>
+    <crc32>f04f6f82</crc32>
+    <sha1>8e50ed6b1ba2bc80955add42b049e6737b2f203b</sha1>
+  </file>
+  <file name="bhagavadgitawith00londiala_hocr_pageindex.json.gz" source="derivative">
+    <hocr_pageindex_module_version>1.0.0</hocr_pageindex_module_version>
+    <hocr_pageindex_hocr_version>1.1.15</hocr_pageindex_hocr_version>
+    <format>OCR Page Index</format>
+    <original>bhagavadgitawith00londiala_hocr.html</original>
+    <mtime>1699123280</mtime>
+    <size>4703</size>
+    <md5>fef6bf4f91b5e79e86dd787e8f704a30</md5>
+    <crc32>c72b1e33</crc32>
+    <sha1>0c8e7532abcbf6cac2fc0cdc8183640296bfa57c</sha1>
+  </file>
+  <file name="bhagavadgitawith00londiala_hocr_searchtext.txt.gz" source="derivative">
+    <hocr_fts_text_module_version>1.1.0</hocr_fts_text_module_version>
+    <hocr_fts_text_hocr_version>1.1.15</hocr_fts_text_hocr_version>
+    <word_conf_0_10>18125</word_conf_0_10>
+    <word_conf_11_20>6904</word_conf_11_20>
+    <word_conf_21_30>43203</word_conf_21_30>
+    <word_conf_31_40>0</word_conf_31_40>
+    <word_conf_41_50>0</word_conf_41_50>
+    <word_conf_51_60>0</word_conf_51_60>
+    <word_conf_61_70>0</word_conf_61_70>
+    <word_conf_71_80>0</word_conf_71_80>
+    <word_conf_81_90>0</word_conf_81_90>
+    <word_conf_91_100>0</word_conf_91_100>
+    <format>OCR Search Text</format>
+    <original>bhagavadgitawith00londiala_hocr.html</original>
+    <mtime>1699123344</mtime>
+    <size>164755</size>
+    <md5>5d7039df3181b6b8af855705947cd0ea</md5>
+    <crc32>05aca19a</crc32>
+    <sha1>72c28694ba7d7231e46c24862add48a0d72adf1c</sha1>
+  </file>
+  <file name="bhagavadgitawith00londiala_jp2.zip" source="derivative">
+    <format>Single Page Processed JP2 ZIP</format>
+    <original>bhagavadgitawith00londiala_raw_jp2.zip</original>
+    <md5>2b2d705d7d854d0becc7dd045b7e4420</md5>
+    <mtime>1170734953</mtime>
+    <size>157817689</size>
+    <crc32>d7f66cbe</crc32>
+    <sha1>31362031897a5501c844187d773d10e6fb5ead74</sha1>
+    <filecount>402</filecount>
+  </file>
+  <file name="bhagavadgitawith00londiala_marc.xml" source="original">
+    <md5>695a1e7b2238e863ed72c7e7e64cde4e</md5>
+    <format>MARC</format>
+    <mtime>1170477939</mtime>
+    <size>1487</size>
+    <crc32>827505fc</crc32>
+    <sha1>90f8c59d15bb67a4e22050d5cfee176b2da31209</sha1>
+  </file>
+  <file name="bhagavadgitawith00londiala_meta.mrc" source="original">
+    <md5>89ec8614cf218c86e8ff31afa6310f2b</md5>
+    <format>MARC Binary</format>
+    <mtime>1170477939</mtime>
+    <size>565</size>
+    <crc32>c5b0c7bd</crc32>
+    <sha1>dd48a55f286c2116c0488b78452bce3ca85ece72</sha1>
+  </file>
+  <file name="bhagavadgitawith00londiala_meta.xml" source="original">
+    <format>Metadata</format>
+    <mtime>1699123726</mtime>
+    <size>2575</size>
+    <md5>7e3b5f4173f79bc6a582f585987c7bd9</md5>
+    <crc32>cbefe52a</crc32>
+    <sha1>fb769765ae7d46a6d1900d4a15e7ca287ce1f436</sha1>
+  </file>
+  <file name="bhagavadgitawith00londiala_metasource.xml" source="original">
+    <md5>676f012bbd7cf3008a0cefc2712adb16</md5>
+    <format>MARC Source</format>
+    <mtime>1170477939</mtime>
+    <size>376</size>
+    <crc32>c7aa1d44</crc32>
+    <sha1>d5ca7df6d7d7e95de7d1549dacc58e85e27f8ed2</sha1>
+  </file>
+  <file name="bhagavadgitawith00londiala_page_numbers.json" source="derivative">
+    <hocr_pagenumber_module_version>1.0.3</hocr_pagenumber_module_version>
+    <hocr_pagenumber_hocr_version>1.1.54</hocr_pagenumber_hocr_version>
+    <hocr_pagenumber_confidence>0</hocr_pagenumber_confidence>
+    <format>Page Numbers JSON</format>
+    <original>bhagavadgitawith00londiala_hocr.html</original>
+    <mtime>1699123468</mtime>
+    <size>67715</size>
+    <md5>ee8a72277aadaef57abdee0ff371645c</md5>
+    <crc32>81148817</crc32>
+    <sha1>bea88d1e6d87e6aad6c216eb5d213628dd5a6d7b</sha1>
+  </file>
+  <file name="bhagavadgitawith00londiala_raw_jp2.zip" source="original">
+    <format>Single Page Raw JP2 ZIP</format>
+    <md5>e729009dd48ee65cc0eb3170c57097a6</md5>
+    <mtime>1170734924</mtime>
+    <size>349119222</size>
+    <crc32>44ee0aba</crc32>
+    <sha1>af54c9a0ec24e7102959c2921f5464c39f2d02f2</sha1>
+    <filecount>402</filecount>
+  </file>
+  <file name="scandata.zip" source="original">
+    <format>Scribe Scandata ZIP</format>
+    <md5>f75c9e92f6022587dd0c26e311f501c4</md5>
+    <mtime>1170720151</mtime>
+    <size>46618822</size>
+    <crc32>4faa3a9f</crc32>
+    <sha1>d8c739c0a8ba7aab9e402cf6f6b26c04db5caf2d</sha1>
+    <filecount>11</filecount>
+  </file>
+</files>

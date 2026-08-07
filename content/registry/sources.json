@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-05",
+  "updated_at": "2026-08-07",
   "antar_numbering": {
     "chapters": 18,
     "total_verses": 700,
@@ -2780,6 +2780,81 @@
         }
       ],
       "updated_at": "2026-08-05"
+    },
+    {
+      "id": "bhagavad-gita-translation-en-besant-das-1905-v1",
+      "title": "The Bhagavad-Gita (Besant & Das, 1905)",
+      "creator": "Annie Besant & Bhagavan Das",
+      "translator": "Annie Besant & Bhagavan Das",
+      "publisher": "Theosophical Publishing Society, London and Benares",
+      "year": 1905,
+      "edition": "1905 joint scholarly edition",
+      "platform": "Internet Archive",
+      "provider": "Internet Archive / University of California Libraries scan",
+      "source_url": "https://archive.org/details/bhagavadgitawith00londiala",
+      "item_identifier": "bhagavadgitawith00londiala",
+      "retrieval_timestamp": "2026-08-07T19:16:53Z",
+      "license_displayed": "US public domain (1905 edition; historical imprint rights notice present)",
+      "license_catalog_id": "us-pd-pre-1931",
+      "license_status": "underlying_work=us_public_domain_pre_1931; no_ia_or_theosophical_society_endorsement",
+      "content_kinds": [
+        "translation"
+      ],
+      "language": "en",
+      "edition_tradition": "antar-47-34-candidate",
+      "edition_scope": "full_gita_volume_acquired; chapter_01_inspected",
+      "source_role": "PRIMARY_TRANSLATION_CANDIDATE",
+      "chapter_scope": 1,
+      "chapter_1_verse_count": 47,
+      "chapter_13_verse_count": 34,
+      "expected_verse_count": 47,
+      "total_verses": 700,
+      "matches_antar_numbering": true,
+      "raw_path": "content/raw/translations/besant-das-1905/bhagavadgitawith00londiala.pdf",
+      "raw_directory": "content/raw/translations/besant-das-1905/",
+      "original_filename": "bhagavadgitawith00londiala.pdf",
+      "sha256": "7fb78b0a6b004f195c3ca61c091501084e553627c51cde1c309f2d0620ea6115",
+      "approved_fields": [
+        "english_translation_prose",
+        "verse_labels"
+      ],
+      "prohibited_fields": [
+        "commentary",
+        "introductions",
+        "footnotes",
+        "word_by_word_paraphrase",
+        "running_headers",
+        "page_numbers",
+        "ocr_artifacts",
+        "sanskrit",
+        "unrelated_publisher_material"
+      ],
+      "status": "ACQUIRED_UNREVIEWED",
+      "inspection_doc": "content/translation-selection/besant-das-1905-inspection.md",
+      "label_inventory": "content/translation-selection/besant-das-1905-chapter01-inspection.json",
+      "decision_summary": "KEEP_SWARUPANANDA_BLOCKED_AND_SELECT_BESANT_DAS_V1. 1905 UC Libraries scan acquired; Chapter 1 full page-image audit shows 47 ONE_TO_ONE free-translation units compatible with Package Format v1. No Translation text approved.",
+      "suitability_decision": "SAFE_TO_NORMALIZE_AFTER_EDITORIAL_REVIEW",
+      "package_format_v1_compatible_chapter_01": true,
+      "known_caveats": [
+        "Extract fluent English free translation only; exclude Sanskrit, word-by-word gloss, and footnotes.",
+        "DjVu OCR aid is not authoritative.",
+        "Some Verses (1.1, 1.28, 1.33) rely on Sanskrit ॥ N ॥ identity when Arabic (N) is absent from the fluent block.",
+        "Do not mix with Natesan 1922 Besant-only reprint (bhagavadgitaorlo00besa).",
+        "Prefer this UC Libraries pin over folkscanomy wg1100.",
+        "Swarupananda 1909 remains a separate frozen future edition; do not delete or rewrite that workspace.",
+        "Internet Archive / UC Libraries / Theosophical Publishing Society do not endorse Antar."
+      ],
+      "rejected_alternate_items": [
+        {
+          "item_identifier": "bhagavadgitaorlo00besa",
+          "reason": "Besant-only Natesan 1922 reprint"
+        },
+        {
+          "item_identifier": "wg1100",
+          "reason": "Folkscanomy upload; weaker provenance than UC Libraries pin"
+        }
+      ],
+      "updated_at": "2026-08-07"
     }
   ]
 }

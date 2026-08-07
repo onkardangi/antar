@@ -1,0 +1,159 @@
+{
+  "creatorDisplayed": "Annie Besant and Bhagavan Das",
+  "dateDisplayed": "1905",
+  "editionTarget": {
+    "edition": "1905 joint scholarly edition",
+    "publisher": "Theosophical Publishing Society, London and Benares",
+    "printer": "Freeman & Co. Ltd., Tara Printing Works, Benares",
+    "verification": "Confirmed from scan title page and imprint page",
+    "year": 1905
+  },
+  "editionVerification": {
+    "imprintPageEvidence": [
+      "PRINTED BY FREEMAN & CO. LTD.,",
+      "AT THE TARA PRINTING WORKS, BENARES.",
+      "All Rights Reserved.",
+      "Registered under Act XXV of 1867."
+    ],
+    "rejectedAlternateItems": [
+      "bhagavadgitaorlo00besa (Besant-only Natesan 1922 reprint)",
+      "wg1100 (folkscanomy upload; weaker provenance than UC Libraries pin)"
+    ],
+    "titlePageEvidence": [
+      "THE BHAGAVAD-GITA",
+      "With Samskrit Text, free translation into English, a word-for-word translation, and an Introduction on Samskrit Grammar.",
+      "BY ANNIE BESANT AND BHAGAVAN DAS",
+      "THEOSOPHICAL PUBLISHING SOCIETY",
+      "LONDON AND BENARES",
+      "1905"
+    ],
+    "verifiedAt": "2026-08-07",
+    "verifiedFromScan": true,
+    "verificationLeafHints": {
+      "titlePageLeaf": 5,
+      "imprintPageLeaf": 6
+    }
+  },
+  "endorsement": "Internet Archive / University of California Libraries / Theosophical Publishing Society do not endorse Antar.",
+  "iaMetadataSummary": {
+    "collection": [
+      "cdl",
+      "americana"
+    ],
+    "contributor": "University of California Libraries",
+    "creator": null,
+    "date": "1905",
+    "description": "xxxiii, 348 p",
+    "identifier": "bhagavadgitawith00londiala",
+    "identifierArk": "ark:/13960/t9b56fw9r",
+    "language": "eng",
+    "possibleCopyrightStatus": "NOT_IN_COPYRIGHT",
+    "publicdate": "2007-02-02 20:45:44",
+    "publisher": "London : Theosophical Publishing Society",
+    "title": "The Bhagavad-Gita : with Samskrit text, free translation into English, a word-for-word translation, and an introduction on Samskrit grammar",
+    "year": null
+  },
+  "itemId": "bhagavadgitawith00londiala",
+  "itemUrl": "https://archive.org/details/bhagavadgitawith00londiala",
+  "language": "en",
+  "licenseCatalogId": "us-pd-pre-1931",
+  "metadataApiUrl": "https://archive.org/metadata/bhagavadgitawith00londiala",
+  "ocrIsAuthoritative": false,
+  "pinnedMasterFilename": "bhagavadgitawith00londiala.pdf",
+  "platform": "Internet Archive",
+  "rejectedMasters": [
+    {
+      "itemId": "bhagavadgitaorlo00besa",
+      "reason": "Besant-only Natesan Madras 1922 cheap edition; not the 1905 joint Besant & Das scholarly printing"
+    },
+    {
+      "itemId": "wg1100",
+      "reason": "Folkscanomy upload claiming 1905; prefer UC Libraries institutional pin bhagavadgitawith00londiala"
+    }
+  ],
+  "retainedArtifacts": [
+    {
+      "authoritativeForTranscription": true,
+      "filename": "bhagavadgitawith00londiala.pdf",
+      "format": "Text PDF",
+      "iaMd5": "ba7a03e14558247e75a75060300a90b9",
+      "iaSha1": "e07b4483339b2fe24248f718489a5de16c9bb273",
+      "ocrInspectionAidOnly": false,
+      "role": "pinned_master",
+      "sha256": "7fb78b0a6b004f195c3ca61c091501084e553627c51cde1c309f2d0620ea6115",
+      "sizeBytes": 26498477,
+      "sourceUrl": "https://archive.org/download/bhagavadgitawith00londiala/bhagavadgitawith00londiala.pdf",
+      "writeStatus": "written"
+    },
+    {
+      "authoritativeForTranscription": false,
+      "filename": "bhagavadgitawith00londiala_meta.xml",
+      "format": "Metadata",
+      "iaMd5": "7e3b5f4173f79bc6a582f585987c7bd9",
+      "iaSha1": "fb769765ae7d46a6d1900d4a15e7ca287ce1f436",
+      "ocrInspectionAidOnly": false,
+      "role": "retained",
+      "sha256": "553fc5476fcb051dab1d7144cf806d16f51a05d9651a1a379f5ba57cbfed81c9",
+      "sizeBytes": 2575,
+      "sourceUrl": "https://archive.org/download/bhagavadgitawith00londiala/bhagavadgitawith00londiala_meta.xml",
+      "writeStatus": "written"
+    },
+    {
+      "authoritativeForTranscription": false,
+      "filename": "bhagavadgitawith00londiala_files.xml",
+      "format": "Metadata",
+      "iaMd5": "0441349cfe13277f5310ff72893d74f3",
+      "iaSha1": null,
+      "ocrInspectionAidOnly": false,
+      "role": "retained",
+      "sha256": "8fa12fb9ed4ee032e12e84aa7db265a64886fccf1c881e96239998bc534539ba",
+      "sizeBytes": 9556,
+      "sourceUrl": "https://archive.org/download/bhagavadgitawith00londiala/bhagavadgitawith00londiala_files.xml",
+      "writeStatus": "written"
+    },
+    {
+      "authoritativeForTranscription": false,
+      "filename": "bhagavadgitawith00londiala_djvu.txt",
+      "format": "DjVuTXT",
+      "iaMd5": "e136355b2406eebb4252ce1a558bfe06",
+      "iaSha1": "b6273260a891acd0c3dcf700bb44a42e96f9af01",
+      "ocrInspectionAidOnly": true,
+      "role": "retained",
+      "sha256": "ad4c9e6afe98be1f6fd33b237e9f56441d44989b94ea509efd03692a8f8fca84",
+      "sizeBytes": 432707,
+      "sourceUrl": "https://archive.org/download/bhagavadgitawith00londiala/bhagavadgitawith00londiala_djvu.txt",
+      "writeStatus": "written"
+    },
+    {
+      "authoritativeForTranscription": false,
+      "filename": "bhagavadgitawith00londiala_page_numbers.json",
+      "format": "Page Numbers JSON",
+      "iaMd5": "ee8a72277aadaef57abdee0ff371645c",
+      "iaSha1": "bea88d1e6d87e6aad6c216eb5d213628dd5a6d7b",
+      "ocrInspectionAidOnly": true,
+      "role": "retained",
+      "sha256": "96099b5865979afc2a3f2fd89046cc5756ca8efa129f7386d9abb12c3c49f0bc",
+      "sizeBytes": 67715,
+      "sourceUrl": "https://archive.org/download/bhagavadgitawith00londiala/bhagavadgitawith00londiala_page_numbers.json",
+      "writeStatus": "written"
+    },
+    {
+      "authoritativeForTranscription": false,
+      "filename": "ia-metadata-api.json",
+      "format": "JSON",
+      "ocrInspectionAidOnly": false,
+      "role": "ia_metadata_api_snapshot",
+      "sha256": "f86662baa26c1158ad098cbd4ecbfe2d73863ee36bc3f1a3c02036f94c161117",
+      "sizeBytes": 77263,
+      "sourceUrl": "https://archive.org/metadata/bhagavadgitawith00londiala",
+      "writeStatus": "present"
+    }
+  ],
+  "retrievalTimestamp": "2026-08-07T19:16:53Z",
+  "scope": "Chapter 1 inspection acquisition; no Translation approval",
+  "sourceRole": "PRIMARY_TRANSLATION_CANDIDATE",
+  "status": "ACQUIRED_UNREVIEWED",
+  "title": "The Bhagavad-Gita : with Samskrit text, free translation into English, a word-for-word translation, and an introduction on Samskrit grammar",
+  "translator": "Annie Besant & Bhagavan Das",
+  "userAgent": "AntarContentAcquisition/0.1 (+https://github.com/antar-project/antar; content-acquisition@antar.example)"
+}

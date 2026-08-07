@@ -33,10 +33,32 @@ python3 content/acquisition/translation/inspect_translation_labels.py \
 python3 -m unittest discover content/acquisition/translation/tests
 ```
 
-## Phase 2 pin
+## Current production pin (Besant & Das 1905)
+
+```bash
+python3 content/acquisition/translation/fetch_internet_archive_item.py \
+  --item-id bhagavadgitawith00londiala \
+  --output-dir content/raw/translations/besant-das-1905 \
+  --pinned-master bhagavadgitawith00londiala.pdf \
+  --file bhagavadgitawith00londiala.pdf \
+  --file bhagavadgitawith00londiala_meta.xml \
+  --file bhagavadgitawith00londiala_files.xml \
+  --file bhagavadgitawith00londiala_djvu.txt \
+  --file bhagavadgitawith00londiala_page_numbers.json
+```
+
+| Field | Value |
+|-------|-------|
+| Item | `bhagavadgitawith00londiala` |
+| Master | `bhagavadgitawith00londiala.pdf` |
+| Role | `PRIMARY_TRANSLATION_CANDIDATE` |
+| Rejected | `bhagavadgitaorlo00besa` (Natesan 1922); `wg1100` (folkscanomy) |
+
+## Frozen future edition (Swarupananda 1909)
 
 | Field | Value |
 |-------|-------|
 | Item | `in.ernet.dli.2015.386852` |
 | Master | `2015.386852.Srimad-Bhagavad.pdf` |
 | Rejected | `in.ernet.dli.2015.237563` (1967 tenth impression) |
+| Note | Incomplete pinned scan; do not silently repair from later editions |

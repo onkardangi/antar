@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-05",
+  "updated_at": "2026-08-07",
   "licenses": [
     {
       "id": "cc0-1.0",
@@ -32,7 +32,7 @@
       "spdx": null,
       "url": "https://copyright.gov/circs/circ15a.pdf",
       "text_path": null,
-      "notes": "Classification for US-published or US-PD-eligible works published before 1931. Recorded for Swarupananda 1909 first-edition acquisition. Historical imprint notices (e.g. ALL RIGHTS RESERVED) do not by themselves defeat US public-domain status for this class. License alone does not imply Antar import approval."
+      "notes": "Classification for US-published or US-PD-eligible works published before 1931. Recorded for Swarupananda 1909 and Besant & Das 1905 Translation acquisitions. Historical imprint notices (e.g. ALL RIGHTS RESERVED) do not by themselves defeat US public-domain status for this class. License alone does not imply Antar import approval."
     }
   ]
 }

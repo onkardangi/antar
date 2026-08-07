@@ -50,6 +50,26 @@ def sample_ia_metadata() -> dict:
     }
 
 
+def sample_besant_ia_metadata() -> dict:
+    return {
+        "metadata": {
+            "identifier": "bhagavadgitawith00londiala",
+            "title": "The Bhagavad-Gita : with Samskrit text",
+            "date": "1905",
+            "publisher": "London : Theosophical Publishing Society",
+        },
+        "files": [
+            {
+                "name": "bhagavadgitawith00londiala.pdf",
+                "format": "Text PDF",
+                "size": "4",
+                "md5": "x",
+                "sha1": "y",
+            }
+        ],
+    }
+
+
 class FetchInternetArchiveItemTests(unittest.TestCase):
     def test_select_file_records_requires_all_names(self) -> None:
         meta = sample_ia_metadata()
@@ -59,6 +79,21 @@ class FetchInternetArchiveItemTests(unittest.TestCase):
         self.assertIn("2015.386852.Srimad-Bhagavad.pdf", selected)
         with self.assertRaises(AcquisitionError):
             select_file_records(meta, ["missing.pdf"])
+
+    def test_besant_profile_seeds_translator_year(self) -> None:
+        from fetch_internet_archive_item import build_acquisition_metadata
+
+        meta = build_acquisition_metadata(
+            item_id="bhagavadgitawith00londiala",
+            retrieval_timestamp="2026-08-07T00:00:00Z",
+            user_agent="test",
+            ia_metadata=sample_besant_ia_metadata(),
+            retained=[],
+            pinned_master="bhagavadgitawith00londiala.pdf",
+        )
+        self.assertEqual(meta["translator"], "Annie Besant & Bhagavan Das")
+        self.assertEqual(meta["editionTarget"]["year"], 1905)
+        self.assertNotEqual(meta["translator"], "Swami Swarupananda")
 
     def test_refuse_overwrite_different_bytes(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

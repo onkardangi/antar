@@ -137,31 +137,12 @@ def select_file_records(
     return {name: by_name[name] for name in filenames}
 
 
-def build_acquisition_metadata(
-    *,
-    item_id: str,
-    retrieval_timestamp: str,
-    user_agent: str,
-    ia_metadata: dict[str, Any],
-    retained: list[dict[str, Any]],
-    pinned_master: str,
-) -> dict[str, Any]:
-    md = ia_metadata.get("metadata") or {}
-    return {
-        "platform": "Internet Archive",
-        "itemId": item_id,
-        "itemUrl": f"https://archive.org/details/{item_id}",
-        "metadataApiUrl": metadata_api_url(item_id),
-        "retrievalTimestamp": retrieval_timestamp,
-        "userAgent": user_agent,
-        "status": "ACQUIRED_UNREVIEWED",
-        "sourceRole": "PRIMARY_TRANSLATION_CANDIDATE",
-        "language": "en",
+# Edition-specific acquisition defaults keyed by IA item id.
+# Human verification still required after download; these seed metadata.json only.
+EDITION_PROFILES: dict[str, dict[str, Any]] = {
+    "in.ernet.dli.2015.386852": {
         "translator": "Swami Swarupananda",
-        "title": md.get("title") or "Srimad Bhagavad Gita",
-        "creatorDisplayed": md.get("creator"),
-        "dateDisplayed": md.get("date") or md.get("year"),
-        "pinnedMasterFilename": pinned_master,
+        "defaultTitle": "Srimad Bhagavad Gita",
         "editionTarget": {
             "edition": "First Edition",
             "year": 1909,
@@ -178,6 +159,83 @@ def build_acquisition_metadata(
                 ),
             }
         ],
+        "endorsement": (
+            "Internet Archive / Digital Library of India / Advaita Ashrama do "
+            "not endorse Antar."
+        ),
+    },
+    "bhagavadgitawith00londiala": {
+        "translator": "Annie Besant & Bhagavan Das",
+        "defaultTitle": (
+            "The Bhagavad-Gita : with Samskrit text, free translation into "
+            "English, a word-for-word translation, and an introduction on "
+            "Samskrit grammar"
+        ),
+        "editionTarget": {
+            "edition": "1905 joint scholarly edition",
+            "year": 1905,
+            "publisher": "Theosophical Publishing Society, London and Benares",
+            "printer": "Freeman & Co. Ltd., Tara Printing Works, Benares",
+            "verification": "Confirm from scan title page after acquisition",
+        },
+        "rejectedMasters": [
+            {
+                "itemId": "bhagavadgitaorlo00besa",
+                "reason": (
+                    "Besant-only Natesan Madras 1922 cheap edition; not the "
+                    "1905 joint Besant & Das scholarly printing"
+                ),
+            },
+            {
+                "itemId": "wg1100",
+                "reason": (
+                    "Folkscanomy upload claiming 1905; prefer UC Libraries "
+                    "institutional pin bhagavadgitawith00londiala"
+                ),
+            },
+        ],
+        "endorsement": (
+            "Internet Archive / University of California Libraries / "
+            "Theosophical Publishing Society do not endorse Antar."
+        ),
+    },
+}
+
+
+def build_acquisition_metadata(
+    *,
+    item_id: str,
+    retrieval_timestamp: str,
+    user_agent: str,
+    ia_metadata: dict[str, Any],
+    retained: list[dict[str, Any]],
+    pinned_master: str,
+) -> dict[str, Any]:
+    md = ia_metadata.get("metadata") or {}
+    profile = EDITION_PROFILES.get(item_id, {})
+    return {
+        "platform": "Internet Archive",
+        "itemId": item_id,
+        "itemUrl": f"https://archive.org/details/{item_id}",
+        "metadataApiUrl": metadata_api_url(item_id),
+        "retrievalTimestamp": retrieval_timestamp,
+        "userAgent": user_agent,
+        "status": "ACQUIRED_UNREVIEWED",
+        "sourceRole": "PRIMARY_TRANSLATION_CANDIDATE",
+        "language": "en",
+        "translator": profile.get("translator") or md.get("creator") or "unknown",
+        "title": md.get("title") or profile.get("defaultTitle") or item_id,
+        "creatorDisplayed": md.get("creator"),
+        "dateDisplayed": md.get("date") or md.get("year"),
+        "pinnedMasterFilename": pinned_master,
+        "editionTarget": profile.get("editionTarget")
+        or {
+            "edition": "unspecified",
+            "year": None,
+            "publisher": md.get("publisher"),
+            "verification": "Confirm from scan title page after acquisition",
+        },
+        "rejectedMasters": list(profile.get("rejectedMasters") or []),
         "ocrIsAuthoritative": False,
         "retainedArtifacts": retained,
         "iaMetadataSummary": {
@@ -191,10 +249,8 @@ def build_acquisition_metadata(
             "publicdate": md.get("publicdate"),
             "collection": md.get("collection"),
         },
-        "endorsement": (
-            "Internet Archive / Digital Library of India / Advaita Ashrama do "
-            "not endorse Antar."
-        ),
+        "endorsement": profile.get("endorsement")
+        or "Internet Archive does not endorse Antar.",
         "scope": "Chapter 1 inspection acquisition; no Translation approval",
     }
 
