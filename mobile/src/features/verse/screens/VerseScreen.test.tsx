@@ -178,20 +178,32 @@ describe('VerseScreen', () => {
     });
   });
 
-  it('renders Sanskrit and disables Previous on the first verse', async () => {
+  it('renders a quiet combined reference then Sanskrit, with Previous disabled on the first verse', async () => {
     renderVerse();
 
     await waitFor(() => {
       expect(screen.getByTestId('verse-success')).toBeTruthy();
     });
 
-    expect(screen.getByTestId('verse-chapter-label')).toHaveTextContent('Chapter 1');
-    expect(screen.getByTestId('verse-number-label')).toHaveTextContent('Verse 1');
-    expect(screen.getByTestId('verse-canonical-reference')).toHaveTextContent('1.1');
-    expect(screen.getByTestId('verse-sanskrit-text')).toHaveTextContent(VERSE_1.sanskritText);
+    expect(screen.getByTestId('verse-reference')).toHaveTextContent(
+      'Chapter 1 · Verse 1',
+    );
+    expect(screen.getByLabelText('Chapter 1, Verse 1')).toBeTruthy();
+    expect(screen.queryByTestId('verse-chapter-label')).toBeNull();
+    expect(screen.queryByTestId('verse-number-label')).toBeNull();
+    expect(screen.queryByTestId('verse-canonical-reference')).toBeNull();
+    expect(screen.queryByText('1.1')).toBeNull();
+    expect(screen.getByTestId('verse-sanskrit-text')).toHaveTextContent(
+      VERSE_1.sanskritText,
+    );
     expect(screen.getByLabelText('Previous verse')).toBeDisabled();
     expect(screen.getByLabelText('Next verse')).toBeEnabled();
     expect(screen.queryByText('Verse reading will arrive')).toBeNull();
+    expect(screen.queryByText(/commentary/i)).toBeNull();
+    expect(screen.queryByText(/saar/i)).toBeNull();
+    expect(screen.queryByText(/reflect/i)).toBeNull();
+    expect(screen.queryByText(/home/i)).toBeNull();
+    expect(screen.queryByText(/transliteration/i)).toBeNull();
   });
 
   it('renders Sanskrit then Translation with provider attribution', async () => {
@@ -256,7 +268,7 @@ describe('VerseScreen', () => {
     });
   });
 
-  it('keeps Sanskrit visible when Translation returns 404', async () => {
+  it('collapses Translation silently when Translation returns 404', async () => {
     const loadTranslation = jest.fn(async () => {
       throw new ApiError('Backend responded with HTTP 404.', {
         kind: 'http',
@@ -271,21 +283,21 @@ describe('VerseScreen', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByTestId('verse-translation-unavailable')).toBeTruthy();
+      expect(screen.getByTestId('verse-success')).toBeTruthy();
+      expect(screen.getByTestId('verse-navigation')).toBeTruthy();
+      expect(screen.queryByTestId('verse-translation-block')).toBeNull();
     });
 
-    expect(screen.getByTestId('verse-success')).toBeTruthy();
     expect(screen.getByTestId('verse-sanskrit-text')).toHaveTextContent(
       VERSE_1.sanskritText,
     );
-    expect(screen.getByTestId('verse-translation-unavailable')).toHaveTextContent(
-      'Translation unavailable.',
-    );
+    expect(screen.queryByTestId('verse-translation-unavailable')).toBeNull();
+    expect(screen.queryByText(/translation unavailable/i)).toBeNull();
     expect(screen.queryByTestId('verse-error')).toBeNull();
     expect(progress.recordVerseOpened).toHaveBeenCalledTimes(1);
   });
 
-  it('maps Translation network failure to unavailable without Verse error UI', async () => {
+  it('maps Translation network failure to silent collapse without Verse error UI', async () => {
     const progress = createProgressServiceMock();
     renderVerse({
       loadTranslation: async () => {
@@ -297,16 +309,19 @@ describe('VerseScreen', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByTestId('verse-translation-unavailable')).toBeTruthy();
+      expect(screen.getByTestId('verse-success')).toBeTruthy();
+      expect(screen.getByTestId('verse-navigation')).toBeTruthy();
+      expect(screen.queryByTestId('verse-translation-block')).toBeNull();
     });
 
     expect(screen.getByTestId('verse-sanskrit-text')).toBeTruthy();
+    expect(screen.queryByText(/translation unavailable/i)).toBeNull();
     expect(screen.queryByTestId('verse-error')).toBeNull();
     expect(screen.queryByText('Unable to load this verse.')).toBeNull();
     expect(progress.recordVerseOpened).toHaveBeenCalledTimes(1);
   });
 
-  it('maps Translation HTTP 500 to quiet unavailable without Verse error UI', async () => {
+  it('maps Translation HTTP 500 to silent collapse without Verse error UI', async () => {
     const progress = createProgressServiceMock();
     renderVerse({
       loadTranslation: async () => {
@@ -319,18 +334,20 @@ describe('VerseScreen', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByTestId('verse-translation-unavailable')).toBeTruthy();
+      expect(screen.getByTestId('verse-success')).toBeTruthy();
+      expect(screen.getByTestId('verse-navigation')).toBeTruthy();
+      expect(screen.queryByTestId('verse-translation-block')).toBeNull();
     });
 
-    expect(screen.getByTestId('verse-success')).toBeTruthy();
     expect(screen.getByTestId('verse-sanskrit-text')).toHaveTextContent(
       VERSE_1.sanskritText,
     );
+    expect(screen.queryByText(/translation unavailable/i)).toBeNull();
     expect(screen.queryByTestId('verse-error')).toBeNull();
     expect(progress.recordVerseOpened).toHaveBeenCalledTimes(1);
   });
 
-  it('maps Translation parse failure to quiet unavailable without Verse error UI', async () => {
+  it('maps Translation parse failure to silent collapse without Verse error UI', async () => {
     const progress = createProgressServiceMock();
     renderVerse({
       loadTranslation: async () => {
@@ -342,13 +359,15 @@ describe('VerseScreen', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByTestId('verse-translation-unavailable')).toBeTruthy();
+      expect(screen.getByTestId('verse-success')).toBeTruthy();
+      expect(screen.getByTestId('verse-navigation')).toBeTruthy();
+      expect(screen.queryByTestId('verse-translation-block')).toBeNull();
     });
 
-    expect(screen.getByTestId('verse-success')).toBeTruthy();
     expect(screen.getByTestId('verse-sanskrit-text')).toHaveTextContent(
       VERSE_1.sanskritText,
     );
+    expect(screen.queryByText(/translation unavailable/i)).toBeNull();
     expect(screen.queryByTestId('verse-error')).toBeNull();
     expect(progress.recordVerseOpened).toHaveBeenCalledTimes(1);
   });
@@ -735,7 +754,7 @@ describe('VerseScreen', () => {
     expect(loadVerse).toHaveBeenCalledTimes(2);
   });
 
-  it('exposes Back and heading accessibility', async () => {
+  it('exposes Back, one combined Verse reference, and Translation accessibility', async () => {
     const navigation = createNavigationMock();
     renderVerse({
       navigation,
@@ -747,7 +766,9 @@ describe('VerseScreen', () => {
     });
 
     expect(screen.getByLabelText('Go back')).toBeTruthy();
-    expect(screen.getByRole('header', { name: 'Chapter 1' })).toBeTruthy();
+    expect(screen.getByLabelText('Chapter 1, Verse 1')).toBeTruthy();
+    expect(screen.getAllByLabelText('Chapter 1, Verse 1')).toHaveLength(1);
+    expect(screen.queryByRole('header', { name: 'Chapter 1' })).toBeNull();
     expect(screen.getByRole('header', { name: 'Translation' })).toBeTruthy();
     expect(screen.getByLabelText('Provider FIXTURE_PROVIDER')).toBeTruthy();
     fireEvent.press(screen.getByLabelText('Go back'));

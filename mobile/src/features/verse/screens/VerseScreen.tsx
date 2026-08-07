@@ -67,13 +67,14 @@ function hasRealSanskrit(verse: VerseDetail): boolean {
 function toTranslationBlockState(
   state: TranslationState,
 ): TranslationBlockState | null {
-  if (state.kind === 'idle') {
-    return null;
+  if (state.kind === 'loading') {
+    return { kind: 'loading' };
   }
   if (state.kind === 'ready') {
     return { kind: 'ready', translation: state.translation };
   }
-  return { kind: state.kind };
+  // idle + unavailable: omit Translation section entirely (silent collapse).
+  return null;
 }
 
 export function VerseScreen({
@@ -84,7 +85,7 @@ export function VerseScreen({
   loadChapterVerses = listChapterVerses,
   readingProgressService: readingProgressOverride,
 }: Props) {
-  const { verseId, chapterNumber, verseNumber } = route.params;
+  const { verseId, chapterNumber } = route.params;
   const insets = useSafeAreaInsets();
   const contextReadingProgress = useReadingProgressService();
   const readingProgressService =
@@ -226,7 +227,6 @@ export function VerseScreen({
             ? 'verse-error'
             : 'verse-success'
       }
-      accessibilityLabel={`Chapter ${chapterNumber}, Verse ${verseNumber}`}
     >
       <ScreenHeader
         layout="inline"
@@ -272,7 +272,6 @@ export function VerseScreen({
           <VerseReadingBody
             chapterNumber={verseState.verse.chapterNumber}
             verseNumber={verseState.verse.verseNumber}
-            canonicalReference={verseState.verse.canonicalReference}
             sanskritText={verseState.verse.sanskritText}
           />
           {translationBlockState != null ? (

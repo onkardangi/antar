@@ -70,13 +70,15 @@ export const chapterSpacing = {
 export const verseSpacing = {
   ...screenHeaderSpacing,
   headerBottom: 20,
-  contentTop: 34,
-  metaStackGap: 8,
-  metaToBodyGap: 28,
-  /** Gap between Sanskrit and the subordinate Translation section. */
-  bodyToTranslationGap: 36,
+  /** Top padding before the quiet Verse Reference (Back → reference). */
+  contentTop: 12,
+  /** Small/medium pause between Reference and Sanskrit. */
+  referenceToBodyGap: 16,
+  /** Generous section pause between Sanskrit and Translation. */
+  bodyToTranslationGap: 40,
   translationStackGap: 8,
-  bodyToNavGap: 32,
+  /** Generous section pause before Previous / Next. */
+  bodyToNavGap: 40,
   navGap: 24,
   bottomPadding: 64,
 } as const;

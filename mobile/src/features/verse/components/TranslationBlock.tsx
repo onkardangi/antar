@@ -5,8 +5,7 @@ import type { VerseTranslation } from '../model/translationTypes';
 
 export type TranslationBlockState =
   | { kind: 'loading' }
-  | { kind: 'ready'; translation: VerseTranslation }
-  | { kind: 'unavailable' };
+  | { kind: 'ready'; translation: VerseTranslation };
 
 type Props = {
   state: TranslationBlockState;
@@ -15,6 +14,7 @@ type Props = {
 /**
  * Subordinate Translation layer of the Verse Reader Scripture Stack.
  * Visually quieter than Sanskrit. No cards, icons, or callouts.
+ * Unavailable Translation is omitted entirely by the parent (silent collapse).
  */
 export function TranslationBlock({ state }: Props) {
   return (
@@ -38,16 +38,6 @@ export function TranslationBlock({ state }: Props) {
           accessibilityLabel="Loading translation"
         >
           Loading translation…
-        </Text>
-      ) : null}
-
-      {state.kind === 'unavailable' ? (
-        <Text
-          style={styles.placeholder}
-          testID="verse-translation-unavailable"
-          accessibilityLabel="Translation unavailable"
-        >
-          Translation unavailable.
         </Text>
       ) : null}
 

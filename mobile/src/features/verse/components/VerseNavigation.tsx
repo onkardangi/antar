@@ -11,7 +11,7 @@ type Props = {
 
 /**
  * In-chapter Previous / Next controls for the Verse Reader.
- * Disabled at the first and last Verse of the current Chapter.
+ * Visually quiet page-turn affordances; disabled at chapter ends.
  */
 export function VerseNavigation({
   previousEnabled,
@@ -71,11 +71,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   label: {
-    ...typography.introduction,
-    color: color.textSecondary,
+    ...typography.caption,
+    color: color.textTertiary,
   },
   disabled: {
-    opacity: 0.35,
+    opacity: 0.18,
   },
   pressed: {
     opacity: 0.55,

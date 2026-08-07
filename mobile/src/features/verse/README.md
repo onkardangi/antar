@@ -15,18 +15,19 @@ failures never become Verse errors.
 ## Current stack
 
 ```text
-Verse reference
+Quiet Verse Reference (`Chapter N · Verse N`)
 → Sanskrit
-→ Translation (provider attribution + text, or quiet unavailable)
-→ Previous / Next
+→ Translation when present (provider attribution + text)
+→ Quiet Previous / Next
 ```
 
 ## Behavior
 
 - Sanskrit remains readable when Translation is missing, unpublished, slow, or failing.
+- Unavailable Translation collapses silently — no section, label, or error copy.
 - V1 attribution uses Translation `provider` (no invented publication year).
 - Reading Progress records only after accepted Sanskrit success; Translation does not write progress.
-- Synthetic fixture content may be present locally for a few verses; most verses show “Translation unavailable.” A real licensed corpus is not imported in this slice.
+- Synthetic fixture content may be present locally for a few verses; most verses omit Translation until a licensed corpus is imported.
 
 ## Not in this slice
 
