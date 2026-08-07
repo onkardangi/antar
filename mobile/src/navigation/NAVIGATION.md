@@ -17,25 +17,46 @@ React Navigation with a native stack:
 
 ```text
 RootNavigator
-├── Library (initial)
-├── ChapterPlaceholder
+├── Home (initial)
+├── Library
+├── Chapter
+├── VerseReader
 └── FoundationStatus (local validation)
 ```
 
-Native stack chrome is hidden; Library and ChapterPlaceholder use the shared
-`ScreenHeader` from the design system.
+Native stack chrome is hidden; product screens use the shared `ScreenHeader`
+from the design system.
 
-Back is passed only when `navigation.canGoBack()` is true. While Library is the
-root route, ScreenHeader shows the application title without a Back action.
+## Primary flows
 
-No bottom tabs, Settings entry, or authentication flow yet. Verse lists are deferred.
+```text
+Home
+  ├── Today's Invitation → VerseReader
+  └── Browse Bhagavad Gita → Library → Chapter → VerseReader
+```
 
-## ChapterPlaceholder params
+Back follows normal stack history:
+
+- Library Back → Home (when Library was opened from Home)
+- Chapter Back → Library
+- VerseReader Back → previous screen (Home or Chapter)
+
+Back is passed only when `navigation.canGoBack()` is true. Home is the root
+route, so ScreenHeader omits Back there.
+
+No bottom tabs, Settings entry, or authentication flow yet.
+
+## Chapter params
 
 ```text
 chapterId
 chapterNumber
 ```
 
-`chapterId` is retained because the existing navigation contract already used it.
-Handoff requires `chapterNumber`; additional display fields are not passed.
+## VerseReader params
+
+```text
+verseId
+verseNumber
+chapterNumber
+```

@@ -5,6 +5,7 @@ export {
   librarySpacing,
   chapterSpacing,
   verseSpacing,
+  homeSpacing,
 } from './tokens/spacing';
 export { typography, fontFamily } from './tokens/typography';
 

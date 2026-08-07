@@ -130,4 +130,38 @@ export const typography = {
     fontWeight: '400' as const,
     lineHeight: 18,
   },
+  /**
+   * Home invitation destination (Chapter N · Verse N).
+   * Focal content line — elegant destination, not a page heading.
+   */
+  homeInvitationDestination: {
+    fontFamily: fontFamily.lora,
+    fontSize: 18,
+    fontWeight: '400' as const,
+    lineHeight: 26,
+  },
+  /**
+   * Home invitation action (Continue Reading →).
+   * Quieter than the destination so the eye lands on Chapter · Verse first.
+   */
+  homeInvitationAction: {
+    fontFamily: fontFamily.sourceSans,
+    fontSize: 15,
+    fontWeight: '400' as const,
+    lineHeight: 22,
+  },
+  /** Home invitation supporting / quiet copy. */
+  homeInvitationContext: {
+    fontFamily: fontFamily.sourceSans,
+    fontSize: 15,
+    fontWeight: '400' as const,
+    lineHeight: 22,
+  },
+  /** Home secondary Browse entry. */
+  homeBrowse: {
+    fontFamily: fontFamily.sourceSans,
+    fontSize: 15,
+    fontWeight: '400' as const,
+    lineHeight: 22,
+  },
 } as const;

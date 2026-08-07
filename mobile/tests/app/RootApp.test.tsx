@@ -8,7 +8,7 @@ jest.mock('../../src/features/library/api/chapterClient', () => ({
   listChapters: jest.fn(
     () =>
       new Promise(() => {
-        // Keep Library on the loading state for this render assertion.
+        // Keep Begin Journey canonical-start resolution pending.
       }),
   ),
 }));
@@ -18,7 +18,7 @@ jest.mock('../../src/design-system/fonts/AppFonts', () => ({
 }));
 
 describe('application shell', () => {
-  it('renders the Library navigation shell as the primary route', async () => {
+  it('renders the Home navigation shell as the primary route', async () => {
     render(
       <SafeAreaProvider initialMetrics={TEST_WINDOW_METRICS}>
         <AppBootstrap />
@@ -26,9 +26,10 @@ describe('application shell', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByTestId('library-loading')).toBeTruthy();
+      expect(screen.getByTestId('home-screen')).toBeTruthy();
     });
-    expect(screen.getByTestId('scripture-introduction')).toBeTruthy();
-    expect(screen.getByText('Bhagavad Gita')).toBeTruthy();
+    expect(screen.getByTestId('home-invitation-heading')).toBeTruthy();
+    expect(screen.getByTestId('home-browse')).toBeTruthy();
+    expect(screen.getByTestId('home-invitation-loading')).toBeTruthy();
   });
 });

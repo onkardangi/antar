@@ -8,7 +8,11 @@ import { typography } from '../tokens/typography';
 export type ScreenHeaderLayout = 'stacked' | 'inline';
 
 type Props = {
-  title?: string;
+  /**
+   * Header title. Defaults to `Antar`.
+   * Pass `null` to omit the title entirely (Library: scripture owns page identity).
+   */
+  title?: string | null;
   /**
    * When provided, renders the Back action. Omit entirely when navigation
    * cannot go back — do not pass a no-op.
@@ -37,6 +41,7 @@ export function ScreenHeader({
 }: Props) {
   const insets = useSafeAreaInsets();
   const showBack = typeof onBack === 'function';
+  const showTitle = title != null;
   const inline = layout === 'inline' && showBack;
 
   const backControl = showBack ? (
@@ -55,11 +60,11 @@ export function ScreenHeader({
     </Pressable>
   ) : null;
 
-  const titleNode = (
+  const titleNode = showTitle ? (
     <Text accessibilityRole="header" style={styles.title}>
       {title}
     </Text>
-  );
+  ) : null;
 
   return (
     <View

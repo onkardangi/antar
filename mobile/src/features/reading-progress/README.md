@@ -15,7 +15,6 @@ Local-only foundation for remembering the Reader’s Verse position on device.
 
 - Backend / account sync
 - Authentication
-- Home / Continue Reading UI
 - Chapter progress indicators
 - Bookmarks, streaks, analytics, notifications
 
@@ -93,8 +92,18 @@ type ReadingProgressClearResult =
   | { cleared: false; reason: 'clear_error' };
 ```
 
-`getReadingProgress()` remains the authoritative read API. Verse Reader ignores
-mutation outcomes; persistence failure never blocks Scripture.
+`getReadingProgress()` remains the authoritative collapsed read API for Verse
+and other non-Home callers. Home does **not** consume storage load sources
+through this service.
+
+Home interprets continuity through a Home-owned loader:
+
+```text
+repository.load() → loadTodaysInvitation → TodaysInvitationState
+```
+
+Storage sources (`ok` / `missing` / `corrupt` / `read_error`) stay inside the
+Home loader/interpreter and are not an app-wide product vocabulary.
 
 ## Failure behavior
 
@@ -102,26 +111,31 @@ mutation outcomes; persistence failure never blocks Scripture.
 | --- | --- |
 | Missing key | Empty valid v1 document; later opens may write a fresh document |
 | Corrupt / incompatible JSON | Empty valid v1 document on load; **does not** overwrite storage on read; a later successful open may replace corrupt data |
-| Storage read exception (`read_error`) | Empty document to callers; **no** `setItem` / `removeItem`; prior stored bytes kept; mutation queue continues |
+| Storage read exception (`read_error`) | Empty document to callers of collapsed reads; **no** `setItem` / `removeItem`; prior stored bytes kept; mutation queue continues |
 | Storage write exception | Non-fatal; previous stored document preserved; result `persisted=false`; mutation queue continues |
 | Verse Reader | Scripture still renders if progress persistence fails |
+| Home invitation | Home loader maps `read_error` to temporary unavailable — never Begin Journey |
 
 ## Composition
 
 ```text
-createReadingProgressService()
+createReadingProgressStack()
   ReadingProgressService
+  ReadingProgressRepository (shared)
     → LocalReadingProgressRepository
       → AsyncStorageAdapter
 ```
 
-`ReadingProgressProvider` in `AppProviders` supplies the real service to production navigation. Tests may inject a mock service.
+`AppProviders` supplies:
+
+- `ReadingProgressProvider` with the stack service (Verse writes)
+- `HomeInvitationProvider` with a loader bound to the same repository
+
+Tests may inject a mock service and/or a Home `loadTodaysInvitation` override.
 
 ## Future consumers
 
-- Continue Reading
-- Chapter progress indication
-- Home
+- Chapter progress indication (not Home storage sources)
 - Optional account sync (not in this phase)
 
 ## Clearing

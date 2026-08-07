@@ -102,6 +102,7 @@ export function LibraryScreen({ navigation, loadChapters = listChapters }: Props
       }
     >
       <ScreenHeader
+        title={null}
         onBack={navigation.canGoBack() ? () => navigation.goBack() : undefined}
       />
       <HairlineRule />

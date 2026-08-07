@@ -220,7 +220,8 @@ describe('LibraryScreen', () => {
       expect(screen.getByTestId('library-success')).toBeTruthy();
     });
 
-    expect(screen.getByText('Antar')).toBeTruthy();
+    expect(screen.queryByText('Antar')).toBeNull();
+    expect(screen.getByText('Bhagavad Gita')).toBeTruthy();
     expect(screen.queryByLabelText('Go back')).toBeNull();
     expect(screen.queryByTestId('screen-header-back')).toBeNull();
     expect(screen.queryByText('Back')).toBeNull();
@@ -234,7 +235,8 @@ describe('LibraryScreen', () => {
       expect(screen.getByTestId('library-success')).toBeTruthy();
     });
 
-    expect(screen.getByText('Antar')).toBeTruthy();
+    expect(screen.queryByText('Antar')).toBeNull();
+    expect(screen.getByText('Bhagavad Gita')).toBeTruthy();
     fireEvent.press(screen.getByLabelText('Go back'));
     expect(navigation.goBack).toHaveBeenCalledTimes(1);
   });

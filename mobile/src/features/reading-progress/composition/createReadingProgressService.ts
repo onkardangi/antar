@@ -1,26 +1,21 @@
-import { AsyncStorageAdapter } from '../../../storage/local/AsyncStorageAdapter';
-import type { LocalStorage } from '../../../storage/local/LocalStorage';
 import {
-  ReadingProgressService,
-} from '../application/ReadingProgressService';
-import type { Clock } from '../model/readingProgressTypes';
-import { LocalReadingProgressRepository } from '../storage/LocalReadingProgressRepository';
+  createReadingProgressStack,
+  type CreateReadingProgressStackOptions,
+} from './createReadingProgressStack';
+import type { ReadingProgressService } from '../application/ReadingProgressService';
 
-export type CreateReadingProgressServiceOptions = {
-  storage?: LocalStorage;
-  clock?: Clock;
-};
+export type CreateReadingProgressServiceOptions = CreateReadingProgressStackOptions;
 
 /**
  * Central production composition for Reading Progress persistence.
  *
  * ReadingProgressService → LocalReadingProgressRepository → AsyncStorageAdapter
+ *
+ * Prefer `createReadingProgressStack` when Home also needs the shared repository
+ * for invitation loading without expanding this service's public API.
  */
 export function createReadingProgressService(
   options: CreateReadingProgressServiceOptions = {},
 ): ReadingProgressService {
-  const storage = options.storage ?? new AsyncStorageAdapter();
-  const repository = new LocalReadingProgressRepository(storage);
-  const clock = options.clock ?? (() => new Date());
-  return new ReadingProgressService(repository, clock);
+  return createReadingProgressStack(options).service;
 }

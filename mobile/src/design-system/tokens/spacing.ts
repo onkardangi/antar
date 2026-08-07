@@ -87,4 +87,30 @@ export const verseSpacing = {
   skeletonLineGap: 12,
 } as const;
 
+/**
+ * Home spacing — Figma-aligned proportions for Today's Invitation hierarchy.
+ * Generous whitespace keeps the invitation as the visual focus.
+ */
+export const homeSpacing = {
+  ...screenHeaderSpacing,
+  headerBottom: 16,
+  /** Pause below header hairline before Today's Invitation. */
+  contentTop: 48,
+  /** Gap between section heading and Chapter · Verse destination. */
+  sectionToDestinationGap: 28,
+  /** Gap between destination and verse preview placeholder. */
+  destinationToPreviewGap: 28,
+  /** Gap between preview placeholder and Continue/Begin action. */
+  previewToActionGap: 36,
+  /** Small gaps inside loading / error stacks. */
+  invitationStackGap: 16,
+  /** Pause between invitation body and Browse divider. */
+  invitationToBrowseGap: 72,
+  /** Padding above Browse after the divider. */
+  browseTop: 28,
+  bottomPadding: 80,
+  skeletonLineHeight: 12,
+  skeletonLineGap: 14,
+} as const;
+
 export type SpacingToken = keyof typeof spacing;
