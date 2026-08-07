@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  ActivityIndicator,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -29,6 +28,8 @@ import {
 } from '../components/TranslationBlock';
 import { VerseNavigation } from '../components/VerseNavigation';
 import { VerseReadingBody } from '../components/VerseReadingBody';
+import { VerseReference } from '../components/VerseReference';
+import { VerseSanskritSkeleton } from '../components/VerseSanskritSkeleton';
 import type { VerseTranslation } from '../model/translationTypes';
 import type { VerseDetail } from '../model/verseTypes';
 
@@ -85,7 +86,7 @@ export function VerseScreen({
   loadChapterVerses = listChapterVerses,
   readingProgressService: readingProgressOverride,
 }: Props) {
-  const { verseId, chapterNumber } = route.params;
+  const { verseId, chapterNumber, verseNumber } = route.params;
   const insets = useSafeAreaInsets();
   const contextReadingProgress = useReadingProgressService();
   const readingProgressService =
@@ -216,6 +217,8 @@ export function VerseScreen({
   const previousEnabled = neighbors.kind === 'ready' && neighbors.previous != null;
   const nextEnabled = neighbors.kind === 'ready' && neighbors.next != null;
   const translationBlockState = toTranslationBlockState(translationState);
+  const showReadingDocument =
+    verseState.kind === 'loading' || verseState.kind === 'success';
 
   return (
     <View
@@ -233,15 +236,6 @@ export function VerseScreen({
         paddingBottom={verseSpacing.headerBottom}
         onBack={navigation.canGoBack() ? () => navigation.goBack() : undefined}
       />
-
-      {verseState.kind === 'loading' ? (
-        <View style={styles.centered} testID="verse-loading-indicator">
-          <ActivityIndicator
-            accessibilityLabel="Loading verse"
-            color={color.textSecondary}
-          />
-        </View>
-      ) : null}
 
       {verseState.kind === 'error' ? (
         <View style={styles.errorBlock} testID="verse-error-message">
@@ -263,36 +257,66 @@ export function VerseScreen({
         </View>
       ) : null}
 
-      {verseState.kind === 'success' ? (
+      {showReadingDocument ? (
         <ScrollView
           style={styles.scroll}
           contentContainerStyle={scrollContentStyle}
           testID="verse-scroll"
         >
-          <VerseReadingBody
-            chapterNumber={verseState.verse.chapterNumber}
-            verseNumber={verseState.verse.verseNumber}
-            sanskritText={verseState.verse.sanskritText}
-          />
-          {translationBlockState != null ? (
-            <TranslationBlock state={translationBlockState} />
+          {verseState.kind === 'loading' ? (
+            <>
+              <View
+                accessible
+                accessibilityLabel="Loading verse"
+                accessibilityState={{ busy: true }}
+                style={styles.loadingBody}
+                testID="verse-loading-skeleton"
+              >
+                <VerseReference
+                  chapterNumber={chapterNumber}
+                  verseNumber={verseNumber}
+                />
+                <VerseSanskritSkeleton />
+              </View>
+              <View style={styles.navWrap}>
+                <VerseNavigation
+                  previousEnabled={false}
+                  nextEnabled={false}
+                  onPrevious={() => {}}
+                  onNext={() => {}}
+                />
+              </View>
+            </>
           ) : null}
-          <View style={styles.navWrap}>
-            <VerseNavigation
-              previousEnabled={previousEnabled}
-              nextEnabled={nextEnabled}
-              onPrevious={() => {
-                if (neighbors.kind === 'ready' && neighbors.previous) {
-                  goToNeighbor(neighbors.previous);
-                }
-              }}
-              onNext={() => {
-                if (neighbors.kind === 'ready' && neighbors.next) {
-                  goToNeighbor(neighbors.next);
-                }
-              }}
-            />
-          </View>
+
+          {verseState.kind === 'success' ? (
+            <>
+              <VerseReadingBody
+                chapterNumber={verseState.verse.chapterNumber}
+                verseNumber={verseState.verse.verseNumber}
+                sanskritText={verseState.verse.sanskritText}
+              />
+              {translationBlockState != null ? (
+                <TranslationBlock state={translationBlockState} />
+              ) : null}
+              <View style={styles.navWrap}>
+                <VerseNavigation
+                  previousEnabled={previousEnabled}
+                  nextEnabled={nextEnabled}
+                  onPrevious={() => {
+                    if (neighbors.kind === 'ready' && neighbors.previous) {
+                      goToNeighbor(neighbors.previous);
+                    }
+                  }}
+                  onNext={() => {
+                    if (neighbors.kind === 'ready' && neighbors.next) {
+                      goToNeighbor(neighbors.next);
+                    }
+                  }}
+                />
+              </View>
+            </>
+          ) : null}
         </ScrollView>
       ) : null}
     </View>
@@ -310,10 +334,10 @@ const styles = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
   },
-  centered: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+  loadingBody: {
+    paddingHorizontal: verseSpacing.horizontalPadding,
+    paddingTop: verseSpacing.contentTop,
+    gap: verseSpacing.referenceToBodyGap,
   },
   errorBlock: {
     paddingHorizontal: verseSpacing.horizontalPadding,

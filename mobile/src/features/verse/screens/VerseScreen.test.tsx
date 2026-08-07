@@ -1,9 +1,14 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react-native';
 import type { ComponentProps } from 'react';
+import type { Metrics } from 'react-native-safe-area-context';
 
 import { VerseScreen } from './VerseScreen';
 import { ApiError } from '../../../services/api/apiError';
-import { renderWithProviders } from '../../../test/renderWithProviders';
+import {
+  TEST_WINDOW_METRICS,
+  renderWithProviders,
+} from '../../../test/renderWithProviders';
+import { verseSpacing } from '../../../design-system';
 import type { ReadingProgressService } from '../../reading-progress/application/ReadingProgressService';
 import type { VerseListItem } from '../../chapter/model/chapterTypes';
 import type { VerseTranslation } from '../model/translationTypes';
@@ -116,6 +121,7 @@ function renderVerse(
     loadChapterVerses?: (chapterId: string) => Promise<VerseListItem[]>;
     navigation?: VerseProps['navigation'];
     readingProgressService?: ReadingProgressService;
+    initialMetrics?: Metrics;
   } = {},
 ) {
   const navigation = options.navigation ?? createNavigationMock();
@@ -147,13 +153,29 @@ function renderVerse(
         loadChapterVerses={options.loadChapterVerses ?? (async () => VERSES)}
         readingProgressService={readingProgressService}
       />,
-      { readingProgressService },
+      {
+        readingProgressService,
+        initialMetrics: options.initialMetrics,
+      },
     ),
   };
 }
 
+function scrollBottomPadding(node: { props: { contentContainerStyle?: unknown } }) {
+  const style = node.props.contentContainerStyle;
+  const styles = Array.isArray(style) ? style : [style];
+  const withPadding = styles.find(
+    (entry) =>
+      entry != null &&
+      typeof entry === 'object' &&
+      'paddingBottom' in entry &&
+      typeof (entry as { paddingBottom?: unknown }).paddingBottom === 'number',
+  ) as { paddingBottom: number } | undefined;
+  return withPadding?.paddingBottom;
+}
+
 describe('VerseScreen', () => {
-  it('shows a centered loading state while the verse loads', async () => {
+  it('uses structural loading in the same ScrollView instead of a full-screen spinner', async () => {
     let resolveVerse: ((value: VerseDetail) => void) | undefined;
     const pending = new Promise<VerseDetail>((resolve) => {
       resolveVerse = resolve;
@@ -166,9 +188,25 @@ describe('VerseScreen', () => {
     });
 
     expect(screen.getByTestId('verse-loading')).toBeTruthy();
+    expect(screen.getByTestId('verse-scroll')).toBeTruthy();
+    expect(screen.getByTestId('verse-loading-skeleton')).toBeTruthy();
     expect(screen.getByLabelText('Loading verse')).toBeTruthy();
-    expect(progress.recordVerseOpened).not.toHaveBeenCalled();
+    expect(screen.getAllByLabelText('Loading verse')).toHaveLength(1);
+    expect(screen.queryByTestId('verse-loading-indicator')).toBeNull();
+    expect(screen.queryByText(/loading translation/i)).toBeNull();
+    expect(screen.queryByTestId('verse-translation-loading')).toBeNull();
     expect(screen.queryByTestId('verse-translation-block')).toBeNull();
+    expect(screen.getByTestId('verse-reference')).toHaveTextContent(
+      'Chapter 1 · Verse 1',
+    );
+    expect(
+      screen.getByTestId('verse-sanskrit-skeleton', {
+        includeHiddenElements: true,
+      }),
+    ).toBeTruthy();
+    expect(screen.getByLabelText('Previous verse')).toBeDisabled();
+    expect(screen.getByLabelText('Next verse')).toBeDisabled();
+    expect(progress.recordVerseOpened).not.toHaveBeenCalled();
 
     await act(async () => {
       resolveVerse?.(VERSE_1);
@@ -176,6 +214,23 @@ describe('VerseScreen', () => {
     await waitFor(() => {
       expect(screen.getByTestId('verse-success')).toBeTruthy();
     });
+
+    expect(screen.getByTestId('verse-scroll')).toBeTruthy();
+    expect(screen.queryByTestId('verse-loading-skeleton')).toBeNull();
+    expect(screen.getByTestId('verse-sanskrit-text')).toHaveTextContent(
+      VERSE_1.sanskritText,
+    );
+  });
+
+  it('hides decorative Sanskrit loading bars from accessibility', async () => {
+    const pending = new Promise<VerseDetail>(() => {});
+    renderVerse({ loadVerse: () => pending });
+
+    const skeleton = screen.getByTestId('verse-sanskrit-skeleton', {
+      includeHiddenElements: true,
+    });
+    expect(skeleton.props.accessibilityElementsHidden).toBe(true);
+    expect(skeleton.props.importantForAccessibility).toBe('no');
   });
 
   it('renders a quiet combined reference then Sanskrit, with Previous disabled on the first verse', async () => {
@@ -236,7 +291,7 @@ describe('VerseScreen', () => {
     expect(screen.queryByText(/continue reading/i)).toBeNull();
   });
 
-  it('shows Translation loading under Sanskrit without a second full-screen spinner', async () => {
+  it('shows structural Translation loading under Sanskrit without prose or blocking nav', async () => {
     let resolveTranslation: ((value: VerseTranslation) => void) | undefined;
     const pending = new Promise<VerseTranslation>((resolve) => {
       resolveTranslation = resolve;
@@ -253,11 +308,16 @@ describe('VerseScreen', () => {
     expect(screen.getByTestId('verse-sanskrit-text')).toHaveTextContent(
       VERSE_1.sanskritText,
     );
-    expect(screen.getByTestId('verse-translation-loading')).toHaveTextContent(
-      'Loading translation…',
-    );
+    const translationLoading = screen.getByTestId('verse-translation-loading', {
+      includeHiddenElements: true,
+    });
+    expect(translationLoading.props.accessibilityElementsHidden).toBe(true);
+    expect(translationLoading.props.importantForAccessibility).toBe('no');
+    expect(screen.queryByText(/loading translation/i)).toBeNull();
+    expect(screen.queryByTestId('verse-translation-label')).toBeNull();
     expect(screen.queryByLabelText('Loading verse')).toBeNull();
-    expect(screen.getByLabelText('Previous verse')).toBeTruthy();
+    expect(screen.getByLabelText('Previous verse')).toBeDisabled();
+    expect(screen.getByLabelText('Next verse')).toBeEnabled();
 
     await act(async () => {
       resolveTranslation?.(TRANSLATION_1);
@@ -266,6 +326,54 @@ describe('VerseScreen', () => {
     await waitFor(() => {
       expect(screen.getByTestId('verse-translation-text')).toBeTruthy();
     });
+    expect(screen.getByTestId('verse-translation-label')).toHaveTextContent(
+      'Translation',
+    );
+    expect(screen.getByTestId('verse-translation-provider')).toHaveTextContent(
+      'FIXTURE_PROVIDER',
+    );
+  });
+
+  it('keeps long content in one scroll document with bottom safe-area padding', async () => {
+    const longSanskrit =
+      'धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः।\n'.repeat(12);
+    const bottomInset = 34;
+    renderVerse({
+      loadVerse: async () => ({
+        ...VERSE_1,
+        sanskritText: longSanskrit,
+      }),
+      loadTranslation: async () => ({
+        ...TRANSLATION_1,
+        translationText: `${TRANSLATION_1.translationText}\n`.repeat(8),
+      }),
+      initialMetrics: {
+        ...TEST_WINDOW_METRICS,
+        insets: { ...TEST_WINDOW_METRICS.insets, bottom: bottomInset },
+      },
+    });
+
+    await waitFor(() => {
+      expect(screen.getByTestId('verse-success')).toBeTruthy();
+    });
+
+    const scroll = screen.getByTestId('verse-scroll');
+    expect(scrollBottomPadding(scroll)).toBe(
+      verseSpacing.bottomPadding + bottomInset,
+    );
+    expect(screen.getByTestId('verse-sanskrit-text')).toHaveTextContent(
+      longSanskrit.trim(),
+    );
+    expect(screen.getByTestId('verse-translation-text')).toBeTruthy();
+    expect(screen.getByTestId('verse-navigation')).toBeTruthy();
+    expect(screen.queryByTestId('verse-loading-indicator')).toBeNull();
+    expect(
+      screen.getByTestId('verse-sanskrit-text').props.style,
+    ).not.toEqual(
+      expect.objectContaining({
+        height: expect.any(Number),
+      }),
+    );
   });
 
   it('collapses Translation silently when Translation returns 404', async () => {
@@ -432,7 +540,11 @@ describe('VerseScreen', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByTestId('verse-translation-loading')).toBeTruthy();
+      expect(
+        screen.getByTestId('verse-translation-loading', {
+          includeHiddenElements: true,
+        }),
+      ).toBeTruthy();
     });
 
     rerender(
@@ -566,7 +678,11 @@ describe('VerseScreen', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByTestId('verse-translation-loading')).toBeTruthy();
+      expect(
+        screen.getByTestId('verse-translation-loading', {
+          includeHiddenElements: true,
+        }),
+      ).toBeTruthy();
     });
 
     expect(screen.getByLabelText('Next verse')).toBeEnabled();
@@ -576,6 +692,21 @@ describe('VerseScreen', () => {
       verseNumber: 2,
       chapterNumber: 1,
     });
+  });
+
+  it('does not navigate while Sanskrit is still loading', async () => {
+    const setParams = jest.fn();
+    const navigation = createNavigationMock({ setParams });
+    const pending = new Promise<VerseDetail>(() => {});
+
+    renderVerse({
+      navigation,
+      loadVerse: () => pending,
+    });
+
+    expect(screen.getByLabelText('Next verse')).toBeDisabled();
+    fireEvent.press(screen.getByLabelText('Next verse'));
+    expect(setParams).not.toHaveBeenCalled();
   });
 
   it('records progress for a newly loaded Verse after Previous/Next', async () => {

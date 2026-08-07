@@ -15,14 +15,25 @@ type Props = {
  * Subordinate Translation layer of the Verse Reader Scripture Stack.
  * Visually quieter than Sanskrit. No cards, icons, or callouts.
  * Unavailable Translation is omitted entirely by the parent (silent collapse).
+ * Loading reserves space with decorative bars only — no prose, no label.
  */
 export function TranslationBlock({ state }: Props) {
+  if (state.kind === 'loading') {
+    return (
+      <View
+        accessibilityElementsHidden
+        importantForAccessibility="no"
+        style={styles.container}
+        testID="verse-translation-loading"
+      >
+        <View style={[styles.loadingBar, styles.loadingBarWide]} />
+        <View style={[styles.loadingBar, styles.loadingBarMedium]} />
+      </View>
+    );
+  }
+
   return (
-    <View
-      style={styles.container}
-      testID="verse-translation-block"
-      accessibilityLabel="Translation"
-    >
+    <View style={styles.container} testID="verse-translation-block">
       <Text
         style={styles.label}
         testID="verse-translation-label"
@@ -30,35 +41,20 @@ export function TranslationBlock({ state }: Props) {
       >
         Translation
       </Text>
-
-      {state.kind === 'loading' ? (
-        <Text
-          style={styles.placeholder}
-          testID="verse-translation-loading"
-          accessibilityLabel="Loading translation"
-        >
-          Loading translation…
-        </Text>
-      ) : null}
-
-      {state.kind === 'ready' ? (
-        <>
-          <Text
-            style={styles.provider}
-            testID="verse-translation-provider"
-            accessibilityLabel={`Provider ${state.translation.provider}`}
-          >
-            {state.translation.provider}
-          </Text>
-          <Text
-            style={styles.body}
-            testID="verse-translation-text"
-            accessibilityLabel={state.translation.translationText}
-          >
-            {state.translation.translationText}
-          </Text>
-        </>
-      ) : null}
+      <Text
+        style={styles.provider}
+        testID="verse-translation-provider"
+        accessibilityLabel={`Provider ${state.translation.provider}`}
+      >
+        {state.translation.provider}
+      </Text>
+      <Text
+        style={styles.body}
+        testID="verse-translation-text"
+        accessibilityLabel={state.translation.translationText}
+      >
+        {state.translation.translationText}
+      </Text>
     </View>
   );
 }
@@ -81,8 +77,15 @@ const styles = StyleSheet.create({
     ...typography.versePreview,
     color: color.textSupporting,
   },
-  placeholder: {
-    ...typography.versePreviewTemporary,
-    color: color.textTertiary,
+  loadingBar: {
+    height: verseSpacing.skeletonLineHeight,
+    backgroundColor: color.divider,
+  },
+  loadingBarWide: {
+    alignSelf: 'stretch',
+  },
+  loadingBarMedium: {
+    width: '70%',
+    alignSelf: 'flex-start',
   },
 });
