@@ -47,6 +47,10 @@ ScreenHeader (inline Back + Antar)
 
 ↓
 
+HairlineRule
+
+↓
+
 Verse Reference
 
 ↓
@@ -88,6 +92,7 @@ bottom content padding formula.
 VerseScreen
 
 ├── ScreenHeader (layout="inline")
+├── HairlineRule
 └── ScrollView
       ├── loading:
       │     VerseReference (route chapter/verse)
@@ -137,8 +142,8 @@ Horizontal padding: **28px**
 | Location | Value | Status |
 |----------|------:|--------|
 | Header content top (below safe area) | 8 | Shared `screenHeaderSpacing` |
-| Header bottom (inline row → content) | 20 | Implemented |
-| Content top (header → reference) | 12 | Implemented; simulator-reviewed calm gap |
+| Header bottom (inline row → divider) | 20 | Implemented; matches Chapter inline rhythm |
+| Content top (divider → reference) | 12 | Implemented; calm gap below header hairline |
 | Reference → Sanskrit | 16 | Implemented |
 | Sanskrit → Translation | 40 | Implemented (when Translation section present) |
 | Translation stack gap | 8 | Implemented |

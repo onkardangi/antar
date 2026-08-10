@@ -106,12 +106,15 @@ LibraryScreen
 
 Purpose
 
-Provides navigation context.
+Provides navigation context only.
 
 Contains:
 
 - Back navigation (only when the stack can go back)
-- Application title
+
+Does **not** show the Antar application title on Library. After Home becomes
+the landing experience, Library’s page identity is **Bhagavad Gita** via
+ScriptureIntroduction — product branding steps back so scripture can lead.
 
 States
 
@@ -120,10 +123,9 @@ States
 
 Interactions
 
-Back returns to the previous screen (Home, once Home exists).
+Back returns to the previous screen (Home).
 
 When Library is the root route, omit Back entirely. Do not reserve empty Back space.
-The application title remains left-aligned.
 
 ---
 
@@ -132,6 +134,8 @@ The application title remains left-aligned.
 Purpose
 
 Introduces the Bhagavad Gita and explains that all chapters are available in canonical order.
+
+This is Library’s primary visual identity (not a product wordmark).
 
 States
 

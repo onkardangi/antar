@@ -69,8 +69,16 @@ export const chapterSpacing = {
 /** Verse Reader spacing — reuses shared header metrics; reading-specific gaps only. */
 export const verseSpacing = {
   ...screenHeaderSpacing,
+  /**
+   * Padding below the inline header row to the divider.
+   * Matches Chapter’s inline ScreenHeader → HairlineRule rhythm.
+   */
   headerBottom: 20,
-  /** Top padding before the quiet Verse Reference (Back → reference). */
+  /**
+   * Quiet pause below the header divider before Verse Reference.
+   * Kept tight so the hairline separates navigation from scripture
+   * without excess whitespace above the reading document.
+   */
   contentTop: 12,
   /** Small/medium pause between Reference and Sanskrit. */
   referenceToBodyGap: 16,

@@ -10,6 +10,7 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import {
+  HairlineRule,
   ScreenHeader,
   color,
   typography,
@@ -236,6 +237,7 @@ export function VerseScreen({
         paddingBottom={verseSpacing.headerBottom}
         onBack={navigation.canGoBack() ? () => navigation.goBack() : undefined}
       />
+      <HairlineRule />
 
       {verseState.kind === 'error' ? (
         <View style={styles.errorBlock} testID="verse-error-message">
