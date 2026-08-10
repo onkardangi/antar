@@ -1,0 +1,294 @@
+{
+  "approvedCount": 0,
+  "chapterNumber": 1,
+  "combinedLabelInventory": [],
+  "expectedVerseCount": 47,
+  "importReady": false,
+  "multiVerseSegmentCount": 0,
+  "multiplyCoveredVerses": [],
+  "oneToOneSegmentCount": 47,
+  "packageFormatV1CompatibilityReason": "All 47 Chapter 1 units are ONE_TO_ONE; Package Format v1 can represent them faithfully after editorial approval.",
+  "packageFormatV1Compatible": true,
+  "packageReady": false,
+  "provider": "Annie Besant & Bhagavan Das",
+  "reviewFlagInventory": [
+    {
+      "canonicalReference": "1.1",
+      "reviewFlags": [
+        "LABEL_QUIRK_NO_ARABIC",
+        "SPEAKER_ATTRIBUTION"
+      ],
+      "segmentId": "besant-das-1905-bg-1-001"
+    },
+    {
+      "canonicalReference": "1.2",
+      "reviewFlags": [
+        "SPEAKER_ATTRIBUTION",
+        "FOOTNOTE_MARKER_STRIPPED"
+      ],
+      "segmentId": "besant-das-1905-bg-1-002"
+    },
+    {
+      "canonicalReference": "1.4",
+      "reviewFlags": [
+        "FOOTNOTE_MARKER_STRIPPED"
+      ],
+      "segmentId": "besant-das-1905-bg-1-004"
+    },
+    {
+      "canonicalReference": "1.5",
+      "reviewFlags": [
+        "FOOTNOTE_MARKER_STRIPPED",
+        "DIACRITIC_COMPLEXITY"
+      ],
+      "segmentId": "besant-das-1905-bg-1-005"
+    },
+    {
+      "canonicalReference": "1.6",
+      "reviewFlags": [
+        "FOOTNOTE_MARKER_STRIPPED"
+      ],
+      "segmentId": "besant-das-1905-bg-1-006"
+    },
+    {
+      "canonicalReference": "1.8",
+      "reviewFlags": [
+        "FOOTNOTE_MARKER_STRIPPED",
+        "DIACRITIC_COMPLEXITY"
+      ],
+      "segmentId": "besant-das-1905-bg-1-008"
+    },
+    {
+      "canonicalReference": "1.10",
+      "reviewFlags": [
+        "FOOTNOTE_MARKER_STRIPPED"
+      ],
+      "segmentId": "besant-das-1905-bg-1-010"
+    },
+    {
+      "canonicalReference": "1.11",
+      "reviewFlags": [
+        "QUOTATION_MARK_UNCERTAIN"
+      ],
+      "segmentId": "besant-das-1905-bg-1-011"
+    },
+    {
+      "canonicalReference": "1.14",
+      "reviewFlags": [
+        "FOOTNOTE_MARKER_STRIPPED"
+      ],
+      "segmentId": "besant-das-1905-bg-1-014"
+    },
+    {
+      "canonicalReference": "1.15",
+      "reviewFlags": [
+        "FOOTNOTE_MARKER_STRIPPED"
+      ],
+      "segmentId": "besant-das-1905-bg-1-015"
+    },
+    {
+      "canonicalReference": "1.16",
+      "reviewFlags": [
+        "FOOTNOTE_MARKER_STRIPPED",
+        "DIACRITIC_COMPLEXITY"
+      ],
+      "segmentId": "besant-das-1905-bg-1-016"
+    },
+    {
+      "canonicalReference": "1.17",
+      "reviewFlags": [
+        "FOOTNOTE_MARKER_STRIPPED",
+        "DIACRITIC_COMPLEXITY"
+      ],
+      "segmentId": "besant-das-1905-bg-1-017"
+    },
+    {
+      "canonicalReference": "1.20",
+      "reviewFlags": [
+        "CROSS_PAGE_CONTINUATION"
+      ],
+      "segmentId": "besant-das-1905-bg-1-020"
+    },
+    {
+      "canonicalReference": "1.21",
+      "reviewFlags": [
+        "SPEAKER_ATTRIBUTION",
+        "CROSS_PAGE_CONTINUATION",
+        "OPEN_QUOTATION_CONTINUES"
+      ],
+      "segmentId": "besant-das-1905-bg-1-021"
+    },
+    {
+      "canonicalReference": "1.22",
+      "reviewFlags": [
+        "OPEN_QUOTATION_CONTINUES"
+      ],
+      "segmentId": "besant-das-1905-bg-1-022"
+    },
+    {
+      "canonicalReference": "1.23",
+      "reviewFlags": [
+        "QUOTATION_MARK_UNCERTAIN"
+      ],
+      "segmentId": "besant-das-1905-bg-1-023"
+    },
+    {
+      "canonicalReference": "1.24",
+      "reviewFlags": [
+        "SPEAKER_ATTRIBUTION",
+        "FOOTNOTE_MARKER_STRIPPED",
+        "DIACRITIC_COMPLEXITY"
+      ],
+      "segmentId": "besant-das-1905-bg-1-024"
+    },
+    {
+      "canonicalReference": "1.27",
+      "reviewFlags": [
+        "CROSS_PAGE_CONTINUATION",
+        "FOOTNOTE_MARKER_STRIPPED"
+      ],
+      "segmentId": "besant-das-1905-bg-1-027"
+    },
+    {
+      "canonicalReference": "1.28",
+      "reviewFlags": [
+        "LABEL_QUIRK_NO_ARABIC",
+        "SPEAKER_ATTRIBUTION"
+      ],
+      "segmentId": "besant-das-1905-bg-1-028"
+    },
+    {
+      "canonicalReference": "1.30",
+      "reviewFlags": [
+        "DIACRITIC_COMPLEXITY"
+      ],
+      "segmentId": "besant-das-1905-bg-1-030"
+    },
+    {
+      "canonicalReference": "1.31",
+      "reviewFlags": [
+        "FOOTNOTE_MARKER_STRIPPED"
+      ],
+      "segmentId": "besant-das-1905-bg-1-031"
+    },
+    {
+      "canonicalReference": "1.33",
+      "reviewFlags": [
+        "LABEL_QUIRK_NO_ARABIC",
+        "CROSS_PAGE_CONTINUATION"
+      ],
+      "segmentId": "besant-das-1905-bg-1-033"
+    },
+    {
+      "canonicalReference": "1.34",
+      "reviewFlags": [
+        "CROSS_PAGE_CONTINUATION"
+      ],
+      "segmentId": "besant-das-1905-bg-1-034"
+    },
+    {
+      "canonicalReference": "1.35",
+      "reviewFlags": [
+        "DIACRITIC_COMPLEXITY"
+      ],
+      "segmentId": "besant-das-1905-bg-1-035"
+    },
+    {
+      "canonicalReference": "1.36",
+      "reviewFlags": [
+        "FOOTNOTE_MARKER_STRIPPED"
+      ],
+      "segmentId": "besant-das-1905-bg-1-036"
+    },
+    {
+      "canonicalReference": "1.40",
+      "reviewFlags": [
+        "FOOTNOTE_MARKER_STRIPPED"
+      ],
+      "segmentId": "besant-das-1905-bg-1-040"
+    },
+    {
+      "canonicalReference": "1.41",
+      "reviewFlags": [
+        "DIACRITIC_COMPLEXITY"
+      ],
+      "segmentId": "besant-das-1905-bg-1-041"
+    },
+    {
+      "canonicalReference": "1.43",
+      "reviewFlags": [
+        "CROSS_PAGE_CONTINUATION"
+      ],
+      "segmentId": "besant-das-1905-bg-1-043"
+    },
+    {
+      "canonicalReference": "1.44",
+      "reviewFlags": [
+        "ITALICS_PRESENTATION_DEFERRED"
+      ],
+      "segmentId": "besant-das-1905-bg-1-044"
+    },
+    {
+      "canonicalReference": "1.47",
+      "reviewFlags": [
+        "SPEAKER_ATTRIBUTION"
+      ],
+      "segmentId": "besant-das-1905-bg-1-047"
+    }
+  ],
+  "segmentCount": 47,
+  "segmentsWithMultiVerseCoverage": [],
+  "sourceChecksum": "7fb78b0a6b004f195c3ca61c091501084e553627c51cde1c309f2d0620ea6115",
+  "sourceId": "bhagavad-gita-translation-en-besant-das-1905-v1",
+  "status": "DRAFT_UNREVIEWED",
+  "uncoveredVerses": [],
+  "verseToSegment": {
+    "1.1": "besant-das-1905-bg-1-001",
+    "1.10": "besant-das-1905-bg-1-010",
+    "1.11": "besant-das-1905-bg-1-011",
+    "1.12": "besant-das-1905-bg-1-012",
+    "1.13": "besant-das-1905-bg-1-013",
+    "1.14": "besant-das-1905-bg-1-014",
+    "1.15": "besant-das-1905-bg-1-015",
+    "1.16": "besant-das-1905-bg-1-016",
+    "1.17": "besant-das-1905-bg-1-017",
+    "1.18": "besant-das-1905-bg-1-018",
+    "1.19": "besant-das-1905-bg-1-019",
+    "1.2": "besant-das-1905-bg-1-002",
+    "1.20": "besant-das-1905-bg-1-020",
+    "1.21": "besant-das-1905-bg-1-021",
+    "1.22": "besant-das-1905-bg-1-022",
+    "1.23": "besant-das-1905-bg-1-023",
+    "1.24": "besant-das-1905-bg-1-024",
+    "1.25": "besant-das-1905-bg-1-025",
+    "1.26": "besant-das-1905-bg-1-026",
+    "1.27": "besant-das-1905-bg-1-027",
+    "1.28": "besant-das-1905-bg-1-028",
+    "1.29": "besant-das-1905-bg-1-029",
+    "1.3": "besant-das-1905-bg-1-003",
+    "1.30": "besant-das-1905-bg-1-030",
+    "1.31": "besant-das-1905-bg-1-031",
+    "1.32": "besant-das-1905-bg-1-032",
+    "1.33": "besant-das-1905-bg-1-033",
+    "1.34": "besant-das-1905-bg-1-034",
+    "1.35": "besant-das-1905-bg-1-035",
+    "1.36": "besant-das-1905-bg-1-036",
+    "1.37": "besant-das-1905-bg-1-037",
+    "1.38": "besant-das-1905-bg-1-038",
+    "1.39": "besant-das-1905-bg-1-039",
+    "1.4": "besant-das-1905-bg-1-004",
+    "1.40": "besant-das-1905-bg-1-040",
+    "1.41": "besant-das-1905-bg-1-041",
+    "1.42": "besant-das-1905-bg-1-042",
+    "1.43": "besant-das-1905-bg-1-043",
+    "1.44": "besant-das-1905-bg-1-044",
+    "1.45": "besant-das-1905-bg-1-045",
+    "1.46": "besant-das-1905-bg-1-046",
+    "1.47": "besant-das-1905-bg-1-047",
+    "1.5": "besant-das-1905-bg-1-005",
+    "1.6": "besant-das-1905-bg-1-006",
+    "1.7": "besant-das-1905-bg-1-007",
+    "1.8": "besant-das-1905-bg-1-008",
+    "1.9": "besant-das-1905-bg-1-009"
+  }
+}

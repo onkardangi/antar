@@ -212,6 +212,27 @@ def validate_workspace(
         if seg.get("language") != "en":
             errors.append(f"{sid}: language must be 'en'")
 
+        # Segment drafts must not carry package/import metadata.
+        for forbidden in (
+            "packageId",
+            "importBatchId",
+            "importedAt",
+            "translationPackageVersion",
+            "databaseId",
+        ):
+            if forbidden in seg:
+                errors.append(f"{sid}: forbidden package/import field {forbidden}")
+
+        sp = seg.get("sourcePage")
+        if not isinstance(sp, dict) or "printed" not in sp or "scanLeaf" not in sp:
+            errors.append(f"{sid}: sourcePage.printed/scanLeaf required")
+
+    if extraction and len(extraction) != len(segments):
+        errors.append(
+            f"source-extraction unit count {len(extraction)} "
+            f"!= segment count {len(segments)}"
+        )
+
     missing = [v for v in range(1, expected_verse_count + 1) if v not in verse_owner]
     if missing:
         errors.append(f"uncovered verses: {missing}")
@@ -259,13 +280,20 @@ def validate_workspace(
     import_ready = False
     reasons = [
         "records are not APPROVED (or approval not authorized in this phase)",
-        "package v1 cannot represent N→1 segments",
         "no Translation package built in this phase",
     ]
     if approved == 0:
         reasons.insert(0, "approved count is 0")
     if multi:
-        reasons.append(f"N→1 segments present: {len(multi)}")
+        reasons.append(
+            "package v1 cannot represent N→1 segments "
+            f"(present: {len(multi)})"
+        )
+    elif coverage.get("packageFormatV1Compatible") is True:
+        reasons.append(
+            "structurally packageFormatV1Compatible, but not packageReady "
+            "until APPROVED + package build"
+        )
 
     report = {
         "workspace": str(workspace),

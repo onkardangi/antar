@@ -35,13 +35,15 @@ Governs when a later edition may (or may not) fill gaps in a selected primary Tr
 
 | Path | Role |
 |------|------|
-| [`swarupananda-1909/chapter-01/`](swarupananda-1909/chapter-01/) | Chapter 1 segment drafts + coverage map |
+| [`besant-das-1905/chapter-01/`](besant-das-1905/chapter-01/) | **Production V1 candidate** — Chapter 1 fluent English drafts (47 × ONE_TO_ONE, all `UNREVIEWED`) |
+| [`swarupananda-1909/chapter-01/`](swarupananda-1909/chapter-01/) | Research / blocked primary — frozen; do not clear gaps here |
 | [`tools/`](tools/) | Extract/validate helpers + offline tests |
 
 Related:
 
 - Phase 1 selection: [`content/translation-selection/`](../translation-selection/)
-- Phase 2 inspection: [`../translation-selection/swarupananda-1909-inspection.md`](../translation-selection/swarupananda-1909-inspection.md)
+- Besant inspection: [`../translation-selection/besant-das-1905-inspection.md`](../translation-selection/besant-das-1905-inspection.md)
+- Swarupananda inspection: [`../translation-selection/swarupananda-1909-inspection.md`](../translation-selection/swarupananda-1909-inspection.md)
 - ADR-012: Translation bounded context
 - Editorial policy: [`docs/content/03_EDITORIAL_POLICY.md`](../../docs/content/03_EDITORIAL_POLICY.md)
 
