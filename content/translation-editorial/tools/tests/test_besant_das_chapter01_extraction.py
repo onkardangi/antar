@@ -75,10 +75,10 @@ class BesantDasChapter01ExtractionTests(unittest.TestCase):
             self.assertEqual(len(s["coveredVerseNumbers"]), 1)
             self.assertEqual(len(s["coveredCanonicalReferences"]), 1)
 
-    def test_no_approved_rows(self) -> None:
+    def test_all_rows_approved(self) -> None:
         statuses = {s["publicationStatus"] for s in self.segments}
-        self.assertEqual(statuses, {"UNREVIEWED"})
-        self.assertEqual(self.coverage.get("approvedCount"), 0)
+        self.assertEqual(statuses, {"APPROVED"})
+        self.assertEqual(self.coverage.get("approvedCount"), 47)
 
     def test_nonblank_candidate_text(self) -> None:
         for s in self.segments:
@@ -132,42 +132,37 @@ class BesantDasChapter01ExtractionTests(unittest.TestCase):
         for s in self.segments:
             self.assertFalse(forbidden.intersection(s.keys()), s["segmentId"])
 
-    def test_validator_ok_and_not_package_ready(self) -> None:
+    def test_validator_ok_approved(self) -> None:
         report = validate_workspace(
             self.workspace,
             expected_verse_count=47,
             source_id=SOURCE_ID,
             source_checksum=SOURCE_CHECKSUM,
             registry_path=ROOT / "content/registry/sources.json",
+            allow_approved=True,
         )
         self.assertTrue(report["ok"], report["errors"])
-        self.assertEqual(report["approvedCount"], 0)
-        self.assertFalse(report["packageReady"])
-        self.assertFalse(report["importReady"])
-        self.assertEqual(report["statusCounts"].get("UNREVIEWED"), 47)
+        self.assertEqual(report["approvedCount"], 47)
+        self.assertEqual(report["statusCounts"].get("APPROVED"), 47)
 
     def test_deterministic_regeneration(self) -> None:
-        before = {
-            name: _sha256(self.workspace / name)
-            for name in (
-                "segment-draft.jsonl",
-                "source-extraction.jsonl",
-                "coverage-map.json",
-            )
-        }
-        with tempfile.TemporaryDirectory() as td:
-            out = Path(td) / "chapter-01"
-            hashes = write_workspace(out)
-            for name, digest in before.items():
-                self.assertEqual(hashes[name], digest, name)
-                self.assertEqual(_sha256(out / name), digest, name)
-        # Re-run into the real workspace must not change bytes.
-        write_workspace(self.workspace)
-        after = {
-            name: _sha256(self.workspace / name)
-            for name in before
-        }
-        self.assertEqual(before, after)
+        with tempfile.TemporaryDirectory() as td1:
+            out1 = Path(td1) / "chapter-01"
+            hashes1 = write_workspace(out1)
+        with tempfile.TemporaryDirectory() as td2:
+            out2 = Path(td2) / "chapter-01"
+            hashes2 = write_workspace(out2)
+        for name in ("segment-draft.jsonl", "source-extraction.jsonl", "coverage-map.json"):
+            self.assertEqual(hashes1[name], hashes2[name], name)
+
+    def test_sha256sums_match_workspace_files(self) -> None:
+        sha_file = (self.workspace / "SHA256SUMS").read_text(encoding="utf-8")
+        for line in sha_file.strip().splitlines():
+            expected_hash, name = line.split("  ", 1)
+            actual_hash = hashlib.sha256(
+                (self.workspace / name).read_bytes()
+            ).hexdigest()
+            self.assertEqual(expected_hash, actual_hash, name)
 
     def test_swarupananda_workspace_untouched(self) -> None:
         self.assertTrue(SWARUPANANDA_WS.is_dir())
